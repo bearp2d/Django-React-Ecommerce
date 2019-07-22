@@ -132,3 +132,7 @@ MEDIA_URL = '/media/'
 # Custom user model
 
 AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = (
+    'accounts.backends.CustomBackend',
+    'django.contrib.auth.backends.ModelBackend'
+)
