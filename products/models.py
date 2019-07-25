@@ -43,6 +43,8 @@ class Product(models.Model):
     photo_4 = models.ImageField(blank=True, null=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    discount_price = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True)
     sizes = models.ManyToManyField(Size, blank=True)
     colors = models.ManyToManyField(Color, blank=True)
     available = models.BooleanField(default=True)
@@ -60,3 +62,10 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.code = id_generator()
         super(Product, self).save(*args, **kwargs)
+
+    @property
+    def discount_percent(self):
+        if self.discount_price:
+            discount_percent = self.discount_price / self.price * 100
+            return int(discount_percent)
+        return
