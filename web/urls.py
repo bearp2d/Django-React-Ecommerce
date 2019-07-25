@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('accounts.urls')),
     path('api/cart/', include('carts.urls')),
+    path('api/products/', include('products.urls')),
 ]
 
 # Media urls
