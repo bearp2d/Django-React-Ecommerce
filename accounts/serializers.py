@@ -11,6 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         exclude = ('password', 'is_admin', 'is_active')
+        read_only_fields = ('last_login',)
 
 
 class RegisterSerializer(serializers.ModelSerializer):
