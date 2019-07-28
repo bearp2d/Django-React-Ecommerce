@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.core.validators import RegexValidator
 
+from .validators import validate_national_code
+
 
 class UserMananger(BaseUserManager):
     def create_user(self, phone_number, password=None, **extra_fields):
@@ -38,6 +40,8 @@ class User(AbstractBaseUser):
         RegexValidator('^09\d{9}$', message="Invalid phone number.")])
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
+    national_code = models.CharField(
+        validators=[validate_national_code], blank=True, null=True, max_length=10)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
