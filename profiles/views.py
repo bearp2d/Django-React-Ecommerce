@@ -1,12 +1,18 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.status import HTTP_404_NOT_FOUND
 
 
 from accounts.serializers import UserSerializer
 from .serializers import AddressSerializer
-from .models import Address
+from .models import Address, FavoritesProducts
+from products.models import Product
+from products.serializers import ProductListSerializer
 
 
 User = get_user_model()
@@ -30,3 +36,33 @@ class AddressViewSet(ModelViewSet):
 
     def perform_create(self, serailizer):
         serailizer.save(user=self.request.user)
+
+
+class FavoritesProductsView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        user = request.user
+        qs = FavoritesProducts.objects.get(user=user).products.all()
+        if not qs.exists():
+            return Response("favorites products is empty.", status=HTTP_404_NOT_FOUND)
+        products = ProductListSerializer(
+            qs, context={'request': request}, many=True).data
+        return Response({"products": products})
+
+
+class UpdateFavoritesProductsView(APIView):
+    """Get product then if product in favorites products exists remove from that, 
+    else add it to favorites products"""
+
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, id):
+        user = request.user
+        product = get_object_or_404(Product, id=id)
+        obj, _ = FavoritesProducts.objects.get_or_create(user=user)
+        if obj.products.filter(id=id).exists():
+            obj.products.remove(product)
+            return Response({'message': "Product removed from favorites products"})
+        obj.products.add(product)
+        return Response({'message': "Product added to favorites products"})
