@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const LoadingButton = props => {
-  const { loading, ...rest } = props;
+  const { loading, children, ...rest } = props;
   const classes = useStyles();
 
   return (
@@ -25,7 +25,7 @@ const LoadingButton = props => {
       disabled={loading}
       {...rest}
     >
-      Login
+      {children}
       {loading && <CircularProgress size={30} className={classes.progress} />}
     </Button>
   );
