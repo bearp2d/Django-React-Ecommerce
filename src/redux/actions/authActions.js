@@ -26,7 +26,22 @@ export const login = (user, setErrors, resetForm) => dispatch => {
       setAthorizationToken(response.data.token);
       dispatch({ type: AUTH_SUCCESS, payload: response.data.user });
       resetForm();
-      // TODO: redirect to dashboard
+    })
+    .catch(error => {
+      dispatch({ type: AUTH_FAIL });
+      setErrors(error.response.data);
+    });
+};
+
+export const register = (user, setErrors, resetForm) => dispatch => {
+  dispatch({ type: AUTH_START });
+  axios
+    .post("/api/auth/register/", user)
+    .then(response => {
+      localStorage.setItem("token", `Token ${response.data.token}`);
+      setAthorizationToken(response.data.token);
+      dispatch({ type: AUTH_SUCCESS, payload: response.data.user });
+      resetForm();
     })
     .catch(error => {
       dispatch({ type: AUTH_FAIL });

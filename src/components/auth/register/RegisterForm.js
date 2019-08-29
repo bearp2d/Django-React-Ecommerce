@@ -6,11 +6,10 @@ import Avatar from "@material-ui/core/Avatar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import MUILink from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import LoadingButton from "../../utils/LoadingButton";
 import Copyright from "../../utils/Copyright";
@@ -43,9 +42,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const LoginForm = props => {
+const RegisterForm = props => {
   const {
-    values: { phone_number_or_email, password },
+    values: { phone_number, password },
     errors,
     handleSubmit,
     handleChange,
@@ -59,10 +58,10 @@ const LoginForm = props => {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <AccountCircleIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Log In
+          Register
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
@@ -70,19 +69,16 @@ const LoginForm = props => {
             margin="normal"
             required
             fullWidth
-            id="phone_number_or_email"
-            label="Phone Number OR Email Address"
-            name="phone_number_or_email"
-            autoComplete="phone_number_or_email"
-            helperText={
-              touched.phone_number_or_email && errors.phone_number_or_email
-            }
+            id="phone_number"
+            label="Phone Number"
+            name="phone_number"
+            autoComplete="phone_number"
+            helperText={touched.phone_number && errors.phone_number}
             error={
-              (touched.phone_number_or_email &&
-                Boolean(errors.phone_number_or_email)) ||
+              (touched.phone_number && Boolean(errors.phone_number)) ||
               Boolean(errors.non_field_errors)
             }
-            value={phone_number_or_email}
+            value={phone_number}
             onChange={handleChange}
             autoFocus
           />
@@ -122,20 +118,11 @@ const LoginForm = props => {
             disabled={loading}
             loading={loading}
           >
-            Log In
+            Register
           </LoadingButton>
-          <Grid container>
-            <Grid item xs>
-              <MUILink component={Link} to="/forgot-password" variant="body2">
-                Forgot password?
-              </MUILink>
-            </Grid>
-            <Grid item>
-              <MUILink component={Link} to="/register" variant="body2">
-                {"Don't have an account? Register"}
-              </MUILink>
-            </Grid>
-          </Grid>
+          <MUILink component={Link} to="/login" variant="body2">
+            {"You already have an account? Log In"}
+          </MUILink>
         </form>
       </div>
       <Box mt={8}>
@@ -145,4 +132,4 @@ const LoginForm = props => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
