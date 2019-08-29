@@ -5,10 +5,11 @@ import * as Yup from "yup";
 
 import LoginForm from "./LoginForm";
 import { login } from "../../../redux/actions/authActions";
+import { phone_number_or_email_reg } from "../../utils/utils";
 
 const validationSchema = Yup.object({
-  email: Yup.string()
-    .email()
+  phone_number_or_email: Yup.string()
+    .matches(phone_number_or_email_reg, "Invalid phone number or email")
     .required(),
   password: Yup.string()
     .min(8)
@@ -16,13 +17,16 @@ const validationSchema = Yup.object({
 });
 
 const Login = () => {
-  const values = { email: "", password: "" };
+  const values = { phone_number_or_email: "", password: "" };
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { setErrors, resetForm }) => {
+  const handleSubmit = (
+    { phone_number_or_email, password },
+    { setErrors, resetForm }
+  ) => {
     const user = {
-      phone_number_or_email: values.email,
-      password: values.password
+      phone_number_or_email,
+      password
     };
     dispatch(login(user, setErrors, resetForm));
   };

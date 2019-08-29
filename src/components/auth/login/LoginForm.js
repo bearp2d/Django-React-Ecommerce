@@ -44,11 +44,11 @@ const useStyles = makeStyles(theme => ({
 
 const LoginForm = props => {
   const {
-    values: { email, password },
+    values: { phone_number_or_email, password },
     errors,
     handleSubmit,
     handleChange,
-    isValid
+    touched
   } = props;
   const { loading } = useSelector(state => state.auth);
   const classes = useStyles();
@@ -69,13 +69,19 @@ const LoginForm = props => {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            helperText={errors.email}
-            error={Boolean(errors.email) || Boolean(errors.non_field_errors)}
-            value={email}
+            id="phone_number_or_email"
+            label="Phone Number OR Email Address"
+            name="phone_number_or_email"
+            autoComplete="phone_number_or_email"
+            helperText={
+              touched.phone_number_or_email && errors.phone_number_or_email
+            }
+            error={
+              (touched.phone_number_or_email &&
+                Boolean(errors.phone_number_or_email)) ||
+              Boolean(errors.non_field_errors)
+            }
+            value={phone_number_or_email}
             onChange={handleChange}
             autoFocus
           />
@@ -89,8 +95,11 @@ const LoginForm = props => {
             type="password"
             id="password"
             autoComplete="current-password"
-            helperText={errors.password}
-            error={Boolean(errors.password) || Boolean(errors.non_field_errors)}
+            helperText={touched.password && errors.password}
+            error={
+              (touched.password && Boolean(errors.password)) ||
+              Boolean(errors.non_field_errors)
+            }
             value={password}
             onChange={handleChange}
           />
@@ -109,7 +118,7 @@ const LoginForm = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled={!isValid || loading}
+            disabled={loading}
             loading={loading}
           >
             Sign In
