@@ -1,5 +1,6 @@
 import axios from "axios";
 
+import { addNotif } from "./notifActions";
 import { AUTH_START, AUTH_FAIL, AUTH_SUCCESS } from "../types";
 
 export const loadUser = () => dispatch => {
@@ -26,6 +27,7 @@ export const login = (user, setErrors, resetForm) => dispatch => {
       setAthorizationToken(response.data.token);
       dispatch({ type: AUTH_SUCCESS, payload: response.data.user });
       resetForm();
+      dispatch(addNotif({ message: "You loged in successfully" }));
     })
     .catch(error => {
       dispatch({ type: AUTH_FAIL });
@@ -42,6 +44,7 @@ export const register = (user, setErrors, resetForm) => dispatch => {
       setAthorizationToken(response.data.token);
       dispatch({ type: AUTH_SUCCESS, payload: response.data.user });
       resetForm();
+      dispatch(addNotif({ message: "Your account registered successfully" }));
     })
     .catch(error => {
       dispatch({ type: AUTH_FAIL });

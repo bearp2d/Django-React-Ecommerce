@@ -5,8 +5,7 @@ const initialState = {
 };
 
 const defaultOptions = {
-  variant: "success",
-  autoHideDuration: 3000
+  variant: "success"
 };
 
 export default (state = initialState, action) => {
