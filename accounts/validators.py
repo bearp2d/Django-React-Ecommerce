@@ -24,3 +24,6 @@ def validate_national_code(code):
     if ctrl_code != 11 - total:
         raise ValidationError(
             _('%(code)s is not valid national code.'), params={'code': code})
+
+
+phone_number_or_email_reg = '^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$|^09\d{9}$'

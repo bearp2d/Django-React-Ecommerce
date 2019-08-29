@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 from django.core.validators import RegexValidator
 
+from .validators import phone_number_or_email_reg
+
 
 User = get_user_model()
 
@@ -28,7 +30,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.ModelSerializer):
     phone_number_or_email = serializers.CharField(validators=[
         RegexValidator(
-            '[^@]+@[^@]+\.[^@]+|^09\d{9}$',
+            phone_number_or_email_reg,
             message="Invalid phone number or email address."
         )
     ])
