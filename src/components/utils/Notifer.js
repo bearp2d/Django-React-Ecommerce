@@ -26,7 +26,7 @@ const Notifier = () => {
         ...options
       });
     });
-  }, [notifications]);
+  });
 
   return null;
 };
