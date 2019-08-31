@@ -2,25 +2,25 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
-const ProtectedRoute = ({ component: Component, to, ...rest }) => {
-  const { isAuthenticated, loading } = useSelector(state => state.auth);
+const AuthRoute = ({ component: Component, to, ...rest }) => {
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
   return (
     <Route
       {...rest}
       render={props =>
-        loading === false &&
-        (isAuthenticated === true ? (
+        isAuthenticated === true ? (
           <Redirect to={to} />
         ) : (
           <Component {...props} />
-        ))
+        )
       }
     />
   );
 };
 
-ProtectedRoute.defaultProps = {
+AuthRoute.defaultProps = {
   to: "/"
 };
 
-export default ProtectedRoute;
+export default AuthRoute;
