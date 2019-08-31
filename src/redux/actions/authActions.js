@@ -1,10 +1,16 @@
 import axios from "axios";
 
 import { addNotif } from "./notifActions";
-import { AUTH_START, AUTH_FAIL, AUTH_SUCCESS } from "../types";
+import {
+  AUTH_START,
+  AUTH_FAIL,
+  AUTH_SUCCESS,
+  LOADING_UI,
+  STOP_LOADING_UI
+} from "../types";
 
 export const loadUser = () => dispatch => {
-  dispatch({ type: AUTH_START });
+  dispatch({ type: LOADING_UI });
   if (localStorage.token) {
     setAthorizationToken(localStorage.getItem("token"));
   }
@@ -12,9 +18,11 @@ export const loadUser = () => dispatch => {
     .get("/api/user/")
     .then(response => {
       dispatch({ type: AUTH_SUCCESS, payload: response.data });
+      dispatch({ type: STOP_LOADING_UI });
     })
     .catch(() => {
       dispatch({ type: AUTH_FAIL });
+      dispatch({ type: STOP_LOADING_UI });
     });
 };
 

@@ -1,6 +1,16 @@
 import React from "react";
 import { render } from "react-dom";
+import { Provider } from "react-redux";
+import { SnackbarProvider } from "notistack";
 
+import store from "./redux/store";
 import App from "./components/App";
 
-render(<App />, document.getElementById("root"));
+render(
+  <Provider store={store}>
+    <SnackbarProvider preventDuplicate>
+      <App />
+    </SnackbarProvider>
+  </Provider>,
+  document.getElementById("root")
+);
