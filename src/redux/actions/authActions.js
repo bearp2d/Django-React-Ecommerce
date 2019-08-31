@@ -62,6 +62,14 @@ export const register = (user, setErrors, resetForm) => dispatch => {
     });
 };
 
+export const logout = () => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios.post("/api/auth/logout/").then(() => {
+    removeAthorizationToken();
+    dispatch(loadUser());
+  });
+};
+
 const setAthorizationToken = token => {
   token = `Token ${token}`;
   localStorage.setItem("token", token);
