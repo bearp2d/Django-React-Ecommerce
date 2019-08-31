@@ -11,9 +11,12 @@ import {
 
 export const loadUser = () => dispatch => {
   dispatch({ type: LOADING_UI });
-  if (localStorage.token) {
-    setAthorizationToken(localStorage.getItem("token"));
+  if (!localStorage.getItem("token")) {
+    dispatch({ type: AUTH_FAIL });
+    dispatch({ type: STOP_LOADING_UI });
+    return;
   }
+  useAthorizationToken();
   axios
     .get("/api/user/")
     .then(response => {
@@ -21,6 +24,7 @@ export const loadUser = () => dispatch => {
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch(() => {
+      removeAthorizationToken();
       dispatch({ type: AUTH_FAIL });
       dispatch({ type: STOP_LOADING_UI });
     });
@@ -31,7 +35,6 @@ export const login = (user, setErrors, resetForm) => dispatch => {
   axios
     .post("/api/auth/login/", user)
     .then(response => {
-      localStorage.setItem("token", `Token ${response.data.token}`);
       setAthorizationToken(response.data.token);
       dispatch({ type: AUTH_SUCCESS, payload: response.data.user });
       resetForm();
@@ -48,7 +51,6 @@ export const register = (user, setErrors, resetForm) => dispatch => {
   axios
     .post("/api/auth/register/", user)
     .then(response => {
-      localStorage.setItem("token", `Token ${response.data.token}`);
       setAthorizationToken(response.data.token);
       dispatch({ type: AUTH_SUCCESS, payload: response.data.user });
       resetForm();
@@ -61,5 +63,17 @@ export const register = (user, setErrors, resetForm) => dispatch => {
 };
 
 const setAthorizationToken = token => {
+  token = `Token ${token}`;
+  localStorage.setItem("token", token);
   axios.defaults.headers.common["Authorization"] = token;
+};
+
+const useAthorizationToken = () => {
+  const token = localStorage.getItem("token");
+  axios.defaults.headers.common["Authorization"] = token;
+};
+
+const removeAthorizationToken = () => {
+  localStorage.removeItem("token");
+  delete axios.defaults.headers.common["Authorization"];
 };
