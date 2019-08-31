@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import Routes from "../Routes";
-import Notifer from "./utils/Notifer";
+import Notifer from "./layouts/Notifer";
 import { loadUser } from "../redux/actions/authActions";
-import LoadingPage from "./utils/loading/LoadingPage";
+import LoadingPage from "./layouts/LoadingPage";
 
 axios.defaults.baseURL = "http://localhost:8000";
 

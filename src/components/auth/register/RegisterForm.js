@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
-import LoadingButton from "../../utils/loading/LoadingButton";
+import LoadingButton from "../../layouts/LoadingButton";
 import Copyright from "../../utils/Copyright";
 
 const useStyles = makeStyles(theme => ({

@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
-import LoadingButton from "../../utils/loading/LoadingButton";
+import LoadingButton from "../../layouts/LoadingButton";
 import Copyright from "../../utils/Copyright";
 
 const useStyles = makeStyles(theme => ({
