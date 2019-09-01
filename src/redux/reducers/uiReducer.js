@@ -1,7 +1,7 @@
 import { LOADING_UI, STOP_LOADING_UI } from "../types";
 
 const initialState = {
-  loading: false
+  loading: null
 };
 
 export default function(state = initialState, action) {
