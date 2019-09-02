@@ -1,6 +1,7 @@
 export const AUTH_START = "AUTH_START";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAIL = "AUTH_FAIL";
+export const UPDATE_FAIL = "UPDATE_FAIL";
 
 export const ADD_NOTIF = "ADD_NOTIF";
 export const REMOVE_NOTIF = "REMOVE_NOTIF";

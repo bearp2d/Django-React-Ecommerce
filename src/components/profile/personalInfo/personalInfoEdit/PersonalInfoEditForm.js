@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -28,7 +29,7 @@ const PersonalInfoEditForm = props => {
     touched,
     handleCancel
   } = props;
-  const loading = false;
+  const { loading } = useSelector(state => state.auth);
   const classes = useStyles();
 
   return (

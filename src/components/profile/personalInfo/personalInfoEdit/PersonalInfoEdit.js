@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
 import PersonalInfoEditForm from "./PersonalInfoEditForm";
 import { phone_number_reg } from "../../../utils/utils";
+import { updateUser } from "../../../../redux/actions/authActions";
 
 const validationSchema = Yup.object({
   first_name: Yup.string().required(),
@@ -11,14 +13,15 @@ const validationSchema = Yup.object({
   phone_number: Yup.string()
     .matches(phone_number_reg, "Invalid phone number")
     .required(),
-  national_code: Yup.string(),
+  national_code: Yup.number(),
   email: Yup.string().email()
 });
 
 const PersonalInfoEdit = props => {
+  const dispatch = useDispatch();
   const {
     user: { first_name, last_name, phone_number, national_code, email },
-    handleCancel
+    viewUser
   } = props;
 
   const values = {
@@ -29,15 +32,16 @@ const PersonalInfoEdit = props => {
     email: email || ""
   };
 
-  const handleSubmit = values => {
-    console.log(values);
+  const handleSubmit = (user, { setErrors }) => {
+    dispatch(updateUser(user, setErrors));
+    // viewUser();
   };
 
   return (
     <React.Fragment>
       <Formik
         render={props => (
-          <PersonalInfoEditForm handleCancel={handleCancel} {...props} />
+          <PersonalInfoEditForm handleCancel={viewUser} {...props} />
         )}
         initialValues={values}
         validationSchema={validationSchema}

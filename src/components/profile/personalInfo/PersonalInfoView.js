@@ -8,7 +8,7 @@ const PersonalInfoView = props => {
   const {
     user: { first_name, last_name, phone_number, national_code, email },
     classes,
-    handleEdit
+    editUser
   } = props;
 
   return (
@@ -40,7 +40,7 @@ const PersonalInfoView = props => {
         <Typography variant="h6">{email || "-"}</Typography>
       </div>
       <Button
-        onClick={handleEdit}
+        onClick={editUser}
         color="primary"
         fullWidth
         className={classes.button}

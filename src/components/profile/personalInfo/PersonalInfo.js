@@ -26,8 +26,8 @@ const PersonalInfo = () => {
   const [edit, setEdit] = useState(false);
   const classes = useStyles();
 
-  const handleEdit = () => setEdit(true);
-  const handleCancel = () => setEdit(false);
+  const editUser = () => setEdit(true);
+  const viewUser = () => setEdit(false);
 
   return (
     <Paper className={classes.root}>
@@ -35,17 +35,9 @@ const PersonalInfo = () => {
         <Typography variant="h5">Personal info</Typography>
       </div>
       {edit === true ? (
-        <PersonalInfoEdit
-          user={user}
-          handleCancel={handleCancel}
-          classes={classes}
-        />
+        <PersonalInfoEdit user={user} viewUser={viewUser} classes={classes} />
       ) : (
-        <PersonalInfoView
-          user={user}
-          handleEdit={handleEdit}
-          classes={classes}
-        />
+        <PersonalInfoView user={user} editUser={editUser} classes={classes} />
       )}
     </Paper>
   );

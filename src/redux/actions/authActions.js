@@ -5,6 +5,7 @@ import {
   AUTH_START,
   AUTH_FAIL,
   AUTH_SUCCESS,
+  UPDATE_FAIL,
   LOADING_UI,
   STOP_LOADING_UI
 } from "../types";
@@ -68,6 +69,21 @@ export const logout = () => dispatch => {
     removeAthorizationToken();
     dispatch(loadUser());
   });
+};
+
+export const updateUser = (user, setErrors) => dispatch => {
+  dispatch({ type: AUTH_START });
+  console.log(user);
+  axios
+    .put("/api/user/", user)
+    .then(response => {
+      dispatch({ type: AUTH_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      dispatch({ type: UPDATE_FAIL });
+      console.log(error);
+      setErrors(error.response.data);
+    });
 };
 
 const setAthorizationToken = token => {

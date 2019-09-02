@@ -1,4 +1,4 @@
-import { AUTH_START, AUTH_FAIL, AUTH_SUCCESS } from "../types";
+import { AUTH_START, AUTH_FAIL, AUTH_SUCCESS, UPDATE_FAIL } from "../types";
 
 const initialState = {
   isAuthenticated: false,
@@ -24,6 +24,8 @@ export default (state = initialState, action) => {
         loading: false,
         user: null
       };
+    case UPDATE_FAIL:
+      return { ...state, loading: false };
     default:
       return state;
   }
