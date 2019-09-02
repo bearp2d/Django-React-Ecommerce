@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import PersonalInfoView from "./PersonalInfoView";
+import PersonalInfoEdit from "./personalInfoEdit";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,14 +22,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PersonalInfo = () => {
+  const user = useSelector(state => state.auth.user);
+  const [edit, setEdit] = useState(false);
   const classes = useStyles();
+
+  const handleEdit = () => setEdit(true);
+  const handleCancel = () => setEdit(false);
 
   return (
     <Paper className={classes.root}>
       <div className={classes.wrapper}>
         <Typography variant="h5">Personal info</Typography>
       </div>
-      <PersonalInfoView classes={classes} />
+      {edit === true ? (
+        <PersonalInfoEdit
+          user={user}
+          handleCancel={handleCancel}
+          classes={classes}
+        />
+      ) : (
+        <PersonalInfoView
+          user={user}
+          handleEdit={handleEdit}
+          classes={classes}
+        />
+      )}
     </Paper>
   );
 };

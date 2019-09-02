@@ -4,14 +4,12 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-const PersonalInfoView = ({ classes }) => {
+const PersonalInfoView = props => {
   const {
-    first_name,
-    last_name,
-    phone_number,
-    national_code,
-    email
-  } = useSelector(state => state.auth.user);
+    user: { first_name, last_name, phone_number, national_code, email },
+    classes,
+    handleEdit
+  } = props;
 
   return (
     <React.Fragment>
@@ -41,7 +39,12 @@ const PersonalInfoView = ({ classes }) => {
         <Typography variant="body1">Email:</Typography>
         <Typography variant="h6">{email || "-"}</Typography>
       </div>
-      <Button color="primary" fullWidth className={classes.button}>
+      <Button
+        onClick={handleEdit}
+        color="primary"
+        fullWidth
+        className={classes.button}
+      >
         Edit
       </Button>
     </React.Fragment>
