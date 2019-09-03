@@ -8,7 +8,7 @@ import Profile from "./components/profile";
 import AuthRoute from "./components/routes/AuthRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Header from "./components/layouts/Header";
-
+import Sidebar from "./components/profile/layouts/Sidebar";
 const Routes = () => {
   return (
     <React.Fragment>
@@ -17,7 +17,9 @@ const Routes = () => {
         <ProtectedRoute exact path="/logout" component={Logout} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Register} />
-        <ProtectedRoute exact path="/profile" component={Profile} />
+        <Sidebar>
+          <ProtectedRoute exact path="/profile" component={Profile} />
+        </Sidebar>
       </Switch>
     </React.Fragment>
   );
