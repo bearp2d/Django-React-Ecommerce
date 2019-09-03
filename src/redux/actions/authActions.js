@@ -31,7 +31,7 @@ export const loadUser = () => dispatch => {
     });
 };
 
-export const login = (user, setErrors, resetForm) => dispatch => {
+export const login = (user, setErrors, resetForm) => (dispatch, getState) => {
   dispatch({ type: AUTH_START });
   axios
     .post("/api/auth/login/", user)
@@ -39,7 +39,12 @@ export const login = (user, setErrors, resetForm) => dispatch => {
       setAthorizationToken(response.data.token);
       dispatch({ type: AUTH_SUCCESS, payload: response.data.user });
       resetForm();
-      dispatch(addNotif({ message: "You loged in successfully" }));
+      dispatch(
+        addNotif({
+          message: `Welcome ${getState().auth.user.first_name || ""}`,
+          options: { variant: "info" }
+        })
+      );
     })
     .catch(error => {
       dispatch({ type: AUTH_FAIL });
@@ -77,6 +82,12 @@ export const updateUser = (user, setErrors) => dispatch => {
     .put("/api/user/", user)
     .then(response => {
       dispatch({ type: AUTH_SUCCESS, payload: response.data });
+      dispatch(
+        addNotif({
+          message: "Personal info was updated",
+          options: { variant: "info" }
+        })
+      );
     })
     .catch(error => {
       dispatch({ type: UPDATE_FAIL });
