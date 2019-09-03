@@ -1,18 +1,41 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
-const PersonalInfoView = props => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: "100%",
+    marginTop: theme.spacing(3)
+  },
+  wrapper: {
+    padding: theme.spacing(2),
+    border: "1px solid #dedede"
+  },
+  button: {
+    padding: theme.spacing(1.3)
+  }
+}));
+
+const PersonalInfo = () => {
   const {
-    user: { first_name, last_name, phone_number, national_code, email },
-    classes,
-    editUser
-  } = props;
+    first_name,
+    last_name,
+    phone_number,
+    national_code,
+    email
+  } = useSelector(state => state.auth.user);
+  const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <Paper className={classes.root}>
+      <div className={classes.wrapper}>
+        <Typography variant="h5">Personal info</Typography>
+      </div>
       <Grid container spacing={0}>
         <Grid item md>
           <div className={classes.wrapper}>
@@ -40,15 +63,16 @@ const PersonalInfoView = props => {
         <Typography variant="h6">{email || "-"}</Typography>
       </div>
       <Button
-        onClick={editUser}
+        component={Link}
+        to="/profile/personal-info/edit"
         color="primary"
         fullWidth
         className={classes.button}
       >
         Edit
       </Button>
-    </React.Fragment>
+    </Paper>
   );
 };
 
-export default PersonalInfoView;
+export default PersonalInfo;

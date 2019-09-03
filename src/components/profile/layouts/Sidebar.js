@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -23,9 +24,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const ListItemLink = props => <ListItem button component={Link} {...props} />;
+
 const Sidebar = ({ children }) => {
   const classes = useStyles();
-
+  console.log(children);
   return (
     <Grid container spacing={2}>
       <Grid item md="auto">
@@ -35,48 +38,48 @@ const Sidebar = ({ children }) => {
               <ListItemText primary="Your account" />
             </ListItem>
             <Divider />
-            <ListItem button>
+            <ListItemLink to="/profile">
               <ListItemIcon>
                 <PersonIcon />
               </ListItemIcon>
               <ListItemText primary="Profile" />
-            </ListItem>
-            <ListItem button>
+            </ListItemLink>
+            <ListItemLink>
               <ListItemIcon>
                 <ShopingCartIcon color="action" />
               </ListItemIcon>
               <ListItemText primary="All orders" />
-            </ListItem>
-            <ListItem button>
+            </ListItemLink>
+            <ListItemLink>
               <ListItemIcon>
                 <StarIcon />
               </ListItemIcon>
               <ListItemText primary="Favorite Products" />
-            </ListItem>
-            <ListItem button>
+            </ListItemLink>
+            <ListItemLink>
               <ListItemIcon>
                 <CommentIcon />
               </ListItemIcon>
               <ListItemText primary="Your comments" />
-            </ListItem>
-            <ListItem button>
+            </ListItemLink>
+            <ListItemLink>
               <ListItemIcon>
                 <AddressIcon />
               </ListItemIcon>
               <ListItemText primary="Addresses" />
-            </ListItem>
-            <ListItem button>
+            </ListItemLink>
+            <ListItemLink>
               <ListItemIcon>
                 <NotificationIcon />
               </ListItemIcon>
               <ListItemText primary="Notifications" />
-            </ListItem>
-            <ListItem button>
+            </ListItemLink>
+            <ListItemLink to="/profile/personal-info">
               <ListItemIcon>
                 <PersonalInfoIcon />
               </ListItemIcon>
               <ListItemText primary="Personal Info" />
-            </ListItem>
+            </ListItemLink>
           </List>
         </Paper>
       </Grid>
