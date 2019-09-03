@@ -36,7 +36,6 @@ const Notifier = () => {
           if (options.onClose) {
             options.onClose(event, reason, key);
           }
-          console.log(key);
           dispatch(removeNotif(key));
         }
       });

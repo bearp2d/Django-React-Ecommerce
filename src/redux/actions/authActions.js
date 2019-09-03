@@ -73,7 +73,6 @@ export const logout = () => dispatch => {
 
 export const updateUser = (user, setErrors) => dispatch => {
   dispatch({ type: AUTH_START });
-  console.log(user);
   axios
     .put("/api/user/", user)
     .then(response => {
@@ -81,7 +80,6 @@ export const updateUser = (user, setErrors) => dispatch => {
     })
     .catch(error => {
       dispatch({ type: UPDATE_FAIL });
-      console.log(error);
       setErrors(error.response.data);
     });
 };

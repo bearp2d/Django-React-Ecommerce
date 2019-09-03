@@ -16,7 +16,6 @@ const PersonalInfoEditForm = props => {
   } = props;
   const { loading } = useSelector(state => state.auth);
   const { classes } = props;
-  console.log(props);
 
   return (
     <form onSubmit={handleSubmit}>

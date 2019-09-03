@@ -28,7 +28,6 @@ const ListItemLink = props => <ListItem button component={Link} {...props} />;
 
 const Sidebar = ({ children }) => {
   const classes = useStyles();
-  console.log(children);
   return (
     <Grid container spacing={2}>
       <Grid item md="auto">
