@@ -49,7 +49,7 @@ const LoginForm = props => {
     errors,
     handleSubmit,
     handleChange,
-    touched
+    isValid
   } = props;
   const { loading } = useSelector(state => state.auth);
   const classes = useStyles();
@@ -74,12 +74,9 @@ const LoginForm = props => {
             label="Phone Number OR Email Address"
             name="phone_number_or_email"
             autoComplete="phone_number_or_email"
-            helperText={
-              touched.phone_number_or_email && errors.phone_number_or_email
-            }
+            helperText={errors.phone_number_or_email}
             error={
-              (touched.phone_number_or_email &&
-                Boolean(errors.phone_number_or_email)) ||
+              Boolean(errors.phone_number_or_email) ||
               Boolean(errors.non_field_errors)
             }
             value={phone_number_or_email}
@@ -96,11 +93,8 @@ const LoginForm = props => {
             type="password"
             id="password"
             autoComplete="current-password"
-            helperText={touched.password && errors.password}
-            error={
-              (touched.password && Boolean(errors.password)) ||
-              Boolean(errors.non_field_errors)
-            }
+            helperText={errors.password}
+            error={Boolean(errors.password) || Boolean(errors.non_field_errors)}
             value={password}
             onChange={handleChange}
           />
@@ -119,7 +113,7 @@ const LoginForm = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled={loading}
+            disabled={!isValid || loading}
             loading={loading}
           >
             Log In

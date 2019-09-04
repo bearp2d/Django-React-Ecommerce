@@ -11,8 +11,8 @@ const PersonalInfoEditForm = props => {
     errors,
     handleSubmit,
     handleChange,
-    touched,
-    dirty
+    dirty,
+    isValid
   } = props;
   const { loading } = useSelector(state => state.auth);
   const { classes } = props;
@@ -26,11 +26,8 @@ const PersonalInfoEditForm = props => {
               name="first_name"
               label="First name"
               fullWidth
-              helperText={touched.first_name && errors.first_name}
-              error={
-                (touched.first_name && Boolean(errors.first_name)) ||
-                Boolean(errors.non_field_errors)
-              }
+              helperText={errors.first_name}
+              error={Boolean(errors.first_name)}
               value={first_name}
               onChange={handleChange}
               autoFocus
@@ -41,11 +38,8 @@ const PersonalInfoEditForm = props => {
               name="phone_number"
               label="Phone number"
               fullWidth
-              helperText={touched.phone_number && errors.phone_number}
-              error={
-                (touched.phone_number && Boolean(errors.phone_number)) ||
-                Boolean(errors.non_field_errors)
-              }
+              helperText={errors.phone_number}
+              error={Boolean(errors.phone_number)}
               value={phone_number}
               onChange={handleChange}
             />
@@ -57,11 +51,8 @@ const PersonalInfoEditForm = props => {
               name="last_name"
               label="Last name"
               fullWidth
-              helperText={touched.last_name && errors.last_name}
-              error={
-                (touched.last_name && Boolean(errors.last_name)) ||
-                Boolean(errors.non_field_errors)
-              }
+              helperText={errors.last_name}
+              error={Boolean(errors.last_name)}
               value={last_name}
               onChange={handleChange}
             />
@@ -71,11 +62,8 @@ const PersonalInfoEditForm = props => {
               name="national_code"
               label="National code"
               fullWidth
-              helperText={touched.national_code && errors.national_code}
-              error={
-                (touched.national_code && Boolean(errors.national_code)) ||
-                Boolean(errors.non_field_errors)
-              }
+              helperText={errors.national_code}
+              error={Boolean(errors.national_code)}
               value={national_code}
               onChange={handleChange}
             />
@@ -87,11 +75,8 @@ const PersonalInfoEditForm = props => {
           name="email"
           label="Email"
           fullWidth
-          helperText={touched.email && errors.email}
-          error={
-            (touched.email && Boolean(errors.email)) ||
-            Boolean(errors.non_field_errors)
-          }
+          helperText={errors.email}
+          error={Boolean(errors.email)}
           value={email}
           onChange={handleChange}
         />
@@ -100,7 +85,7 @@ const PersonalInfoEditForm = props => {
         type="submit"
         fullWidth
         color="primary"
-        disabled={!dirty || loading}
+        disabled={!dirty || loading || !isValid}
         loading={loading}
         className={classes.button}
       >

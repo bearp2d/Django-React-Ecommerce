@@ -48,7 +48,7 @@ const RegisterForm = props => {
     errors,
     handleSubmit,
     handleChange,
-    touched
+    isValid
   } = props;
   const { loading } = useSelector(state => state.auth);
   const classes = useStyles();
@@ -73,10 +73,9 @@ const RegisterForm = props => {
             label="Phone Number"
             name="phone_number"
             autoComplete="phone_number"
-            helperText={touched.phone_number && errors.phone_number}
+            helperText={errors.phone_number}
             error={
-              (touched.phone_number && Boolean(errors.phone_number)) ||
-              Boolean(errors.non_field_errors)
+              Boolean(errors.phone_number) || Boolean(errors.non_field_errors)
             }
             value={phone_number}
             onChange={handleChange}
@@ -92,11 +91,8 @@ const RegisterForm = props => {
             type="password"
             id="password"
             autoComplete="current-password"
-            helperText={touched.password && errors.password}
-            error={
-              (touched.password && Boolean(errors.password)) ||
-              Boolean(errors.non_field_errors)
-            }
+            helperText={errors.password}
+            error={Boolean(errors.password) || Boolean(errors.non_field_errors)}
             value={password}
             onChange={handleChange}
           />
@@ -115,7 +111,7 @@ const RegisterForm = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled={loading}
+            disabled={!isValid || loading}
             loading={loading}
           >
             Register
