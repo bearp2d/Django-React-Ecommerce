@@ -61,7 +61,7 @@ const Sidebar = ({ children }) => {
               </ListItemIcon>
               <ListItemText primary="Your comments" />
             </ListItemLink>
-            <ListItemLink>
+            <ListItemLink to="/profile/addresses">
               <ListItemIcon>
                 <AddressIcon />
               </ListItemIcon>

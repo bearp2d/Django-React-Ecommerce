@@ -7,6 +7,7 @@ import Logout from "./components/auth/Logout";
 import Profile from "./components/profile/Profile";
 import PersonalInfo from "./components/profile/personalInfo/PersonalInfo";
 import PersonalInfoEdit from "./components/profile/personalInfo/PersonalInfoEdit";
+import Addresses from "./components/profile/Addresses";
 import AuthRoute from "./components/routes/AuthRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Header from "./components/layouts/Header";
@@ -30,6 +31,7 @@ const Routes = () => {
           path="/profile/personal-info/edit"
           component={PersonalInfoEdit}
         />
+        <ProtectedRoute exact path="/profile/addresses" component={Addresses} />
       </Switch>
     </React.Fragment>
   );
