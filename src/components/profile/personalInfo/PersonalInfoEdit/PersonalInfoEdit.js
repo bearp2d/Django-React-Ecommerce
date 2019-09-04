@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik } from "formik";
+import useReactRouter from "use-react-router";
 import * as Yup from "yup";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -49,6 +50,7 @@ const PersonalInfoEdit = () => {
     email
   } = useSelector(state => state.auth.user);
   const classes = useStyles();
+  const { history } = useReactRouter();
 
   const values = {
     first_name: first_name || "",
@@ -59,7 +61,7 @@ const PersonalInfoEdit = () => {
   };
 
   const handleSubmit = (user, { setErrors }) => {
-    dispatch(updateUser(user, setErrors));
+    dispatch(updateUser(user, setErrors, history));
   };
 
   return (

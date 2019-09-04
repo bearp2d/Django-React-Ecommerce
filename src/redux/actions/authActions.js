@@ -76,12 +76,13 @@ export const logout = () => dispatch => {
   });
 };
 
-export const updateUser = (user, setErrors) => dispatch => {
+export const updateUser = (user, setErrors, history) => dispatch => {
   dispatch({ type: AUTH_START });
   axios
     .put("/api/user/", user)
     .then(response => {
       dispatch({ type: AUTH_SUCCESS, payload: response.data });
+      history.push("/profile/personal-info");
       dispatch(
         addNotif({
           message: "Personal info was updated",
