@@ -49,7 +49,7 @@ const Addresses = () => {
           </Button>
         </Grid>
         {addresses.map(address => (
-          <Grid item md={6}>
+          <Grid key={address.id} item md={6}>
             <AddressItem address={address} />
           </Grid>
         ))}

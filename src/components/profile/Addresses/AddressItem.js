@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 const AddressItem = ({ address }) => {
   const classes = useStyles();
-  console.log(address);
+
   return (
     <Paper style={{ height: "280px" }}>
       <div className={classes.wrapperAddress}>
