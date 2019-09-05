@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -17,6 +16,8 @@ import AddressIcon from "@material-ui/icons/RoomOutlined";
 import NotificationIcon from "@material-ui/icons/NotificationsOutlined";
 import PersonalInfoIcon from "@material-ui/icons/PortraitOutlined";
 
+import ListItemLink from "./ListItemLink";
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -24,10 +25,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ListItemLink = props => <ListItem button component={Link} {...props} />;
-
 const Sidebar = ({ children }) => {
   const classes = useStyles();
+
   return (
     <Grid container spacing={2}>
       <Grid item md="auto">
@@ -49,13 +49,13 @@ const Sidebar = ({ children }) => {
               </ListItemIcon>
               <ListItemText primary="All orders" />
             </ListItemLink>
-            <ListItemLink>
+            <ListItemLink to="/profile/favorite-products">
               <ListItemIcon>
                 <StarIcon />
               </ListItemIcon>
               <ListItemText primary="Favorite Products" />
             </ListItemLink>
-            <ListItemLink>
+            <ListItemLink to="/profile/comments">
               <ListItemIcon>
                 <CommentIcon />
               </ListItemIcon>
@@ -67,7 +67,7 @@ const Sidebar = ({ children }) => {
               </ListItemIcon>
               <ListItemText primary="Addresses" />
             </ListItemLink>
-            <ListItemLink>
+            <ListItemLink to="/profile/notifications">
               <ListItemIcon>
                 <NotificationIcon />
               </ListItemIcon>
