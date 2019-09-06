@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { FETCH_ADDRESSES, CREATE_ADDRESS } from "../../types";
+import { FETCH_ADDRESSES, CREATE_ADDRESS, DELETE_ADDRESS } from "../../types";
 import { addNotif } from "../notifActions";
 
 export const fetchAddresses = () => dispatch => {
@@ -20,4 +20,17 @@ export const createAddress = (address, setErrors, handleClose) => dispatch => {
     .catch(error => {
       setErrors(error.response.data);
     });
+};
+
+export const deleteAddress = (id, handleClose) => dispatch => {
+  axios.delete(`/api/user/addresses/${id}/`).then(() => {
+    dispatch({ type: DELETE_ADDRESS, payload: id });
+    handleClose();
+    dispatch(
+      addNotif({
+        message: "Address has been deleted",
+        options: { variant: "error" }
+      })
+    );
+  });
 };

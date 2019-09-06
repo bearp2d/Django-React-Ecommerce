@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import EmailIcon from "@material-ui/icons/EmailOutlined";
 import PhoneIcon from "@material-ui/icons/PhoneIphoneOutlined";
 
+import DeleteAddress from "./DeleteAddress";
+
 const useStyles = makeStyles(theme => ({
   wrapperAddress: {
     padding: theme.spacing(2),
@@ -63,14 +65,7 @@ const AddressItem = ({ address }) => {
               >
                 Edit
               </Button>
-              <Button
-                size="small"
-                className={classes.button}
-                variant="contained"
-                color="secondary"
-              >
-                Delete
-              </Button>
+              <DeleteAddress classes={classes} id={address.id} />
             </ListItemSecondaryAction>
           </ListItem>
         </List>

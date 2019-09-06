@@ -1,0 +1,59 @@
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+
+import DialogTitle from "../../utils/DialogTitle";
+import { deleteAddress } from "../../../redux/actions/profileActions/AddressActions";
+
+const DeleteAddress = ({ classes, id }) => {
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    dispatch(deleteAddress(id, handleClose));
+  };
+
+  return (
+    <React.Fragment>
+      <Button
+        onClick={handleOpen}
+        size="small"
+        className={classes.button}
+        variant="contained"
+        color="secondary"
+      >
+        Delete
+      </Button>
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+        <DialogTitle onClose={handleClose}>Delete address</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete this address?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} variant="outlined">
+            No, Cancel
+          </Button>
+          <Button onClick={handleSubmit} variant="contained" color="secondary">
+            Yes, Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+  );
+};
+
+export default DeleteAddress;
