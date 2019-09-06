@@ -52,7 +52,7 @@ const AddressItem = ({ address }) => {
               <PhoneIcon />
             </ListItemIcon>
             <ListItemText
-              primary={`phone number: ${address.recvier_phone_number}`}
+              primary={`phone number: ${address.reciver_phone_number}`}
             />
             <ListItemSecondaryAction>
               <Button
