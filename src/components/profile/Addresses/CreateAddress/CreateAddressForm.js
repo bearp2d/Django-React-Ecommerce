@@ -5,7 +5,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 
+import LoadingButton from "../../../layouts/LoadingButton";
+
 const CreateAddressForm = props => {
+  console.log(props);
   const {
     values: {
       reciver_full_name,
@@ -18,7 +21,8 @@ const CreateAddressForm = props => {
     errors,
     handleSubmit,
     handleChange,
-    handleClose
+    handleClose,
+    isSubmitting
   } = props;
 
   return (
@@ -130,14 +134,15 @@ const CreateAddressForm = props => {
         <Button onClick={handleClose} size="large" variant="outlined">
           Cancel
         </Button>
-        <Button
+        <LoadingButton
           onClick={handleSubmit}
           size="large"
           variant="outlined"
           color="primary"
+          loading={isSubmitting}
         >
           Add
-        </Button>
+        </LoadingButton>
       </DialogActions>
     </React.Fragment>
   );
