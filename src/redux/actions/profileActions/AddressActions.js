@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { FETCH_ADDRESSES, CREATE_ADDRESS, DELETE_ADDRESS } from "../../types";
+import {
+  FETCH_ADDRESSES,
+  CREATE_ADDRESS,
+  DELETE_ADDRESS,
+  UPDATE_ADDRESS
+} from "../../types";
 import { addNotif } from "../notifActions";
 
 export const fetchAddresses = () => dispatch => {
@@ -33,4 +38,28 @@ export const deleteAddress = (id, handleClose) => dispatch => {
       })
     );
   });
+};
+
+export const updateAddress = (
+  address,
+  id,
+  setErrors,
+  handleClose
+) => dispatch => {
+  axios
+    .put(`/api/user/addresses/${id}/`, address)
+    .then(response => {
+      dispatch({ type: UPDATE_ADDRESS, payload: response.data });
+      handleClose();
+      dispatch(
+        addNotif({
+          message: "Address was updated",
+          options: { variant: "info" }
+        })
+      );
+    })
+    .catch(error => {
+      console.log(error);
+      setErrors(error.response.data);
+    });
 };

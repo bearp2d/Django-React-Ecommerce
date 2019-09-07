@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 
 import LoadingButton from "../../../layouts/LoadingButton";
 
-const CreateAddressForm = props => {
+const EditAddressForm = props => {
   const {
     values: {
       reciver_full_name,
@@ -21,7 +21,9 @@ const CreateAddressForm = props => {
     handleSubmit,
     handleChange,
     handleClose,
-    isSubmitting
+    isSubmitting,
+    dirty,
+    isValid
   } = props;
 
   return (
@@ -139,12 +141,13 @@ const CreateAddressForm = props => {
           variant="outlined"
           color="primary"
           loading={isSubmitting}
+          disabled={!dirty || isSubmitting || !isValid}
         >
-          Add
+          Edit
         </LoadingButton>
       </DialogActions>
     </React.Fragment>
   );
 };
 
-export default CreateAddressForm;
+export default EditAddressForm;

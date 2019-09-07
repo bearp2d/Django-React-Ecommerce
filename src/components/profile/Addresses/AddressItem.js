@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -12,6 +11,7 @@ import EmailIcon from "@material-ui/icons/EmailOutlined";
 import PhoneIcon from "@material-ui/icons/PhoneIphoneOutlined";
 
 import DeleteAddress from "./DeleteAddress";
+import EditAddress from "./EditAddress";
 
 const useStyles = makeStyles(theme => ({
   wrapperAddress: {
@@ -57,14 +57,7 @@ const AddressItem = ({ address }) => {
               primary={`phone number: ${address.reciver_phone_number}`}
             />
             <ListItemSecondaryAction>
-              <Button
-                size="small"
-                className={classes.button}
-                variant="contained"
-                color="primary"
-              >
-                Edit
-              </Button>
+              <EditAddress address={address} />
               <DeleteAddress classes={classes} id={address.id} />
             </ListItemSecondaryAction>
           </ListItem>
