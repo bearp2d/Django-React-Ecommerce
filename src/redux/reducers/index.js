@@ -4,10 +4,12 @@ import authReducer from "./authReducer";
 import notiferReducer from "./notifReducer";
 import uiReducer from "./uiReducer";
 import profileReducer from "./profileReducer";
+import productReducer from "./productReducer";
 
 export default combineReducers({
   auth: authReducer,
   notif: notiferReducer,
   ui: uiReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  products: productReducer
 });
