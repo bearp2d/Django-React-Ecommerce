@@ -10,8 +10,17 @@ class ProductListView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
     pagination_class = ProductPagination
-    filter_backends = (OrderingFilter, )
-    ordering_fields = ('created_at', 'sale_count', 'price')
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        ordering = self.request.query_params.get('ordering', None)
+        if ordering is not None and ordering == "max_price":
+            queryset = queryset.order_by('-price')
+        if ordering is not None and ordering == "min_price":
+            queryset = queryset.order_by('price')
+        if ordering is not None and ordering == "best_seller":
+            queryset = queryset.order_by('-sale_count')
+        return queryset
 
 
 class ProductDetailView(RetrieveAPIView):

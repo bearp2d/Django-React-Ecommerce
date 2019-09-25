@@ -16,6 +16,7 @@ class ProductPagination(PageNumberPagination):
             'pages_count': self.page.paginator.num_pages,
             'products_count': self.page.paginator.count,
             'per_page': self.page.paginator.per_page,
+            'ordering': self.request.GET.get('ordering'),
             'current': self.page.number,
             'next': next_page_query,
             'previous': previous_page_query,

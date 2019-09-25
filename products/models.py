@@ -68,6 +68,9 @@ class Product(models.Model):
 
     objects = ProductManager()
 
+    class Meta:
+        ordering = ('-created_at',)
+
     def __str__(self):
         return self.title
 
