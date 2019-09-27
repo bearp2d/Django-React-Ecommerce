@@ -4,12 +4,14 @@ from rest_framework.filters import OrderingFilter
 from .serializers import ProductListSerializer, ProductDetailSerializer
 from .models import Product
 from .pagination import ProductPagination
+from .filters import ProductFilter
 
 
 class ProductListView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
     pagination_class = ProductPagination
+    filterset_class = ProductFilter
 
     def get_queryset(self):
         queryset = Product.objects.all()
