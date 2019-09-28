@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import NextIcon from "@material-ui/icons/ChevronRight";
 import PreviousIcon from "@material-ui/icons/ChevronLeft";
 
+import { appendQuery } from "../utils/utils";
+
 const useStyles = makeStyles(theme => ({
   root: {
     margin: theme.spacing(5)
@@ -16,19 +18,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Pagination = () => {
+const Pagination = ({ location }) => {
   const { current, next, previous, pagesCount } = useSelector(
     state => state.products
   );
   const classes = useStyles();
-
-  const getPageQuery = page => {
-    if (next) {
-      return next.split(next.slice(-1)).join(page);
-    } else if (previous) {
-      return previous.split(previous.slice(-1)).join(page);
-    }
-  };
 
   var Buttons = [];
   if (pagesCount) {
@@ -38,7 +32,7 @@ const Pagination = () => {
           <Button
             key={i}
             component={Link}
-            to={getPageQuery(i)}
+            to={appendQuery(location, { page: i })}
             variant="outlined"
             className={classes.button}
             size="small"
@@ -53,7 +47,7 @@ const Pagination = () => {
         <Button
           key={i}
           component={Link}
-          to={getPageQuery(i)}
+          to={appendQuery(location, { page: i })}
           variant="outlined"
           className={classes.button}
           size="small"

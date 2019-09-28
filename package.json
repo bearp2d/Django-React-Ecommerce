@@ -9,6 +9,7 @@
     "formik": "^1.5.8",
     "lodash": "^4.17.15",
     "notistack": "^0.8.9",
+    "query-string": "^6.8.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",

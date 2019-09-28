@@ -10,7 +10,6 @@ import Ordering from "../layouts/Ordering";
 const Products = ({ location }) => {
   const products = useSelector(state => state.products.products);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchProducts(location.search));
   }, [location.search]);
@@ -25,7 +24,7 @@ const Products = ({ location }) => {
           </Grid>
         ))}
       </Grid>
-      <Pagination />
+      <Pagination location={location} />
     </React.Fragment>
   );
 };

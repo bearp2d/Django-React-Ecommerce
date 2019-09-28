@@ -3,7 +3,6 @@ import { FETCH_PRODUCTS } from "../types";
 const initialState = {
   pagesCount: null,
   productsCount: null,
-  perPage: null,
   ordering: null,
   current: null,
   next: null,
@@ -19,7 +18,6 @@ export default (state = initialState, action) => {
         ...state,
         pagesCount: payload.pages_count,
         productsCount: payload.products_count,
-        perPage: payload.per_page,
         ordering: payload.ordering,
         current: payload.current,
         next: payload.next,
