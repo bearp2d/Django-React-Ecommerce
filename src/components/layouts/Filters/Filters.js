@@ -1,13 +1,17 @@
 import React from "react";
 
 import PriceFilter from "./PriceFilter";
+import OnlyAvailable from "./OnlyAvailable";
 import MyExpansionPanel from "../../utils/MyExpansionPanel";
 
-const Filters = ({ location }) => {
+const Filters = () => {
   return (
-    <MyExpansionPanel title="Price range">
-      <PriceFilter />
-    </MyExpansionPanel>
+    <React.Fragment>
+      <OnlyAvailable />
+      <MyExpansionPanel title="Price range">
+        <PriceFilter />
+      </MyExpansionPanel>
+    </React.Fragment>
   );
 };
 
