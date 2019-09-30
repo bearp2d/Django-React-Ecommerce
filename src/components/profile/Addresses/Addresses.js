@@ -23,7 +23,7 @@ const Addresses = () => {
 
   useEffect(() => {
     dispatch(fetchAddresses());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={classes.root}>

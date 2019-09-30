@@ -25,7 +25,7 @@ const Products = ({ location }) => {
 
   useEffect(() => {
     dispatch(fetchProducts(location.search));
-  }, [location.search]);
+  }, [location.search, dispatch]);
 
   return (
     <Grid container spacing={2} className={classes.root}>
