@@ -3,7 +3,7 @@ import queryString from "query-string";
 // Append new query with last query
 export function appendQuery(location, query) {
   const parsed = queryString.parse(location.search);
-  const pathname = location.pathname;
+  let pathname = location.pathname;
   if (pathname.slice(-1) !== "/") {
     pathname += "/";
   }

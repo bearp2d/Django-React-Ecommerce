@@ -7,7 +7,6 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    margin: theme.spacing(3, 1),
     padding: theme.spacing(1)
   },
   button: {
