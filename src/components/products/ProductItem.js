@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 const ProductItem = ({ product }) => {
   const classes = useStyles();
+  console.log(product.available);
 
   return (
     <Card>
@@ -34,24 +35,32 @@ const ProductItem = ({ product }) => {
           <Typography gutterBottom variant="h5" component="h2">
             {product.title}
           </Typography>
-          {product.discount_price ? (
-            <React.Fragment>
-              <Typography
-                gutterBottom
-                variant="h6"
-                color="error"
-                component="h2"
-              >
-                {product.discount_percent}%
-              </Typography>
-              <Typography gutterBottom variant="h5" component="h2">
-                <del>{product.price}</del> {product.discount_price}
-              </Typography>
-            </React.Fragment>
-          ) : (
-            <Typography gutterBottom variant="h5" component="h2">
-              {product.price}
+          {product.available === false ? (
+            <Typography gutterBottom color="error" variant="h5" component="h2">
+              unavailable
             </Typography>
+          ) : (
+            <React.Fragment>
+              {product.discount_price ? (
+                <React.Fragment>
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    color="error"
+                    component="h2"
+                  >
+                    {product.discount_percent}%
+                  </Typography>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    <del>{product.price}</del> {product.discount_price}
+                  </Typography>
+                </React.Fragment>
+              ) : (
+                <Typography gutterBottom variant="h5" component="h2">
+                  {product.price}
+                </Typography>
+              )}
+            </React.Fragment>
           )}
         </CardContent>
       </CardActionArea>
