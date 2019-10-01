@@ -33,7 +33,7 @@ const Products = ({ location }) => {
         <Filters />
       </Grid>
       <Grid item md>
-        <Ordering />
+        <Ordering location={location} />
         <Grid container spacing={2}>
           {products.map(product => (
             <Grid key={product.id} item md={3} className={classes.products}>
