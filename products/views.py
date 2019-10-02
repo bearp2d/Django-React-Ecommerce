@@ -1,5 +1,6 @@
 from rest_framework.generics import RetrieveAPIView, ListAPIView
-from rest_framework.filters import OrderingFilter
+from rest_framework.filters import SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import ProductListSerializer, ProductDetailSerializer
 from .models import Product
@@ -11,6 +12,8 @@ class ProductListView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
     pagination_class = ProductPagination
+    filter_backends = (SearchFilter, DjangoFilterBackend)
+    search_fields = ('title', 'description')
     filterset_class = ProductFilter
 
     def get_queryset(self):
