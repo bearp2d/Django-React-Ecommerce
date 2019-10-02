@@ -8,11 +8,11 @@ import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
+  rightItems: {
+    marginLeft: "auto"
   },
-  title: {
-    flexGrow: 1
+  button: {
+    marginLeft: "10px"
   }
 }));
 
@@ -21,25 +21,25 @@ const Header = () => {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
   const authNav = (
-    <React.Fragment>
+    <div className={classes.rightItems}>
       <Button component={RouterLink} to="/profile" color="inherit">
         Profile
       </Button>
       <Button component={RouterLink} to="/logout" color="inherit">
         Logout
       </Button>
-    </React.Fragment>
+    </div>
   );
 
   const guestNav = (
-    <React.Fragment>
+    <div className={classes.rightItems}>
       <Button component={RouterLink} to="/login" color="inherit">
         Login
       </Button>
       <Button component={RouterLink} to="/register" color="inherit">
         Register
       </Button>
-    </React.Fragment>
+    </div>
   );
 
   return (
@@ -56,6 +56,14 @@ const Header = () => {
           >
             Home
           </Link>
+          <Button
+            className={classes.button}
+            component={RouterLink}
+            to="/products"
+            color="inherit"
+          >
+            Products
+          </Button>
           {isAuthenticated === false ? guestNav : authNav}
         </Toolbar>
       </AppBar>
