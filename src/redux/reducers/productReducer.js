@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS } from "../types";
+import { FETCH_PRODUCTS, FETCH_PRODUCT } from "../types";
 
 const initialState = {
   pagesCount: null,
@@ -9,7 +9,8 @@ const initialState = {
   current: null,
   next: null,
   previous: null,
-  products: []
+  products: [],
+  product: {}
 };
 
 export default (state = initialState, action) => {
@@ -27,6 +28,11 @@ export default (state = initialState, action) => {
         next: payload.next,
         previous: payload.previous,
         products: payload.products
+      };
+    case FETCH_PRODUCT:
+      return {
+        ...state,
+        product: payload
       };
     default:
       return state;

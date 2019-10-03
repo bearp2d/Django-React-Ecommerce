@@ -9,6 +9,7 @@ import PersonalInfo from "./components/profile/personalInfo/PersonalInfo";
 import PersonalInfoEdit from "./components/profile/personalInfo/PersonalInfoEdit";
 import Addresses from "./components/profile/Addresses";
 import Products from "./components/products/Products";
+import ProductsDetail from "./components/products/ProductsDetail";
 import AuthRoute from "./components/routes/AuthRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Header from "./components/layouts/Header";
@@ -34,6 +35,7 @@ const Routes = () => {
         />
         <ProtectedRoute exact path="/profile/addresses" component={Addresses} />
         <Route exact path="/products" component={Products} />
+        <Route exact path="/products/:slug" component={ProductsDetail} />
       </Switch>
     </React.Fragment>
   );

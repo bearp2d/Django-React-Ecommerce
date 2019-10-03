@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Products = ({ location }) => {
+const Products = ({ history, location }) => {
   const products = useSelector(state => state.products.products);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Products = ({ location }) => {
         <Grid container spacing={2}>
           {products.map(product => (
             <Grid key={product.id} item md={3} className={classes.products}>
-              <ProductItem product={product} />
+              <ProductItem product={product} history={history} />
             </Grid>
           ))}
         </Grid>

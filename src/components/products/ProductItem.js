@@ -17,12 +17,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, history }) => {
   const classes = useStyles();
   console.log(product.available);
 
   return (
-    <Card>
+    <Card onClick={() => history.push(`/products/${product.slug}`)}>
       <CardActionArea>
         <div className={classes.imageWrap}>
           <CardMedia
