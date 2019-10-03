@@ -18,4 +18,6 @@ class ProductListSerializer(serializers.ModelSerializer):
 class ProductDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        exclude = ('slug', 'active')
+        fields = ('id', 'title', 'slug', 'photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4',
+                  'description', 'price', 'discount_percent', 'discount_price', 'available', 'available_count',
+                  'sale_count', 'code', 'created_at', 'sizes', 'colors')
