@@ -44,7 +44,12 @@ const ProductsDetail = ({ match }) => {
     <div className={classes.root}>
       <Grid container spacing={8}>
         <Grid item>
-          <img src={product.photo_main} width="400" height="400" />
+          <img
+            src={product.photo_main}
+            alt={product.slug}
+            width="400"
+            height="400"
+          />
         </Grid>
         <Grid item md>
           <Typography variant="h4" gutterBottom>
