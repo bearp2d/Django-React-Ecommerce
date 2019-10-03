@@ -43,9 +43,7 @@ class FavoritesProductsView(APIView):
 
     def get(self, request):
         user = request.user
-        qs = FavoritesProducts.objects.get(user=user).products.all()
-        if not qs.exists():
-            return Response("favorites products is empty.", status=HTTP_404_NOT_FOUND)
+        qs = get_object_or_404(FavoritesProducts, user=user).products.all()
         products = ProductListSerializer(
             qs, context={'request': request}, many=True).data
         return Response({"products": products})
