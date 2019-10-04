@@ -4,11 +4,13 @@ import {
   FETCH_ADDRESSES,
   CREATE_ADDRESS,
   DELETE_ADDRESS,
-  UPDATE_ADDRESS
+  UPDATE_ADDRESS,
+  FETCH_FAVORITE_PRODUCTS
 } from "../types";
 
 const initialState = {
-  addresses: []
+  addresses: [],
+  favoriteProducts: []
 };
 
 export default (state = initialState, action) => {
@@ -28,6 +30,8 @@ export default (state = initialState, action) => {
         ...state,
         addresses: { ...state.addresses, [payload.id]: payload }
       };
+    case FETCH_FAVORITE_PRODUCTS:
+      return { ...state, favoriteProducts: { ..._.mapKeys(payload, "id") } };
     default:
       return state;
   }

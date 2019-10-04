@@ -46,7 +46,7 @@ class FavoritesProductsView(APIView):
         qs = get_object_or_404(FavoritesProducts, user=user).products.all()
         products = ProductListSerializer(
             qs, context={'request': request}, many=True).data
-        return Response({"products": products})
+        return Response(products)
 
 
 class UpdateFavoritesProductsView(APIView):

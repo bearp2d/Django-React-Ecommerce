@@ -8,6 +8,7 @@ import Profile from "./components/profile/Profile";
 import PersonalInfo from "./components/profile/personalInfo/PersonalInfo";
 import PersonalInfoEdit from "./components/profile/personalInfo/PersonalInfoEdit";
 import Addresses from "./components/profile/Addresses";
+import FavoriteProducts from "./components/profile/FavoriteProducts";
 import Products from "./components/products/Products";
 import ProductsDetail from "./components/products/ProductsDetail";
 import AuthRoute from "./components/routes/AuthRoute";
@@ -34,6 +35,11 @@ const Routes = () => {
           component={PersonalInfoEdit}
         />
         <ProtectedRoute exact path="/profile/addresses" component={Addresses} />
+        <ProtectedRoute
+          exact
+          path="/profile/favorite-products"
+          component={FavoriteProducts}
+        />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:slug" component={ProductsDetail} />
       </Switch>
