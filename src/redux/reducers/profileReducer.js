@@ -31,7 +31,7 @@ export default (state = initialState, action) => {
         addresses: { ...state.addresses, [payload.id]: payload }
       };
     case FETCH_FAVORITE_PRODUCTS:
-      return { ...state, favoriteProducts: { ..._.mapKeys(payload, "id") } };
+      return { ...state, favoriteProducts: payload };
     default:
       return state;
   }

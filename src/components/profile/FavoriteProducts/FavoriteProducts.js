@@ -8,9 +8,7 @@ import ProductItem from "../../products/ProductItem";
 const FavoriteProducts = ({ history }) => {
   console.log(history);
   const dispatch = useDispatch();
-  const products = useSelector(state =>
-    Object.values(state.profile.favoriteProducts)
-  );
+  const products = useSelector(state => state.profile.favoriteProducts);
 
   useEffect(() => {
     dispatch(fetchFavoriteProducts());
