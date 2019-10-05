@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import teal from "@material-ui/core/colors/teal";
 
 import { fetchProduct } from "../../redux/actions/productActions";
+import { updateFavoriteProducts } from "../../redux/actions/profileActions/FavoriteProductsActions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   button: {
     marginTop: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: "40%"
+    width: "45%"
   },
   buttonGreen: {
     color: theme.palette.common.white,
@@ -83,25 +84,25 @@ const ProductsDetail = ({ match }) => {
             </React.Fragment>
           )}
           {product.available === true && (
-            <React.Fragment>
-              {" "}
-              <Button
-                className={`${classes.button} ${classes.buttonGreen}`}
-                variant="contained"
-                size="large"
-              >
-                Add to cart
-              </Button>
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="secondary"
-                size="large"
-              >
-                Add to favorite products
-              </Button>
-            </React.Fragment>
+            <Button
+              className={`${classes.button} ${classes.buttonGreen}`}
+              variant="contained"
+              size="large"
+            >
+              Add to cart
+            </Button>
           )}
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="secondary"
+            size="large"
+            onClick={() => dispatch(updateFavoriteProducts(product.id))}
+          >
+            {product.is_favorite_product === false
+              ? "Add to favorite products"
+              : "Remove from favorite products"}
+          </Button>
           <Typography className={classes.description}>
             {product.description}
           </Typography>

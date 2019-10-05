@@ -12,7 +12,7 @@ from accounts.serializers import UserSerializer
 from .serializers import AddressSerializer
 from .models import Address, FavoritesProducts
 from products.models import Product
-from products.serializers import ProductListSerializer
+from products.serializers import ProductListSerializer, ProductDetailSerializer
 
 
 User = get_user_model()
@@ -61,6 +61,8 @@ class UpdateFavoritesProductsView(APIView):
         obj, _ = FavoritesProducts.objects.get_or_create(user=user)
         if obj.products.filter(id=id).exists():
             obj.products.remove(product)
-            return Response({'message': "Product removed from favorites products"})
-        obj.products.add(product)
-        return Response({'message': "Product added to favorites products"})
+        else:
+            obj.products.add(product)
+        product = ProductDetailSerializer(
+            product, context={'request': request})
+        return Response(product.data)

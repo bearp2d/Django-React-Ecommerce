@@ -1,4 +1,8 @@
-import { FETCH_PRODUCTS, FETCH_PRODUCT } from "../types";
+import {
+  FETCH_PRODUCTS,
+  FETCH_PRODUCT,
+  UPDATE_FAVORITE_PRODUCTS
+} from "../types";
 
 const initialState = {
   pagesCount: null,
@@ -33,6 +37,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         product: payload
+      };
+    case UPDATE_FAVORITE_PRODUCTS:
+      return {
+        ...state,
+        product: { ...payload }
       };
     default:
       return state;
