@@ -26,11 +26,19 @@ class Address(models.Model):
         return self.user.username
 
 
+class FavoritesProductsManager(models.Manager):
+    def check_product(self, user, product_id):
+        if user.is_authenticated:
+            return user.favorite_products.products.filter(id=product_id).exists()
+
+
 class FavoritesProducts(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='favorite_products')
     products = models.ManyToManyField(
         Product, related_name='products', blank=True)
+
+    objects = FavoritesProductsManager()
 
     class Meta:
         verbose_name_plural = 'Favorites Products'
