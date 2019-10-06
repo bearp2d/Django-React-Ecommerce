@@ -7,6 +7,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 
+import Search from "./Filters/Search";
+
 const useStyles = makeStyles(theme => ({
   rightItems: {
     marginLeft: "auto"
@@ -64,10 +66,12 @@ const Header = () => {
           >
             Products
           </Button>
+          <Search />
           {isAuthenticated === false ? guestNav : authNav}
         </Toolbar>
       </AppBar>
     </div>
   );
 };
+
 export default Header;

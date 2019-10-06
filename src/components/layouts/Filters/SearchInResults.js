@@ -29,11 +29,14 @@ const SearchInResults = () => {
   const classes = useStyles();
   const { history, location } = useReactRouter();
   const parsed = queryString.parse(location.search);
-  const [value, setValue] = useState(parsed.search || "");
+  const [value, setValue] = useState();
 
   const handleSubmit = event => {
     event.preventDefault();
-    history.push(appendQuery(location, { search: value, page: "1" }));
+    history.push(
+      appendQuery(location, { search: `${parsed.search} ${value}`, page: "1" })
+    );
+    setValue("");
   };
 
   return (
