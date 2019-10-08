@@ -1,20 +1,57 @@
 import React from "react";
+import Loadable from "react-loadable";
 import { Switch, Route } from "react-router-dom";
 
-import Login from "./components/auth/login";
-import Register from "./components/auth/register";
 import Logout from "./components/auth/Logout";
-import Profile from "./components/profile/Profile";
-import PersonalInfo from "./components/profile/personalInfo/PersonalInfo";
-import PersonalInfoEdit from "./components/profile/personalInfo/PersonalInfoEdit";
-import Addresses from "./components/profile/Addresses";
-import FavoriteProducts from "./components/profile/FavoriteProducts";
-import Products from "./components/products/Products";
-import ProductsDetail from "./components/products/ProductsDetail";
 import AuthRoute from "./components/routes/AuthRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Header from "./components/layouts/Header";
 import LoadingModal from "./components/layouts/LoadingModal";
+
+const Login = Loadable({
+  loader: () => import("./components/auth/login"),
+  loading: LoadingModal
+});
+
+const Register = Loadable({
+  loader: () => import("./components/auth/register"),
+  loading: LoadingModal
+});
+
+const Profile = Loadable({
+  loader: () => import("./components/profile/Profile"),
+  loading: LoadingModal
+});
+
+const PersonalInfo = Loadable({
+  loader: () => import("./components/profile/personalInfo/PersonalInfo"),
+  loading: LoadingModal
+});
+
+const PersonalInfoEdit = Loadable({
+  loader: () => import("./components/profile/personalInfo/PersonalInfoEdit"),
+  loading: LoadingModal
+});
+
+const Addresses = Loadable({
+  loader: () => import("./components/profile/Addresses"),
+  loading: LoadingModal
+});
+
+const FavoriteProducts = Loadable({
+  loader: () => import("./components/profile/FavoriteProducts"),
+  loading: LoadingModal
+});
+
+const Products = Loadable({
+  loader: () => import("./components/products/Products"),
+  loading: LoadingModal
+});
+
+const ProductsDetail = Loadable({
+  loader: () => import("./components/products/ProductsDetail"),
+  loading: LoadingModal
+});
 
 const Routes = () => {
   return (
