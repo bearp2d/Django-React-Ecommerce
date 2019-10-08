@@ -21,7 +21,6 @@ const EditAddressForm = props => {
     handleSubmit,
     handleChange,
     handleClose,
-    isSubmitting,
     dirty,
     isValid
   } = props;
@@ -140,8 +139,7 @@ const EditAddressForm = props => {
           size="large"
           variant="outlined"
           color="primary"
-          loading={isSubmitting}
-          disabled={!dirty || isSubmitting || !isValid}
+          disabled={!dirty || !isValid}
         >
           Edit
         </LoadingButton>

@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import teal from "@material-ui/core/colors/teal";
 
 import { fetchProduct } from "../../redux/actions/productActions";
 import { updateFavoriteProducts } from "../../redux/actions/profileActions/FavoriteProductsActions";
+import LoadingButton from "../layouts/LoadingButton";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -84,15 +84,15 @@ const ProductsDetail = ({ match }) => {
             </React.Fragment>
           )}
           {product.available === true && (
-            <Button
+            <LoadingButton
               className={`${classes.button} ${classes.buttonGreen}`}
               variant="contained"
               size="large"
             >
               Add to cart
-            </Button>
+            </LoadingButton>
           )}
-          <Button
+          <LoadingButton
             className={classes.button}
             variant="contained"
             color="secondary"
@@ -102,7 +102,7 @@ const ProductsDetail = ({ match }) => {
             {product.is_favorite_product === false
               ? "Add to favorite products"
               : "Remove from favorite products"}
-          </Button>
+          </LoadingButton>
           <Typography className={classes.description}>
             {product.description}
           </Typography>

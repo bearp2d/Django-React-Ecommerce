@@ -20,8 +20,7 @@ const CreateAddressForm = props => {
     errors,
     handleSubmit,
     handleChange,
-    handleClose,
-    isSubmitting
+    handleClose
   } = props;
 
   return (
@@ -138,7 +137,6 @@ const CreateAddressForm = props => {
           size="large"
           variant="outlined"
           color="primary"
-          loading={isSubmitting}
         >
           Add
         </LoadingButton>

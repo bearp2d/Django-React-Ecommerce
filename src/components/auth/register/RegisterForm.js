@@ -112,7 +112,6 @@ const RegisterForm = props => {
             color="primary"
             className={classes.submit}
             disabled={!isValid || loading}
-            loading={loading}
           >
             Register
           </LoadingButton>

@@ -14,11 +14,13 @@ import ProductsDetail from "./components/products/ProductsDetail";
 import AuthRoute from "./components/routes/AuthRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Header from "./components/layouts/Header";
+import LoadingModal from "./components/layouts/LoadingModal";
 
 const Routes = () => {
   return (
     <React.Fragment>
       <Header />
+      <LoadingModal />
       <Switch>
         <ProtectedRoute exact path="/logout" component={Logout} />
         <AuthRoute exact path="/login" component={Login} />

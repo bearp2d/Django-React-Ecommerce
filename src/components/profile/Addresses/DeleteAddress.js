@@ -7,6 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 
 import DialogTitle from "../../utils/DialogTitle";
+import LoadingButton from "../../layouts/LoadingButton";
 import { deleteAddress } from "../../../redux/actions/profileActions/AddressActions";
 
 const DeleteAddress = ({ classes, id }) => {
@@ -47,9 +48,13 @@ const DeleteAddress = ({ classes, id }) => {
           <Button onClick={handleClose} variant="outlined">
             No, Cancel
           </Button>
-          <Button onClick={handleSubmit} variant="contained" color="secondary">
+          <LoadingButton
+            onClick={handleSubmit}
+            variant="contained"
+            color="secondary"
+          >
             Yes, Delete
-          </Button>
+          </LoadingButton>
         </DialogActions>
       </Dialog>
     </React.Fragment>

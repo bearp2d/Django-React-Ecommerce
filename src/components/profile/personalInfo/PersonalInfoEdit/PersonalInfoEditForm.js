@@ -86,7 +86,6 @@ const PersonalInfoEditForm = props => {
         fullWidth
         color="primary"
         disabled={!dirty || loading || !isValid}
-        loading={loading}
         className={classes.button}
       >
         Update

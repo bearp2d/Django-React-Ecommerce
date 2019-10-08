@@ -1,21 +1,25 @@
-import { LOADING_UI, STOP_LOADING_UI } from "../types";
+import {
+  START_LOADING_UI,
+  STOP_LOADING_UI,
+  START_LOADING_BUTTON,
+  STOP_LOADING_BUTTON
+} from "../types";
 
 const initialState = {
-  loading: null
+  loadingUI: null,
+  loadingButton: null
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOADING_UI:
-      return {
-        ...state,
-        loading: true
-      };
+    case START_LOADING_UI:
+      return { ...state, loadingUI: true };
     case STOP_LOADING_UI:
-      return {
-        ...state,
-        loading: false
-      };
+      return { ...state, loadingUI: false };
+    case START_LOADING_BUTTON:
+      return { ...state, loadingButton: true };
+    case STOP_LOADING_BUTTON:
+      return { ...state, loadingButton: false };
     default:
       return state;
   }
