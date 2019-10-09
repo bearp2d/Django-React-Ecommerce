@@ -1,10 +1,21 @@
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST
 
+from .models import CartItem, Cart
 from products.models import Product
+from .serializers import CartSerializer
+
+
+class CartView(ListAPIView):
+    serializer_class = CartSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return self.request.user.cart.items.all()
 
 
 class AddToCartView(APIView):
