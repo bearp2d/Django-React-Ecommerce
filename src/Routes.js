@@ -53,6 +53,11 @@ const ProductsDetail = Loadable({
   loading: LoadingModal
 });
 
+const Cart = Loadable({
+  loader: () => import("./components/cart/Cart"),
+  loading: LoadingModal
+});
+
 const Routes = () => {
   return (
     <React.Fragment>
@@ -81,6 +86,7 @@ const Routes = () => {
         />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:slug" component={ProductsDetail} />
+        <ProtectedRoute exact path="/cart/" component={Cart} />
       </Switch>
     </React.Fragment>
   );
