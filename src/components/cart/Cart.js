@@ -6,7 +6,7 @@ import { fetchCart } from "../../redux/actions/cartActions";
 import CartItems from "./CartItems";
 
 const Cart = () => {
-  const cart = useSelector(state => state.cart.cart);
+  const items = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Cart = () => {
   return (
     <Grid container spacing={2}>
       <Grid item md={9}>
-        <CartItems cart={cart} />
+        <CartItems items={items} />
       </Grid>
       <Grid item md={3}>
         Cart summary

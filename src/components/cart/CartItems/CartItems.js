@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CartItems = ({ cart, history }) => {
+const CartItems = ({ items }) => {
   const classes = useStyles();
 
   return (
@@ -44,7 +44,7 @@ const CartItems = ({ cart, history }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cart.map(item => (
+            {items.map(item => (
               <CartItem key={item.id} item={item} />
             ))}
           </TableBody>
