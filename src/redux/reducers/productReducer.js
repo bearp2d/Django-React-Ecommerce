@@ -1,7 +1,8 @@
 import {
   FETCH_PRODUCTS,
   FETCH_PRODUCT,
-  UPDATE_FAVORITE_PRODUCTS
+  UPDATE_FAVORITE_PRODUCTS,
+  ADD_TO_CART
 } from "../types";
 
 const initialState = {
@@ -42,6 +43,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         product: { ...payload }
+      };
+    case ADD_TO_CART:
+      return {
+        ...state,
+        product: { ...state.product, is_in_cart: true }
       };
     default:
       return state;

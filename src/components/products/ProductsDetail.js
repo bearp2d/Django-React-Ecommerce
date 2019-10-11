@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import teal from "@material-ui/core/colors/teal";
 
 import { fetchProduct } from "../../redux/actions/productActions";
+import { addToCart } from "../../redux/actions/cartActions";
 import { updateFavoriteProducts } from "../../redux/actions/profileActions/FavoriteProductsActions";
 import LoadingButton from "../layouts/LoadingButton";
 
@@ -86,8 +87,10 @@ const ProductsDetail = ({ match }) => {
           {product.available === true && (
             <LoadingButton
               className={`${classes.button} ${classes.buttonGreen}`}
+              onClick={() => dispatch(addToCart(product.id))}
               variant="contained"
               size="large"
+              disabled={product.is_in_cart}
             >
               Add to cart
             </LoadingButton>
