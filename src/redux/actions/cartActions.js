@@ -4,6 +4,7 @@ import { addNotif } from "./notifActions";
 import {
   FETCH_CART,
   ADD_TO_CART,
+  REMOVE_FROM_CART,
   START_LOADING_UI,
   STOP_LOADING_UI,
   START_LOADING_BUTTON,
@@ -27,6 +28,21 @@ export const addToCart = id => dispatch => {
       addNotif({
         message: "Item has been added to your cart",
         options: { variant: "info" }
+      })
+    );
+  });
+};
+
+export const removeFromCart = (id, handleClose) => dispatch => {
+  dispatch({ type: START_LOADING_BUTTON });
+  axios.delete(`/api/cart/${id}/`).then(response => {
+    dispatch({ type: REMOVE_FROM_CART, payload: id });
+    dispatch({ type: STOP_LOADING_BUTTON });
+    handleClose();
+    dispatch(
+      addNotif({
+        message: "Item has been removed from your cart",
+        options: { variant: "error" }
       })
     );
   });

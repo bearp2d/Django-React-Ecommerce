@@ -4,7 +4,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import IconButton from "@material-ui/core/IconButton";
 import ViewIcon from "@material-ui/icons/Visibility";
-import RemoveIcon from "@material-ui/icons/Clear";
+
+import RemoveFromCart from "./RemoveFromCart";
 
 const getPrice = product => (
   <React.Fragment>
@@ -47,9 +48,7 @@ const CartItem = ({ item }) => {
       <TableCell align="center">{item.quantity}</TableCell>
       <TableCell align="center">{getPrice(item.product)}</TableCell>
       <TableCell agline="center">
-        <IconButton>
-          <RemoveIcon fontSize="small" />
-        </IconButton>
+        <RemoveFromCart id={item.id} />
       </TableCell>
     </TableRow>
   );
