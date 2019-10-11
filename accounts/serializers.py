@@ -10,10 +10,15 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
+    cart_items_count = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         exclude = ('password', 'is_admin', 'is_active')
         read_only_fields = ('last_login',)
+
+    def get_cart_items_count(self, obj):
+        return obj.cart.items.count()
 
 
 class RegisterSerializer(serializers.ModelSerializer):

@@ -3,9 +3,11 @@ import { Link as RouterLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
+import Badge from "@material-ui/core/Badge";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
+import CartIcon from "@material-ui/icons/ShoppingCart";
 
 import Search from "./Filters/Search";
 
@@ -15,15 +17,23 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     marginLeft: "10px"
+  },
+  margin: {
+    margin: theme.spacing(1)
   }
 }));
 
 const Header = () => {
   const classes = useStyles();
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const { isAuthenticated, user } = useSelector(state => state.auth);
 
   const authNav = (
     <div className={classes.rightItems}>
+      <Button component={RouterLink} to="/cart" color="inherit">
+        <Badge color="secondary" badgeContent={user && user.cart_items_count}>
+          <CartIcon />
+        </Badge>
+      </Button>
       <Button component={RouterLink} to="/profile" color="inherit">
         Profile
       </Button>
