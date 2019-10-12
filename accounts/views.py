@@ -35,7 +35,7 @@ class LoginView(generics.GenericAPIView):
         user = serializers.UserSerializer(
             user, context=self.get_serializer_context()).data
         return Response({
-            "user": serializers.UserSerializer(user, context=self.get_serializer_context()).data,
+            "user": user,
             "token": str(token)
         })
 
