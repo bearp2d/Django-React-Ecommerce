@@ -40,6 +40,9 @@ const CartItems = ({ items }) => {
               <TableCell className={classes.header} align="center">
                 Price
               </TableCell>
+              <TableCell className={classes.header} align="center">
+                Total price
+              </TableCell>
               <TableCell />
             </TableRow>
           </TableHead>

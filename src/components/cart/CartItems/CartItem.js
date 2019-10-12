@@ -47,6 +47,7 @@ const CartItem = ({ item }) => {
       </TableCell>
       <TableCell align="center">{item.quantity}</TableCell>
       <TableCell align="center">{getPrice(item.product)}</TableCell>
+      <TableCell align="center">{item.total_price}</TableCell>
       <TableCell agline="center">
         <RemoveFromCart id={item.id} />
       </TableCell>

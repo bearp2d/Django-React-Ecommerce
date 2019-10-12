@@ -6,11 +6,15 @@ from products.serializers import ProductListSerializer
 
 class CartItemSerializer(serializers.ModelSerializer):
     product = ProductListSerializer(read_only=True)
+    total_price = serializers.SerializerMethodField()
 
     class Meta:
         model = CartItem
         fields = '__all__'
         read_only_fields = ('cart',)
+
+    def get_total_price(self, obj):
+        return obj.total_price
 
 
 class AddItemToCartSerializer(serializers.ModelSerializer):

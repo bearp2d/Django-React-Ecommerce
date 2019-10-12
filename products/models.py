@@ -84,3 +84,9 @@ class Product(models.Model):
             discount_percent = 100 - (self.discount_price * 100) / self.price
             return int(discount_percent)
         return
+
+    @property
+    def final_price(self):
+        if self.discount_percent:
+            return self.discount_percent
+        return self.price

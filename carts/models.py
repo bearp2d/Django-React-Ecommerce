@@ -15,6 +15,10 @@ class CartItem(models.Model):
     def __str__(self):
         return f"{self.quantity} of {self.product}"
 
+    @property
+    def total_price(self):
+        return self.product.final_price * self.quantity
+
 
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
