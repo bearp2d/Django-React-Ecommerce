@@ -61,7 +61,7 @@ export const updateAddress = (
   axios
     .put(`/api/user/addresses/${id}/`, address)
     .then(response => {
-      dispatch({ type: UPDATE_ADDRESS, payload: response.data });
+      dispatch({ type: UPDATE_ADDRESS, id, payload: response.data });
       dispatch({ type: STOP_LOADING_BUTTON });
       handleClose();
       dispatch(

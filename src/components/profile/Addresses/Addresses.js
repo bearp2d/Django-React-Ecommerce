@@ -17,9 +17,7 @@ const useStyles = makeStyles(theme => ({
 const Addresses = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const addresses = useSelector(state =>
-    Object.values(state.profile.addresses)
-  );
+  const addresses = useSelector(state => state.profile.addresses);
 
   useEffect(() => {
     dispatch(fetchAddresses());

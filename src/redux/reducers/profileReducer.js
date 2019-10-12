@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 import {
   FETCH_ADDRESSES,
   CREATE_ADDRESS,
@@ -17,19 +15,29 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case FETCH_ADDRESSES:
-      return { ...state, addresses: { ..._.mapKeys(payload, "id") } };
+      return { ...state, addresses: payload };
     case CREATE_ADDRESS:
       return {
         ...state,
-        addresses: { ...state.addresses, [payload.id]: payload }
+        addresses: [...state.addresses, payload]
       };
     case DELETE_ADDRESS:
-      return { ...state, addresses: _.omit(state.addresses, payload) };
-    case UPDATE_ADDRESS:
       return {
         ...state,
-        addresses: { ...state.addresses, [payload.id]: payload }
+        addresses: state.addresses.filter(address => address.id !== payload)
       };
+    case UPDATE_ADDRESS:
+      const updatedAddresses = state.addresses.map(address => {
+        if (address.id === action.id) {
+          return { ...address, ...action.payload };
+        }
+        return address;
+      });
+      return {
+        ...state,
+        addresses: updatedAddresses
+      };
+
     case FETCH_FAVORITE_PRODUCTS:
       return { ...state, favoriteProducts: payload };
     default:
