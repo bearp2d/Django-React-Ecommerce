@@ -19,6 +19,10 @@ class CartItem(models.Model):
     def total_price(self):
         return self.product.final_price * self.quantity
 
+    @property
+    def total_customer_profit(self):
+        return self.product.customer_profit * self.quantity
+
 
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

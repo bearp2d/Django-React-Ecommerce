@@ -90,3 +90,9 @@ class Product(models.Model):
         if self.discount_price:
             return self.discount_price
         return self.price
+
+    @property
+    def customer_profit(self):
+        if self.discount_price:
+            return self.price - self.discount_price
+        return 0
