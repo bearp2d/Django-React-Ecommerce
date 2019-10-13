@@ -87,6 +87,6 @@ class Product(models.Model):
 
     @property
     def final_price(self):
-        if self.discount_percent:
-            return self.discount_percent
+        if self.discount_price:
+            return self.discount_price
         return self.price
