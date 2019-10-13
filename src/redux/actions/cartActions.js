@@ -5,6 +5,7 @@ import {
   FETCH_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  UPDATE_QUANTITY,
   START_LOADING_UI,
   STOP_LOADING_UI,
   START_LOADING_BUTTON,
@@ -45,5 +46,13 @@ export const removeFromCart = (id, handleClose) => dispatch => {
         options: { variant: "error" }
       })
     );
+  });
+};
+
+export const updateQuantity = (id, quantity) => dispatch => {
+  dispatch({ type: START_LOADING_UI });
+  axios.put(`/api/cart/${id}/`, { quantity }).then(response => {
+    dispatch({ type: UPDATE_QUANTITY, id: id, payload: response.data });
+    dispatch({ type: STOP_LOADING_UI });
   });
 };

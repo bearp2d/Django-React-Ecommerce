@@ -6,6 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ViewIcon from "@material-ui/icons/Visibility";
 
 import RemoveFromCart from "./RemoveFromCart";
+import UpdateQuantity from "./UpdateQuantity";
 
 const getPrice = product => (
   <React.Fragment>
@@ -28,25 +29,31 @@ const getPrice = product => (
   </React.Fragment>
 );
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, item: { product } }) => {
   return (
-    <TableRow key={item.product.id}>
+    <TableRow key={product.id}>
       <TableCell>
         <img
-          alt={item.product.slug}
+          alt={product.slug}
           height="75"
           width="60"
-          src={item.product.photo_main}
+          src={product.photo_main}
         />
       </TableCell>
-      <TableCell>{item.product.title}</TableCell>
+      <TableCell>{product.title}</TableCell>
       <TableCell agline="center">
-        <IconButton component={Link} to={`/products/${item.product.slug}`}>
+        <IconButton component={Link} to={`/products/${product.slug}`}>
           <ViewIcon />
         </IconButton>
       </TableCell>
-      <TableCell align="center">{item.quantity}</TableCell>
-      <TableCell align="center">{getPrice(item.product)}</TableCell>
+      <TableCell align="center">
+        <UpdateQuantity
+          id={item.id}
+          available_count={product.available_count}
+          quantity={item.quantity}
+        />
+      </TableCell>
+      <TableCell align="center">{getPrice(product)}</TableCell>
       <TableCell align="center">{item.total_price}</TableCell>
       <TableCell agline="center">
         <RemoveFromCart id={item.id} />

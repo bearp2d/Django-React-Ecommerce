@@ -1,4 +1,4 @@
-import { FETCH_CART, REMOVE_FROM_CART } from "../types";
+import { FETCH_CART, REMOVE_FROM_CART, UPDATE_QUANTITY } from "../types";
 
 const initialState = {
   items: []
@@ -13,6 +13,17 @@ export default (state = initialState, action) => {
       return {
         ...state,
         items: state.items.filter(item => item.id !== payload)
+      };
+    case UPDATE_QUANTITY:
+      const updatedItems = state.items.map(item => {
+        if (item.id === action.id) {
+          return { ...item, ...action.payload };
+        }
+        return item;
+      });
+      return {
+        ...state,
+        items: updatedItems
       };
     default:
       return state;

@@ -43,7 +43,7 @@ const CartItems = ({ items }) => {
               <TableCell className={classes.header} align="center">
                 Total price
               </TableCell>
-              <TableCell />
+              <TableCell className={classes.header}>Remove</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
