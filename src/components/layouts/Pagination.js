@@ -19,14 +19,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Pagination = ({ location }) => {
-  const { current, next, previous, pagesCount } = useSelector(
+  const { current, next, previous, pages_count } = useSelector(
     state => state.products
   );
   const classes = useStyles();
 
   var Buttons = [];
-  if (pagesCount) {
-    for (var i = 1; i < pagesCount + 1; i++) {
+  if (pages_count) {
+    for (var i = 1; i < pages_count + 1; i++) {
       if (i === current) {
         Buttons.push(
           <Button

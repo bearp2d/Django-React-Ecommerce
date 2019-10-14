@@ -46,14 +46,14 @@ const useStyles = makeStyles(theme => ({
 
 const PriceFilter = () => {
   const { history, location } = useReactRouter();
-  const { maxPrice, minPrice } = useSelector(state => state.products);
+  const { max_price, min_price } = useSelector(state => state.products);
   const [value, setValue] = React.useState([0, 0]);
   const classes = useStyles();
   const parsed = queryString.parse(location.search);
 
   useEffect(() => {
-    setValue([parsed.min_price || minPrice, parsed.max_price || maxPrice]);
-  }, [parsed.min_price, parsed.max_price, minPrice, maxPrice]);
+    setValue([parsed.min_price || min_price, parsed.max_price || max_price]);
+  }, [parsed.min_price, parsed.max_price, min_price, max_price]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -70,8 +70,8 @@ const PriceFilter = () => {
   return (
     <div className={classes.root}>
       <Slider
-        max={maxPrice}
-        min={minPrice}
+        max={max_price}
+        min={min_price}
         value={value}
         onChange={handleChange}
         onChangeCommitted={hadnleSubmit}
