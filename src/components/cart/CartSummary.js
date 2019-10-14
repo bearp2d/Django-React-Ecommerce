@@ -31,12 +31,14 @@ const CartSummary = ({ cart }) => {
           Total Price ({cart.items_count} product)
         </Typography>
         <Typography display="inline" className={classes.right}>
-          {cart.total_price}$
+          {cart.total_price + cart.total_customer_profit}$
         </Typography>
       </div>
       <div className={classes.control}>
-        <Typography display="inline">Your profit</Typography>
-        <Typography display="inline" className={classes.right}>
+        <Typography color="primary" display="inline">
+          Your profit
+        </Typography>
+        <Typography color="primary" display="inline" className={classes.right}>
           {cart.total_customer_profit}$
         </Typography>
       </div>
@@ -45,7 +47,7 @@ const CartSummary = ({ cart }) => {
         <Typography align="center" className={classes.center}>
           The amount payable:
         </Typography>
-        <Typography color="error" align="center" className={classes.center}>
+        <Typography variant="h6" align="center" className={classes.center}>
           {cart.total_price}$
         </Typography>
       </div>
