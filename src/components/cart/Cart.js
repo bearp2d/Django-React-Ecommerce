@@ -4,9 +4,10 @@ import Grid from "@material-ui/core/Grid";
 
 import { fetchCart } from "../../redux/actions/cartActions";
 import CartItems from "./CartItems";
+import CartSummary from "./CartSummary";
 
 const Cart = () => {
-  const items = useSelector(state => state.cart.items);
+  const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,10 +17,10 @@ const Cart = () => {
   return (
     <Grid container spacing={2}>
       <Grid item md={9}>
-        <CartItems items={items} />
+        <CartItems items={cart.items} />
       </Grid>
       <Grid item md={3}>
-        Cart summary
+        <CartSummary cart={cart} />
       </Grid>
     </Grid>
   );

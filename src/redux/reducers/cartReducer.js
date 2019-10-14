@@ -1,6 +1,9 @@
-import { FETCH_CART, REMOVE_FROM_CART, UPDATE_QUANTITY } from "../types";
+import { FETCH_CART } from "../types";
 
 const initialState = {
+  total_price: null,
+  total_customer_profit: null,
+  items_count: null,
   items: []
 };
 
@@ -8,23 +11,7 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case FETCH_CART:
-      return { ...state, items: payload.items };
-    case REMOVE_FROM_CART:
-      return {
-        ...state,
-        items: state.items.filter(item => item.id !== payload)
-      };
-    case UPDATE_QUANTITY:
-      const updatedItems = state.items.map(item => {
-        if (item.id === action.id) {
-          return { ...item, ...action.payload };
-        }
-        return item;
-      });
-      return {
-        ...state,
-        items: updatedItems
-      };
+      return { ...state, ...payload };
     default:
       return state;
   }

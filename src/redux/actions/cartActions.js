@@ -5,7 +5,6 @@ import {
   FETCH_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  UPDATE_QUANTITY,
   START_LOADING_UI,
   STOP_LOADING_UI,
   START_LOADING_BUTTON,
@@ -24,6 +23,7 @@ export const addToCart = id => dispatch => {
   dispatch({ type: START_LOADING_BUTTON });
   axios.post("/api/cart/", { product: id }).then(response => {
     dispatch({ type: ADD_TO_CART });
+    dispatch(fetchCart());
     dispatch({ type: STOP_LOADING_BUTTON });
     dispatch(
       addNotif({
@@ -38,6 +38,7 @@ export const removeFromCart = (id, handleClose) => dispatch => {
   dispatch({ type: START_LOADING_BUTTON });
   axios.delete(`/api/cart/${id}/`).then(response => {
     dispatch({ type: REMOVE_FROM_CART, payload: id });
+    dispatch(fetchCart());
     dispatch({ type: STOP_LOADING_BUTTON });
     handleClose();
     dispatch(
@@ -52,7 +53,6 @@ export const removeFromCart = (id, handleClose) => dispatch => {
 export const updateQuantity = (id, quantity) => dispatch => {
   dispatch({ type: START_LOADING_UI });
   axios.put(`/api/cart/${id}/`, { quantity }).then(response => {
-    dispatch({ type: UPDATE_QUANTITY, id: id, payload: response.data });
-    dispatch({ type: STOP_LOADING_UI });
+    dispatch(fetchCart());
   });
 };
