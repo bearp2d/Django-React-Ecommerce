@@ -19,12 +19,14 @@ class ProductListSerializer(serializers.ModelSerializer):
 class ProductDetailSerializer(serializers.ModelSerializer):
     is_favorite_product = serializers.SerializerMethodField()
     is_in_cart = serializers.SerializerMethodField()
+    discount_percent = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
-        fields = ('id', 'title', 'slug', 'photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4',
-                  'description', 'price', 'discount_percent', 'discount_price', 'available', 'available_count',
-                  'sale_count', 'code', 'created_at', 'sizes', 'colors', 'is_favorite_product', 'is_in_cart')
+        fields = '__all__'
+
+    def get_discount_percent(self, obj):
+        return obj.discount_percent
 
     def get_is_favorite_product(self, obj):
         user = self.context.get('request').user
