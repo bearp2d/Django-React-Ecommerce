@@ -15,6 +15,7 @@ import CommentIcon from "@material-ui/icons/ModeCommentOutlined";
 import AddressIcon from "@material-ui/icons/RoomOutlined";
 import NotificationIcon from "@material-ui/icons/NotificationsOutlined";
 import PersonalInfoIcon from "@material-ui/icons/PortraitOutlined";
+import ChangePasswordIcon from "@material-ui/icons/LockOutlined";
 
 import ListItemLink from "./ListItemLink";
 
@@ -78,6 +79,12 @@ const Sidebar = ({ children }) => {
                 <PersonalInfoIcon />
               </ListItemIcon>
               <ListItemText primary="Personal Info" />
+            </ListItemLink>
+            <ListItemLink to="/change-password">
+              <ListItemIcon>
+                <ChangePasswordIcon />
+              </ListItemIcon>
+              <ListItemText primary="Change password" />
             </ListItemLink>
           </List>
         </Paper>

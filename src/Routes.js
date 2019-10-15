@@ -18,6 +18,11 @@ const Register = Loadable({
   loading: LoadingModal
 });
 
+const ChangePassword = Loadable({
+  loader: () => import("./components/auth/ChangePassword"),
+  loading: LoadingModal
+});
+
 const Profile = Loadable({
   loader: () => import("./components/profile/Profile"),
   loading: LoadingModal
@@ -67,6 +72,11 @@ const Routes = () => {
         <ProtectedRoute exact path="/logout" component={Logout} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Register} />
+        <ProtectedRoute
+          exact
+          path="/change-password"
+          component={ChangePassword}
+        />
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute
           exact

@@ -80,6 +80,29 @@ export const logout = () => dispatch => {
   });
 };
 
+export const changePassword = (
+  data,
+  setErrors,
+  resetForm,
+  history
+) => dispatch => {
+  dispatch({ type: START_LOADING_BUTTON });
+  axios
+    .put("/api/auth/change-password/", data)
+    .then(response => {
+      dispatch({ type: STOP_LOADING_BUTTON });
+      resetForm();
+      history.push("/profile");
+      dispatch(
+        addNotif({ message: "Your password has been changed successfully" })
+      );
+    })
+    .catch(error => {
+      setErrors(error.response.data);
+      dispatch({ type: STOP_LOADING_BUTTON });
+    });
+};
+
 export const updateUser = (user, setErrors, history) => dispatch => {
   dispatch({ type: START_LOADING_BUTTON });
   axios

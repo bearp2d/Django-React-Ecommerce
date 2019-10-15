@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
@@ -51,7 +50,6 @@ const LoginForm = props => {
     handleChange,
     isValid
   } = props;
-  const { loading } = useSelector(state => state.auth);
   const classes = useStyles();
 
   return (
@@ -113,7 +111,7 @@ const LoginForm = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled={!isValid || loading}
+            disabled={!isValid}
           >
             Log In
           </LoadingButton>
