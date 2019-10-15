@@ -5,9 +5,9 @@ import Grid from "@material-ui/core/Grid";
 
 import { fetchProducts } from "../../redux/actions/productActions";
 import ProductItem from "./ProductItem";
-import Pagination from "../layouts/Pagination";
-import Ordering from "../layouts/Ordering";
-import Filters from "../layouts/Filters";
+import Pagination from "./Pagination";
+import Ordering from "./Ordering";
+import Filters from "./Filters";
 
 const useStyles = makeStyles(theme => ({
   root: {
