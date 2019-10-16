@@ -9,12 +9,12 @@ import Header from "./components/layouts/Header";
 import LoadingModal from "./components/layouts/LoadingModal";
 
 const Login = Loadable({
-  loader: () => import("./components/auth/login"),
+  loader: () => import("./components/auth/Login"),
   loading: LoadingModal
 });
 
 const Register = Loadable({
-  loader: () => import("./components/auth/register"),
+  loader: () => import("./components/auth/Register"),
   loading: LoadingModal
 });
 
