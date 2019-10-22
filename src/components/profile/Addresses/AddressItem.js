@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -31,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddressItem = ({ address }) => {
+  const [edit, setEdit] = useState(false);
   const classes = useStyles();
 
   return (
@@ -57,7 +59,15 @@ const AddressItem = ({ address }) => {
               primary={`phone number: ${address.reciver_phone_number}`}
             />
             <ListItemSecondaryAction>
-              <EditAddress address={address} />
+              <Button
+                onClick={() => setEdit(true)}
+                size="small"
+                variant="contained"
+                color="primary"
+              >
+                Edit
+              </Button>
+              <EditAddress open={edit} setOpen={setEdit} address={address} />
               <DeleteAddress classes={classes} id={address.id} />
             </ListItemSecondaryAction>
           </ListItem>

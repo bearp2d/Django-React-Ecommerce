@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 
 import EditAddressForm from "./EditAddressForm";
@@ -21,7 +20,7 @@ const validationSchema = Yup.object({
   postal_code: Yup.string().required()
 });
 
-const EditAddress = props => {
+const EditAddress = ({ open, setOpen, address }) => {
   const {
     id,
     reciver_full_name,
@@ -30,7 +29,7 @@ const EditAddress = props => {
     city,
     postal_address,
     postal_code
-  } = props.address;
+  } = address;
   const values = {
     reciver_full_name,
     reciver_phone_number,
@@ -39,7 +38,6 @@ const EditAddress = props => {
     postal_address,
     postal_code
   };
-  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleOpen = () => {
@@ -55,28 +53,18 @@ const EditAddress = props => {
   };
 
   return (
-    <React.Fragment>
-      <Button
-        onClick={handleOpen}
-        size="small"
-        variant="contained"
-        color="primary"
-      >
-        Edit
-      </Button>
-      <Dialog open={open} onClose={handleClose} maxWidth="md">
-        <DialogTitle onClose={handleClose}>Add Address</DialogTitle>
-        <Formik
-          render={props => (
-            <EditAddressForm handleClose={handleClose} {...props} />
-          )}
-          initialValues={values}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-          validateOnChange={false}
-        />
-      </Dialog>
-    </React.Fragment>
+    <Dialog open={open} onClose={handleClose} maxWidth="md">
+      <DialogTitle onClose={handleClose}>Add Address</DialogTitle>
+      <Formik
+        render={props => (
+          <EditAddressForm handleClose={handleClose} {...props} />
+        )}
+        initialValues={values}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+        validateOnChange={false}
+      />
+    </Dialog>
   );
 };
 
