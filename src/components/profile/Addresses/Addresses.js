@@ -27,7 +27,9 @@ const Addresses = () => {
     <div className={classes.root}>
       <Grid container spacing={2}>
         <Grid item md={6}>
-          <CreateAddress />
+          <div style={{ height: "280px" }}>
+            <CreateAddress />
+          </div>
         </Grid>
         {addresses.map(address => (
           <Grid key={address.id} item md={6}>

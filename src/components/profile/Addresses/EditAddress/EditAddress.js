@@ -40,10 +40,6 @@ const EditAddress = ({ open, setOpen, address }) => {
   };
   const dispatch = useDispatch();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };

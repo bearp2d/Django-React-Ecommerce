@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   button: {
     width: "100%",
     border: "4px dashed #b8b8b8",
-    height: "280px",
+    height: "100%",
     alignItems: "center",
     fontSize: "1.5rem",
     color: "rgba(0, 0, 0, 0.54)",
@@ -38,7 +38,7 @@ const validationSchema = Yup.object({
   postal_code: Yup.string().required()
 });
 
-const CreateAddress = () => {
+const CreateAddress = ({ noIcon }) => {
   const values = {
     reciver_full_name: "",
     reciver_phone_number: "",
@@ -66,7 +66,9 @@ const CreateAddress = () => {
   return (
     <React.Fragment>
       <Button onClick={handleOpen} className={classes.button}>
-        <AddLocationIcon className={classes.icon} color="action" />
+        {noIcon === false && (
+          <AddLocationIcon className={classes.icon} color="action" />
+        )}
         Add new address
       </Button>
       <Dialog open={open} onClose={handleClose} maxWidth="md">
@@ -83,6 +85,10 @@ const CreateAddress = () => {
       </Dialog>
     </React.Fragment>
   );
+};
+
+CreateAddress.defaultProps = {
+  noIcon: false
 };
 
 export default CreateAddress;
