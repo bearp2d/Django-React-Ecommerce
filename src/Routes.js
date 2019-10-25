@@ -63,6 +63,11 @@ const Cart = Loadable({
   loading: LoadingModal
 });
 
+const Order = Loadable({
+  loader: () => import("./components/order/Order"),
+  loading: LoadingModal
+});
+
 const Routes = () => {
   return (
     <React.Fragment>
@@ -96,7 +101,8 @@ const Routes = () => {
         />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:slug" component={ProductsDetail} />
-        <ProtectedRoute exact path="/cart/" component={Cart} />
+        <ProtectedRoute exact path="/cart" component={Cart} />
+        <ProtectedRoute exact path="/order" component={Order} />
       </Switch>
     </React.Fragment>
   );

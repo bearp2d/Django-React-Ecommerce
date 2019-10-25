@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CartSummary = ({ cart }) => {
+const CartSummary = ({ cart, to }) => {
   const classes = useStyles();
 
   return (
@@ -51,7 +52,14 @@ const CartSummary = ({ cart }) => {
           {cart.total_price}$
         </Typography>
       </div>
-      <Button variant="contained" color="primary" size="large" fullWidth>
+      <Button
+        component={Link}
+        to={to}
+        variant="contained"
+        color="primary"
+        size="large"
+        fullWidth
+      >
         Check out
       </Button>
     </Paper>

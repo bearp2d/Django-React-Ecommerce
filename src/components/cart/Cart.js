@@ -20,7 +20,7 @@ const Cart = () => {
         <CartItems items={cart.items} />
       </Grid>
       <Grid item md={3}>
-        <CartSummary cart={cart} />
+        <CartSummary to="/order" cart={cart} />
       </Grid>
     </Grid>
   );
