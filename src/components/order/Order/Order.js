@@ -10,7 +10,6 @@ const Order = () => {
     cart,
     profile: { addresses }
   } = useSelector(state => state);
-  const [step, setStep] = useState(0);
   const [address, setAddress] = useState(addresses[0] || "");
   const dispatch = useDispatch();
 
@@ -23,27 +22,14 @@ const Order = () => {
     setAddress(addresses[0] || "");
   }, [addresses]);
 
-  const handleNext = () => {
-    setStep(prevStep => prevStep + 1);
-  };
-
-  const handleBack = () => {
-    setStep(prevStep => prevStep - 1);
-  };
-
-  switch (step) {
-    case 0:
-      return (
-        <Shipping
-          address={address}
-          cart={cart}
-          addresses={addresses}
-          setAddress={setAddress}
-        />
-      );
-    default:
-      return null;
-  }
+  return (
+    <Shipping
+      address={address}
+      cart={cart}
+      addresses={addresses}
+      setAddress={setAddress}
+    />
+  );
 };
 
 export default Order;
