@@ -1,7 +1,13 @@
 from rest_framework import serializers
 
-from .models import Product
+from .models import Product, Size
 from profiles.models import FavoritesProducts
+
+
+class SizeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Size
+        fields = '__all__'
 
 
 class ProductListSerializer(serializers.ModelSerializer):
@@ -20,6 +26,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     is_favorite_product = serializers.SerializerMethodField()
     is_in_cart = serializers.SerializerMethodField()
     discount_percent = serializers.SerializerMethodField()
+    sizes = SizeSerializer(many=True)
 
     class Meta:
         model = Product

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 import teal from "@material-ui/core/colors/teal";
 
 import { fetchProduct } from "../../redux/actions/productActions";
@@ -29,13 +30,21 @@ const useStyles = makeStyles(theme => ({
   description: {
     whiteSpace: "pre-line",
     marginTop: theme.spacing(2)
+  },
+  sizeButton: {
+    marginLeft: theme.spacing(1)
+  },
+  sizes: {
+    marginBottom: theme.spacing(1)
   }
 }));
 
 const ProductsDetail = ({ match }) => {
+  const [orderSize, setOrderSize] = useState();
   const { slug } = match.params;
   const dispatch = useDispatch();
   const product = useSelector(state => state.products.product);
+  const sizes = product.sizes || [];
   const classes = useStyles();
 
   useEffect(() => {
@@ -84,6 +93,22 @@ const ProductsDetail = ({ match }) => {
               )}
             </React.Fragment>
           )}
+          <div className={classes.sizes}>
+            <Typography display="inline" variant="h6">
+              sizes:
+            </Typography>
+            {sizes.map(size => (
+              <Button
+                className={classes.sizeButton}
+                key={size.id}
+                variant={orderSize === size.size ? "contained" : "outlined"}
+                size="small"
+                onClick={() => setOrderSize(size.size)}
+              >
+                {size.size} ({`${size.min_size} - ${size.max_size}`})
+              </Button>
+            ))}
+          </div>
           {product.available === true && (
             <LoadingButton
               className={`${classes.button} ${classes.buttonGreen}`}
