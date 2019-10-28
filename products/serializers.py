@@ -10,6 +10,17 @@ class SizeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ColorSerializer(serializers.ModelSerializer):
+    available = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Product
+        fields = ('id', 'title', 'photo_main', 'slug', 'available')
+
+    def get_available(self, obj):
+        return obj.available
+
+
 class ProductListSerializer(serializers.ModelSerializer):
     available = serializers.SerializerMethodField()
     url = serializers.HyperlinkedIdentityField(
@@ -31,6 +42,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     is_in_cart = serializers.SerializerMethodField()
     discount_percent = serializers.SerializerMethodField()
     available = serializers.SerializerMethodField()
+    colors = ColorSerializer(many=True)
     sizes = SizeSerializer(many=True)
 
     class Meta:
