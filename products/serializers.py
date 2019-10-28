@@ -11,6 +11,7 @@ class SizeSerializer(serializers.ModelSerializer):
 
 
 class ProductListSerializer(serializers.ModelSerializer):
+    available = serializers.SerializerMethodField()
     url = serializers.HyperlinkedIdentityField(
         view_name='product-detail',
         lookup_field='slug'
@@ -21,16 +22,23 @@ class ProductListSerializer(serializers.ModelSerializer):
         fields = ('id', 'slug', 'url', 'title', 'price', 'discount_price',
                   'discount_percent', 'photo_main', 'photo_1', 'available', 'available_count')
 
+    def get_available(self, obj):
+        return obj.available
+
 
 class ProductDetailSerializer(serializers.ModelSerializer):
     is_favorite_product = serializers.SerializerMethodField()
     is_in_cart = serializers.SerializerMethodField()
     discount_percent = serializers.SerializerMethodField()
+    available = serializers.SerializerMethodField()
     sizes = SizeSerializer(many=True)
 
     class Meta:
         model = Product
         fields = '__all__'
+
+    def get_available(self, obj):
+        return obj.available
 
     def get_discount_percent(self, obj):
         return obj.discount_percent

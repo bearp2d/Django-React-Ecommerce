@@ -13,17 +13,12 @@ class Size(models.Model):
         return f'{self.size}-{self.min_size}-{self.max_size}'
 
 
-class Color(models.Model):
-    color = models.CharField(max_length=100)
-    hex_code = models.CharField(max_length=10)
-
-    def __str__(self):
-        return f'{self.color}-{self.hex_code}'
-
-
 class ProductQuerySet(models.QuerySet):
     def active(self):
         return self.filter(active=True)
+
+    def available(self):
+        return self.filter(available_count__gt=0)
 
     def search(self, q):
         lookups = (
@@ -40,6 +35,9 @@ class ProductManager(models.Manager):
 
     def all(self):
         return self.get_queryset().active()
+
+    def available(self):
+        return self.get_queryset().available()
 
     def search(self, q):
         return self.get_queryset().active().search(q)
@@ -62,8 +60,7 @@ class Product(models.Model):
     discount_price = models.DecimalField(
         max_digits=10, decimal_places=2, blank=True, null=True)
     sizes = models.ManyToManyField(Size, blank=True)
-    colors = models.ManyToManyField(Color, blank=True)
-    available = models.BooleanField(default=True)
+    colors = models.ManyToManyField('self', blank=True, related_name='colors')
     available_count = models.PositiveIntegerField()
     active = models.BooleanField(default=True)
     sale_count = models.IntegerField(default=0)
@@ -81,6 +78,10 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.code = id_generator()
         super(Product, self).save(*args, **kwargs)
+
+    @property
+    def available(self):
+        return self.available_count > 0
 
     @property
     def discount_percent(self):
