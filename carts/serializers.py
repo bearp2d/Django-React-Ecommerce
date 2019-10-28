@@ -1,11 +1,12 @@
 from rest_framework import serializers
 
 from .models import CartItem, Cart
-from products.serializers import ProductListSerializer
+from products.serializers import ProductListSerializer, SizeSerializer
 
 
 class CartItemSerializer(serializers.ModelSerializer):
     product = ProductListSerializer(read_only=True)
+    size = SizeSerializer()
     total_price = serializers.SerializerMethodField()
 
     class Meta:
@@ -27,8 +28,10 @@ class AddItemToCartSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = self.context.get('request').user
         product = validated_data.get('product')
+        size = validated_data.get('size')
         obj = Cart.objects.get(user=user)
-        cart_item, exists = CartItem.objects.get_or_create(product=product)
+        cart_item, exists = CartItem.objects.get_or_create(
+            product=product, size=size)
         obj.items.add(cart_item)
         return cart_item
 
