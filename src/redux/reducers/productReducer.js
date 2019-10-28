@@ -15,7 +15,7 @@ const initialState = {
   next: null,
   previous: null,
   products: [],
-  product: {}
+  product: { sizes: [], colors: [] }
 };
 
 export default (state = initialState, action) => {

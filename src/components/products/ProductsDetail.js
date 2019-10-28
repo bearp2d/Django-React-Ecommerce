@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -36,6 +37,16 @@ const useStyles = makeStyles(theme => ({
   },
   sizes: {
     marginBottom: theme.spacing(1)
+  },
+  img: {
+    border: "1px solid gray",
+    padding: "5px",
+    marginRight: "10px"
+  },
+  activeImg: {
+    border: "1px solid red",
+    padding: "5px",
+    marginRight: "10px"
   }
 }));
 
@@ -43,9 +54,18 @@ const ProductsDetail = ({ match }) => {
   const [orderSize, setOrderSize] = useState();
   const { slug } = match.params;
   const dispatch = useDispatch();
-  const product = useSelector(state => state.products.product);
-  const sizes = product.sizes || [];
+  const {
+    product,
+    product: { colors, sizes }
+  } = useSelector(state => state.products);
   const classes = useStyles();
+
+  useEffect(() => {
+    console.log(sizes.length);
+    if (sizes.length !== 0) {
+      setOrderSize(sizes[0].size);
+    }
+  }, [sizes]);
 
   useEffect(() => {
     dispatch(fetchProduct(slug));
@@ -93,22 +113,40 @@ const ProductsDetail = ({ match }) => {
               )}
             </React.Fragment>
           )}
-          <div className={classes.sizes}>
-            <Typography display="inline" variant="h6">
-              sizes:
-            </Typography>
-            {sizes.map(size => (
-              <Button
-                className={classes.sizeButton}
-                key={size.id}
-                variant={orderSize === size.size ? "contained" : "outlined"}
-                size="small"
-                onClick={() => setOrderSize(size.size)}
-              >
-                {size.size} ({`${size.min_size} - ${size.max_size}`})
-              </Button>
-            ))}
-          </div>
+          {sizes.length !== 0 && (
+            <div className={classes.sizes}>
+              <Typography display="inline" variant="h6">
+                sizes:
+              </Typography>
+              {sizes.map(size => (
+                <Button
+                  className={classes.sizeButton}
+                  key={size.id}
+                  variant={orderSize === size.size ? "contained" : "outlined"}
+                  size="small"
+                  onClick={() => setOrderSize(size.size)}
+                >
+                  {size.size} ({`${size.min_size} - ${size.max_size}`})
+                </Button>
+              ))}
+            </div>
+          )}
+          {colors.lenght !== 0 && (
+            <div className={classes.colors}>
+              <Typography variant="h6">colors:</Typography>
+              {colors.map(color => (
+                <Link key={color.id} to={`/products/${color.slug}`}>
+                  <img
+                    className={classes.img}
+                    height="80px"
+                    width="70px"
+                    src={color.photo_main}
+                    alt={color.title}
+                  />
+                </Link>
+              ))}
+            </div>
+          )}
           {product.available === true && (
             <LoadingButton
               className={`${classes.button} ${classes.buttonGreen}`}
