@@ -45,7 +45,8 @@ class ProductManager(models.Manager):
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
-    slug = AutoSlugField(populate_from='title')
+    slug = AutoSlugField(populate_from='title',
+                         unique_with=['title'], unique=True)
     photo_main = models.ImageField(upload_to='product_photos/%Y/%m/%d/')
     photo_1 = models.ImageField(
         upload_to='product_photos/%Y/%m/%d/', blank=True, null=True)
