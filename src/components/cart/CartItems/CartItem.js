@@ -40,7 +40,9 @@ const CartItem = ({ item, item: { product } }) => {
           src={product.photo_main}
         />
       </TableCell>
-      <TableCell>{product.title}</TableCell>
+      <TableCell>
+        {product.title} - size {item.size.size}
+      </TableCell>
       <TableCell agline="center">
         <IconButton component={Link} to={`/products/${product.slug}`}>
           <ViewIcon />

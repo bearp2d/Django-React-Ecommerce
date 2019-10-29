@@ -19,19 +19,22 @@ export const fetchCart = () => dispatch => {
   });
 };
 
-export const addToCart = id => dispatch => {
+export const addToCart = (productId, sizeId, history) => dispatch => {
   dispatch({ type: START_LOADING_BUTTON });
-  axios.post("/api/cart/", { product: id }).then(response => {
-    dispatch({ type: ADD_TO_CART });
-    dispatch(fetchCart());
-    dispatch({ type: STOP_LOADING_BUTTON });
-    dispatch(
-      addNotif({
-        message: "Item has been added to your cart",
-        options: { variant: "info" }
-      })
-    );
-  });
+  axios
+    .post("/api/cart/", { product: productId, size: sizeId })
+    .then(response => {
+      dispatch({ type: ADD_TO_CART, payload: response.data });
+      dispatch(fetchCart());
+      dispatch({ type: STOP_LOADING_BUTTON });
+      history.push("/cart");
+      dispatch(
+        addNotif({
+          message: "Item has been added to your cart",
+          options: { variant: "info" }
+        })
+      );
+    });
 };
 
 export const removeFromCart = (id, handleClose) => dispatch => {

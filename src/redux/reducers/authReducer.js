@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          cart_items_count: state.user.cart_items_count + 1
+          cart_items_count: payload.cart_items_count
         }
       };
     default:

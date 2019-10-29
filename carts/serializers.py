@@ -19,6 +19,7 @@ class CartItemSerializer(serializers.ModelSerializer):
 
 
 class AddItemToCartSerializer(serializers.ModelSerializer):
+    cart_items_count = serializers.SerializerMethodField()
 
     class Meta:
         model = CartItem
@@ -29,11 +30,21 @@ class AddItemToCartSerializer(serializers.ModelSerializer):
         user = self.context.get('request').user
         product = validated_data.get('product')
         size = validated_data.get('size')
-        obj = Cart.objects.get(user=user)
-        cart_item, exists = CartItem.objects.get_or_create(
-            product=product, size=size)
-        obj.items.add(cart_item)
+        cart = Cart.objects.get(user=user)
+        cart_item = CartItem.objects.filter(product=product, size=size)
+        if cart_item.exists():
+            cart_item = cart_item.first()
+            if size.available_count > cart_item.quantity:
+                cart_item.quantity += 1
+                cart_item.save()
+            return cart_item
+        cart_item = CartItem.objects.create(product=product, size=size)
+        cart.items.add(cart_item)
         return cart_item
+
+    def get_cart_items_count(self, obj):
+        user = self.context.get('request').user
+        return user.cart.items.count()
 
 
 class CartSerializer(serializers.ModelSerializer):

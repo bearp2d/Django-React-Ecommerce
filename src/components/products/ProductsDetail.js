@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductsDetail = ({ match }) => {
+const ProductsDetail = ({ match, history }) => {
   const [orderSize, setOrderSize] = useState();
   const { slug } = match.params;
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ const ProductsDetail = ({ match }) => {
   useEffect(() => {
     console.log(sizes.length);
     if (sizes.length !== 0) {
-      setOrderSize(sizes[0].size);
+      setOrderSize(sizes[0].id);
     }
   }, [sizes]);
 
@@ -122,9 +122,9 @@ const ProductsDetail = ({ match }) => {
                 <Button
                   className={classes.sizeButton}
                   key={size.id}
-                  variant={orderSize === size.size ? "contained" : "outlined"}
+                  variant={orderSize === size.id ? "contained" : "outlined"}
                   size="small"
-                  onClick={() => setOrderSize(size.size)}
+                  onClick={() => setOrderSize(size.id)}
                 >
                   {size.size} ({`${size.min_size} - ${size.max_size}`})
                 </Button>
@@ -150,10 +150,11 @@ const ProductsDetail = ({ match }) => {
           {product.available === true && (
             <LoadingButton
               className={`${classes.button} ${classes.buttonGreen}`}
-              onClick={() => dispatch(addToCart(product.id))}
+              onClick={() =>
+                dispatch(addToCart(product.id, orderSize, history))
+              }
               variant="contained"
               size="large"
-              disabled={product.is_in_cart}
             >
               Add to cart
             </LoadingButton>
