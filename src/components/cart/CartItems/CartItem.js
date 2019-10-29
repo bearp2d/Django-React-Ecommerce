@@ -49,7 +49,7 @@ const CartItem = ({ item, item: { product } }) => {
       <TableCell align="center">
         <UpdateQuantity
           id={item.id}
-          available_count={product.available_count}
+          available_count={item.size.available_count}
           quantity={item.quantity}
         />
       </TableCell>

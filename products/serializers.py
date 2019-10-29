@@ -5,9 +5,14 @@ from profiles.models import FavoritesProducts
 
 
 class SizeSerializer(serializers.ModelSerializer):
+    available = serializers.SerializerMethodField()
+
     class Meta:
         model = Size
         fields = '__all__'
+
+    def get_available(self, obj):
+        return obj.available
 
 
 class ColorSerializer(serializers.ModelSerializer):
@@ -31,10 +36,10 @@ class ProductListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ('id', 'slug', 'url', 'title', 'price', 'discount_price',
-                  'discount_percent', 'photo_main', 'photo_1', 'available', 'available_count')
+                  'discount_percent', 'photo_main', 'photo_1', 'available')
 
     def get_available(self, obj):
-        return obj.available
+        return Product.objects.is_available(obj)
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
@@ -50,7 +55,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_available(self, obj):
-        return obj.available
+        return Product.objects.is_available(obj)
 
     def get_discount_percent(self, obj):
         return obj.discount_percent

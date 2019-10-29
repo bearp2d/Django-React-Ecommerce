@@ -4,21 +4,30 @@ from web.utils import id_generator
 from django.db.models import Q
 
 
+class SizeManager(models.Manager):
+    def available(self):
+        return self.filter(available_count__gt=0)
+
+
 class Size(models.Model):
     size = models.CharField(max_length=50)
     min_size = models.PositiveIntegerField()
     max_size = models.PositiveIntegerField()
+    available_count = models.PositiveIntegerField()
+
+    objects = SizeManager()
 
     def __str__(self):
         return f'{self.size}-{self.min_size}-{self.max_size}'
+
+    @property
+    def available(self):
+        return self.available_count > 0
 
 
 class ProductQuerySet(models.QuerySet):
     def active(self):
         return self.filter(active=True)
-
-    def available(self):
-        return self.filter(available_count__gt=0)
 
     def search(self, q):
         lookups = (
@@ -36,11 +45,11 @@ class ProductManager(models.Manager):
     def all(self):
         return self.get_queryset().active()
 
-    def available(self):
-        return self.get_queryset().available()
-
     def search(self, q):
         return self.get_queryset().active().search(q)
+
+    def is_available(self, obj):
+        return obj.sizes.available().exists()
 
 
 class Product(models.Model):
@@ -60,9 +69,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     discount_price = models.DecimalField(
         max_digits=10, decimal_places=2, blank=True, null=True)
-    sizes = models.ManyToManyField(Size, blank=True)
+    sizes = models.ManyToManyField(Size)
     colors = models.ManyToManyField('self', blank=True, related_name='colors')
-    available_count = models.PositiveIntegerField()
     active = models.BooleanField(default=True)
     sale_count = models.IntegerField(default=0)
     code = models.CharField(max_length=40, unique=True, editable=False)
@@ -79,10 +87,6 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.code = id_generator()
         super(Product, self).save(*args, **kwargs)
-
-    @property
-    def available(self):
-        return self.available_count > 0
 
     @property
     def discount_percent(self):

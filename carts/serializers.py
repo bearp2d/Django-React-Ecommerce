@@ -6,7 +6,7 @@ from products.serializers import ProductListSerializer, SizeSerializer
 
 class CartItemSerializer(serializers.ModelSerializer):
     product = ProductListSerializer(read_only=True)
-    size = SizeSerializer()
+    size = SizeSerializer(read_only=True)
     total_price = serializers.SerializerMethodField()
 
     class Meta:
