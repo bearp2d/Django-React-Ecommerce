@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
-from django.contrib.auth import authenticate
+from django.contrib.auth import get_user_model, authenticate, login
 from django.core.validators import RegexValidator
 
 from .validators import phone_number_or_email_reg
@@ -29,6 +28,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
+        # Login user (set session)
+        login(self.context.get('request'), user)
         return user
 
 
@@ -59,6 +60,8 @@ class LoginSerializer(serializers.ModelSerializer):
                 password=data['password']
             )
         if user:
+            # Login user (set session)
+            login(self.context.get('request'), user)
             return user
         raise serializers.ValidationError("Incorrect Credentials")
 

@@ -12,12 +12,6 @@ import {
 
 export const loadUser = () => dispatch => {
   dispatch({ type: START_LOADING_UI });
-  if (!localStorage.getItem("token")) {
-    dispatch({ type: AUTH_FAIL });
-    dispatch({ type: STOP_LOADING_UI });
-    return;
-  }
-  useAthorizationToken();
   axios
     .get("/api/user/")
     .then(response => {
@@ -25,7 +19,6 @@ export const loadUser = () => dispatch => {
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch(() => {
-      removeAthorizationToken();
       dispatch({ type: AUTH_FAIL });
       dispatch({ type: STOP_LOADING_UI });
     });
@@ -36,8 +29,7 @@ export const login = (user, setErrors, resetForm) => (dispatch, getState) => {
   axios
     .post("/api/auth/login/", user)
     .then(response => {
-      setAthorizationToken(response.data.token);
-      dispatch({ type: AUTH_SUCCESS, payload: response.data.user });
+      dispatch({ type: AUTH_SUCCESS, payload: response.data });
       dispatch({ type: STOP_LOADING_BUTTON });
       resetForm();
       dispatch(
@@ -59,8 +51,7 @@ export const register = (user, setErrors, resetForm) => dispatch => {
   axios
     .post("/api/auth/register/", user)
     .then(response => {
-      setAthorizationToken(response.data.token);
-      dispatch({ type: AUTH_SUCCESS, payload: response.data.user });
+      dispatch({ type: AUTH_SUCCESS, payload: response.data });
       dispatch({ type: STOP_LOADING_BUTTON });
       resetForm();
       dispatch(addNotif({ message: "Your account registered successfully" }));
@@ -75,8 +66,8 @@ export const register = (user, setErrors, resetForm) => dispatch => {
 export const logout = () => dispatch => {
   dispatch({ type: START_LOADING_UI });
   axios.post("/api/auth/logout/").then(() => {
-    removeAthorizationToken();
-    dispatch(loadUser());
+    dispatch({ type: AUTH_FAIL });
+    dispatch({ type: STOP_LOADING_UI });
   });
 };
 
@@ -122,20 +113,4 @@ export const updateUser = (user, setErrors, history) => dispatch => {
       setErrors(error.response.data);
       dispatch({ type: STOP_LOADING_BUTTON });
     });
-};
-
-const setAthorizationToken = token => {
-  token = `Token ${token}`;
-  localStorage.setItem("token", token);
-  axios.defaults.headers.common["Authorization"] = token;
-};
-
-const useAthorizationToken = () => {
-  const token = localStorage.getItem("token");
-  axios.defaults.headers.common["Authorization"] = token;
-};
-
-const removeAthorizationToken = () => {
-  localStorage.removeItem("token");
-  delete axios.defaults.headers.common["Authorization"];
 };

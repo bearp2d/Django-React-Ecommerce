@@ -7,7 +7,9 @@ import Routes from "../Routes";
 import Notifer from "./layouts/Notifer";
 import { loadUser } from "../redux/actions/authActions";
 
-axios.defaults.baseURL = "http://localhost:8000";
+// Set csrf token
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.withCredentials = true;
 
 const App = () => {
   const dispatch = useDispatch();

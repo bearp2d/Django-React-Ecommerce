@@ -1,10 +1,9 @@
 from rest_framework import generics
 from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
+from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout, login, update_session_auth_hash
 
 from . import serializers
 
@@ -18,10 +17,9 @@ class RegisterView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        token = Token.objects.create(user=user).key
         user = serializers.UserSerializer(
             user, context=self.get_serializer_context()).data
-        return Response({"user": user, "token": token})
+        return Response(user)
 
 
 class LoginView(generics.GenericAPIView):
@@ -31,21 +29,17 @@ class LoginView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
-        token, _ = Token.objects.get_or_create(user=user)
         user = serializers.UserSerializer(
             user, context=self.get_serializer_context()).data
-        return Response({
-            "user": user,
-            "token": str(token)
-        })
+        return Response(user)
 
 
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
-        request.user.auth_token.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        logout(request)
+        return Response(status=HTTP_204_NO_CONTENT)
 
 
 class ChangePasswordView(generics.UpdateAPIView):
@@ -61,8 +55,9 @@ class ChangePasswordView(generics.UpdateAPIView):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             if not self.object.check_password(serializer.data.get("old_password")):
-                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"old_password": ["Wrong password."]}, status=HTTP_400_BAD_REQUEST)
             self.object.set_password(serializer.data.get("new_password"))
             self.object.save()
-            return Response("Password changed successfully.", status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            update_session_auth_hash(request, self.object)
+            return Response("Password changed successfully.")
+        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)

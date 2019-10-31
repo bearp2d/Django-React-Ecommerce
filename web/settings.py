@@ -25,7 +25,7 @@ SECRET_KEY = ')%e55*ki!)i_1^-l^pf(8xw@+lxu6a4e+tgu)3-#%(hkplyube'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
     'products.apps.ProductsConfig',
     'accounts.apps.AccountsConfig',
     'carts.apps.CartsConfig',
@@ -57,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'livereload.middleware.LiveReloadScript',
 ]
 
@@ -154,12 +152,12 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
 }
 
-# Cors headers
-CORS_ORIGIN_ALLOW_ALL = True
+# CSRF token
+CSRF_COOKIE_NAME = "XSRF-TOKEN"
