@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'profiles.apps.ProfilesConfig',
     'orders.apps.OrdersConfig',
     'django_filters',
+    'livereload',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'web.urls'
