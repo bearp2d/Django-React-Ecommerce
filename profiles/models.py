@@ -17,7 +17,8 @@ class Address(models.Model):
     state = models.CharField(max_length=120)
     city = models.CharField(max_length=120)
     postal_address = models.TextField()
-    postal_code = models.CharField(max_length=10)
+    postal_code = models.CharField(max_length=10, validators=[RegexValidator(
+        '^[0-9]{10,10}$', message="Invalid postal code")])
 
     class Meta:
         verbose_name_plural = 'Addresses'
