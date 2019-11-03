@@ -23,22 +23,23 @@ class AddItemToCartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartItem
-        fields = '__all__'
-        read_only_fields = ('quantity',)
+        fields = ('product', 'size', 'cart_items_count')
 
     def create(self, validated_data):
         user = self.context.get('request').user
         product = validated_data.get('product')
         size = validated_data.get('size')
         cart = Cart.objects.get(user=user)
-        cart_item = CartItem.objects.filter(product=product, size=size)
+        cart_item = CartItem.objects.filter(
+            cart=cart, product=product, size=size)
         if cart_item.exists():
             cart_item = cart_item.first()
             if size.available_count > cart_item.quantity:
                 cart_item.quantity += 1
                 cart_item.save()
             return cart_item
-        cart_item = CartItem.objects.create(product=product, size=size)
+        cart_item = CartItem.objects.create(
+            cart=cart, product=product, size=size)
         cart.items.add(cart_item)
         return cart_item
 
