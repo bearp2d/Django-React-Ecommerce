@@ -29,7 +29,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         # Login user (set session)
-        login(self.context.get('request'), user)
+        login(self.context.get('request'), user,
+              backend='django.contrib.auth.backends.ModelBackend')
         return user
 
 
