@@ -23,7 +23,7 @@ class ColorSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'photo_main', 'slug', 'available')
 
     def get_available(self, obj):
-        return obj.available
+        return Product.objects.is_available(obj)
 
 
 class ProductListSerializer(serializers.ModelSerializer):
