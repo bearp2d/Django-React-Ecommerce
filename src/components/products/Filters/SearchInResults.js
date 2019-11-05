@@ -34,7 +34,10 @@ const SearchInResults = () => {
   const handleSubmit = event => {
     event.preventDefault();
     history.push(
-      appendQuery(location, { search: `${parsed.search} ${value}`, page: "1" })
+      appendQuery(location, {
+        search: parsed.search ? `${parsed.search} ${value}` : value,
+        page: "1"
+      })
     );
     setValue("");
   };
