@@ -5,7 +5,7 @@ from .models import Product
 
 
 class ProductPagination(PageNumberPagination):
-    page_size = 2
+    page_size = 4
 
     def get_paginated_response(self, data):
         next_page_query = (self.get_next_link().split('/')[-1]
