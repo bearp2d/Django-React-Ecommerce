@@ -125,6 +125,7 @@ const ProductsDetail = ({ match, history }) => {
                   variant={orderSize === size.id ? "contained" : "outlined"}
                   size="small"
                   onClick={() => setOrderSize(size.id)}
+                  disabled={!size.available}
                 >
                   {size.size} ({`${size.min_size} - ${size.max_size}`})
                 </Button>
