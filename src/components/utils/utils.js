@@ -14,9 +14,13 @@ export function appendQuery(location, query) {
   };
 }
 
-export function removeQuery(location, query) {
+export function removeQuery(location, queries) {
   let parsed = queryString.parse(location.search);
-  delete parsed[query];
+  try {
+    queries.map(query => delete parsed[query]);
+  } catch {
+    delete parsed[queries];
+  }
   return {
     ...location,
     search: "?" + queryString.stringify(parsed)
