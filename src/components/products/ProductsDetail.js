@@ -11,6 +11,7 @@ import { fetchProduct } from "../../redux/actions/productActions";
 import { addToCart } from "../../redux/actions/cartActions";
 import { updateFavoriteProducts } from "../../redux/actions/profileActions/FavoriteProductsActions";
 import LoadingButton from "../layouts/LoadingButton";
+import ProductImages from "./ProductImages";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,9 +48,6 @@ const useStyles = makeStyles(theme => ({
     border: "1px solid red",
     padding: "5px",
     marginRight: "10px"
-  },
-  imageWrapper: {
-    // padding: theme.spacing(5)
   }
 }));
 
@@ -77,13 +75,8 @@ const ProductsDetail = ({ match, history }) => {
   return (
     <div className={classes.root}>
       <Grid container spacing={8}>
-        <Grid item className={classes.imageWrapper}>
-          <img
-            src={product.photo_main}
-            alt={product.slug}
-            width="95%"
-            height="95%"
-          />
+        <Grid item>
+          <ProductImages product={product} />
         </Grid>
         <Grid item md>
           <Typography variant="h4" gutterBottom>
