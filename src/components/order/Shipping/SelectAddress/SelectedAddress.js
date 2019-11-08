@@ -18,9 +18,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SelectedAddress = ({ address, setChange }) => {
+const SelectedAddress = ({
+  address,
+  setChange,
+  addressesLength,
+  setCreate
+}) => {
   const [edit, setEdit] = useState(false);
   const classes = useStyles();
+
+  const handleChange = () => {
+    if (addressesLength === 1) {
+      setCreate(true);
+    } else {
+      setChange(true);
+    }
+  };
 
   return (
     <Paper>
@@ -37,7 +50,7 @@ const SelectedAddress = ({ address, setChange }) => {
           </Button>
           <EditAddress open={edit} setOpen={setEdit} address={address} />
           <Button
-            onClick={() => setChange(true)}
+            onClick={handleChange}
             className={classes.right}
             color="secondary"
             size="small"
