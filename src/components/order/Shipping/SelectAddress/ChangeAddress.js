@@ -96,7 +96,11 @@ const ChangeAddress = ({ setOpen, addresses, setAddress }) => {
                   Edit
                 </Button>
                 <EditAddress open={edit} setOpen={setEdit} address={address} />
-                <DeleteAddress classes={classes} id={address.id} />
+                <DeleteAddress
+                  onClose={() => setOpen(false)}
+                  classes={classes}
+                  id={address.id}
+                />
               </ListItemSecondaryAction>
             </ListItem>
           </List>

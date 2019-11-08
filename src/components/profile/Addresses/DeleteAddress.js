@@ -10,7 +10,7 @@ import DialogTitle from "../../utils/DialogTitle";
 import LoadingButton from "../../layouts/LoadingButton";
 import { deleteAddress } from "../../../redux/actions/profileActions/AddressActions";
 
-const DeleteAddress = ({ classes, id }) => {
+const DeleteAddress = ({ classes, id, onClose }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -20,6 +20,7 @@ const DeleteAddress = ({ classes, id }) => {
 
   const handleClose = () => {
     setOpen(false);
+    onClose();
   };
 
   const handleSubmit = () => {
