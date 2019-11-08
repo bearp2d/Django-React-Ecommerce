@@ -12,6 +12,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import CloseIcon from "@material-ui/icons/Close";
 
 import CreateAddress from "../../../profile/Addresses/CreateAddress";
+import CreateAddressButton from "../../../profile/Addresses/CreateAddress/CreateAddressButton";
 import EditAddress from "../../../profile/Addresses/EditAddress";
 import DeleteAddress from "../../../profile/Addresses/DeleteAddress";
 
@@ -38,6 +39,7 @@ const useStyles = makeStyles(theme => ({
 
 const ChangeAddress = ({ setOpen, addresses, setAddress }) => {
   const [edit, setEdit] = useState(false);
+  const [create, setCreate] = useState(false);
   const classes = useStyles();
 
   const handleClick = address => {
@@ -60,7 +62,8 @@ const ChangeAddress = ({ setOpen, addresses, setAddress }) => {
         title="Select the address you would like to deliver:"
       ></CardHeader>
       <div className={classes.space}>
-        <CreateAddress noIcon />
+        <CreateAddressButton noIcon setOpen={setCreate} />
+        <CreateAddress open={create} setOpen={setCreate} noIcon />
       </div>
       {addresses.map(address => (
         <Paper className={classes.paper} key={address.id}>

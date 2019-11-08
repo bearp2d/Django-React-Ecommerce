@@ -1,31 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import Typography from "@material-ui/core/Typography";
 
 import CreateAddressForm from "./CreateAddressForm";
-import AddLocationIcon from "../../../icons/AddLocation";
 import DialogTitle from "../../../utils/DialogTitle";
 import { phone_number_reg } from "../../../utils/utils";
 import { createAddress } from "../../../../redux/actions/profileActions/AddressActions";
-
-const useStyles = makeStyles(theme => ({
-  button: {
-    width: "100%",
-    border: "4px dashed #b8b8b8",
-    height: "100%",
-    alignItems: "center",
-    fontSize: "1.5rem",
-    color: "rgba(0, 0, 0, 0.54)",
-    fontWeight: "bold"
-  },
-  icon: {
-    fontSize: "75px"
-  }
-}));
 
 const validationSchema = Yup.object({
   reciver_full_name: Yup.string().required(),
@@ -38,7 +22,7 @@ const validationSchema = Yup.object({
   postal_code: Yup.string().required()
 });
 
-const CreateAddress = ({ noIcon }) => {
+const CreateAddress = ({ noCancel, fullScreen, open, setOpen }) => {
   const values = {
     reciver_full_name: "",
     reciver_phone_number: "",
@@ -47,13 +31,7 @@ const CreateAddress = ({ noIcon }) => {
     postal_address: "",
     postal_code: ""
   };
-  const [open, setOpen] = useState(false);
-  const classes = useStyles();
   const dispatch = useDispatch();
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -65,17 +43,27 @@ const CreateAddress = ({ noIcon }) => {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen} className={classes.button}>
-        {noIcon === false && (
-          <AddLocationIcon className={classes.icon} color="action" />
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        maxWidth="md"
+      >
+        {noCancel === false ? (
+          <DialogTitle onClose={handleClose}>Add Address</DialogTitle>
+        ) : (
+          <MuiDialogTitle disableTypography className={classes.root}>
+            <Typography variant="h6">Add Address</Typography>
+          </MuiDialogTitle>
         )}
-        Add new address
-      </Button>
-      <Dialog open={open} onClose={handleClose} maxWidth="md">
-        <DialogTitle onClose={handleClose}>Add Address</DialogTitle>
+
         <Formik
           render={props => (
-            <CreateAddressForm handleClose={handleClose} {...props} />
+            <CreateAddressForm
+              handleClose={handleClose}
+              noCancel={noCancel}
+              {...props}
+            />
           )}
           initialValues={values}
           validationSchema={validationSchema}
@@ -88,7 +76,8 @@ const CreateAddress = ({ noIcon }) => {
 };
 
 CreateAddress.defaultProps = {
-  noIcon: false
+  noCancel: false,
+  fullScreen: false
 };
 
 export default CreateAddress;

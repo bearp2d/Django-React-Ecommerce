@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import AddressItem from "./AddressItem";
 import CreateAddress from "./CreateAddress";
+import CreateAddressButton from "./CreateAddress/CreateAddressButton";
 import { fetchAddresses } from "../../../redux/actions/profileActions/AddressActions";
 
 const useStyles = makeStyles(theme => ({
@@ -15,6 +16,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Addresses = () => {
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
   const addresses = useSelector(state => state.profile.addresses);
@@ -28,7 +30,8 @@ const Addresses = () => {
       <Grid container spacing={2}>
         <Grid item md={6}>
           <div style={{ height: "280px" }}>
-            <CreateAddress />
+            <CreateAddressButton setOpen={setOpen} />
+            <CreateAddress open={open} setOpen={setOpen} />
           </div>
         </Grid>
         {addresses.map(address => (
