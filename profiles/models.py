@@ -19,9 +19,11 @@ class Address(models.Model):
     postal_address = models.TextField()
     postal_code = models.CharField(max_length=10, validators=[RegexValidator(
         '^[0-9]{10,10}$', message="Invalid postal code")])
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = 'Addresses'
+        ordering = ('-created_at', )
 
     def __str__(self):
         return self.user.username

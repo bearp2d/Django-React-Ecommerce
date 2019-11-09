@@ -63,7 +63,7 @@ const ChangeAddress = ({ setOpen, addresses, setAddress }) => {
       ></CardHeader>
       <div className={classes.space}>
         <CreateAddressButton noIcon setOpen={setCreate} />
-        <CreateAddress open={create} setOpen={setCreate} />
+        <CreateAddress open={create} handleClose={() => setCreate(false)} />
       </div>
       {addresses.map(address => (
         <Paper className={classes.paper} key={address.id}>
