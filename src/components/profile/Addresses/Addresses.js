@@ -31,7 +31,7 @@ const Addresses = () => {
         <Grid item md={6}>
           <div style={{ height: "280px" }}>
             <CreateAddressButton setOpen={setOpen} />
-            <CreateAddress open={open} setOpen={setOpen} />
+            <CreateAddress open={open} handleClose={() => setOpen(false)} />
           </div>
         </Grid>
         {addresses.map(address => (
