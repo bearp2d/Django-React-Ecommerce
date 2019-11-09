@@ -3,8 +3,6 @@ import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import Typography from "@material-ui/core/Typography";
 
 import CreateAddressForm from "./CreateAddressForm";
 import DialogTitle from "../../../utils/DialogTitle";
@@ -22,7 +20,7 @@ const validationSchema = Yup.object({
   postal_code: Yup.string().required()
 });
 
-const CreateAddress = ({ noCancel, fullScreen, open, setOpen }) => {
+const CreateAddress = ({ fullScreen, open, handleClose, onSubmit }) => {
   const values = {
     reciver_full_name: "",
     reciver_phone_number: "",
@@ -33,12 +31,8 @@ const CreateAddress = ({ noCancel, fullScreen, open, setOpen }) => {
   };
   const dispatch = useDispatch();
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const handleSubmit = (address, { setErrors }) => {
-    dispatch(createAddress(address, setErrors, handleClose));
+    dispatch(createAddress(address, setErrors, onSubmit || handleClose));
   };
 
   return (
@@ -49,21 +43,10 @@ const CreateAddress = ({ noCancel, fullScreen, open, setOpen }) => {
         onClose={handleClose}
         maxWidth="md"
       >
-        {noCancel === false ? (
-          <DialogTitle onClose={handleClose}>Add Address</DialogTitle>
-        ) : (
-          <MuiDialogTitle disableTypography className={classes.root}>
-            <Typography variant="h6">Add Address</Typography>
-          </MuiDialogTitle>
-        )}
-
+        <DialogTitle onClose={handleClose}>Add Address</DialogTitle>
         <Formik
           render={props => (
-            <CreateAddressForm
-              handleClose={handleClose}
-              noCancel={noCancel}
-              {...props}
-            />
+            <CreateAddressForm handleClose={handleClose} {...props} />
           )}
           initialValues={values}
           validationSchema={validationSchema}
@@ -76,7 +59,6 @@ const CreateAddress = ({ noCancel, fullScreen, open, setOpen }) => {
 };
 
 CreateAddress.defaultProps = {
-  noCancel: false,
   fullScreen: false
 };
 

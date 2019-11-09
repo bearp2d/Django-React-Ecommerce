@@ -23,6 +23,7 @@ const CreateAddressButton = ({ noIcon, setOpen }) => {
     </Button>
   );
 };
+
 CreateAddressButton.defaultProps = {
   noIcon: false
 };

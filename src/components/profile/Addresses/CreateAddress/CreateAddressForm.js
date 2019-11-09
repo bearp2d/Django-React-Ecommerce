@@ -129,11 +129,9 @@ const CreateAddressForm = props => {
         </Grid>
       </DialogContent>
       <DialogActions>
-        {props.noCancel === false && (
-          <Button onClick={handleClose} size="large" variant="outlined">
-            Cancel
-          </Button>
-        )}
+        <Button onClick={handleClose} size="large" variant="outlined">
+          Cancel
+        </Button>
         <LoadingButton
           onClick={handleSubmit}
           size="large"
