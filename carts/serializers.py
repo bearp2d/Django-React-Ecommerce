@@ -25,6 +25,11 @@ class AddItemToCartSerializer(serializers.ModelSerializer):
         model = CartItem
         fields = ('product', 'size', 'cart_items_count')
 
+    def validate_size(self, size):
+        if size.available == False:
+            raise serializers.ValidationError("Size is not available.")
+        return size
+
     def create(self, validated_data):
         user = self.context.get('request').user
         product = validated_data.get('product')

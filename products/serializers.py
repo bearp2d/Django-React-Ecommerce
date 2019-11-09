@@ -49,10 +49,14 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     available = serializers.SerializerMethodField()
     colors = ColorSerializer(many=True)
     sizes = SizeSerializer(many=True)
+    default_size = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
         fields = '__all__'
+
+    def get_default_size(self, obj):
+        return obj.sizes.filter(available_count__gt=0).first().id
 
     def get_available(self, obj):
         return Product.objects.is_available(obj)

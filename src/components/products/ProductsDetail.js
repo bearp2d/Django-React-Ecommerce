@@ -52,21 +52,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProductsDetail = ({ match, history }) => {
-  const [orderSize, setOrderSize] = useState();
   const { slug } = match.params;
   const dispatch = useDispatch();
   const {
     product,
     product: { colors, sizes }
   } = useSelector(state => state.products);
+  const [orderSize, setOrderSize] = useState();
   const classes = useStyles();
 
   useEffect(() => {
-    console.log(sizes.length);
-    if (sizes.length !== 0) {
-      setOrderSize(sizes[0].id);
-    }
-  }, [sizes]);
+    setOrderSize(product.default_size);
+  }, [product]);
 
   useEffect(() => {
     dispatch(fetchProduct(slug));
