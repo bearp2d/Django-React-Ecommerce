@@ -37,6 +37,7 @@ const CartItem = ({ item, item: { product } }) => {
           alt={product.slug}
           height="75"
           width="60"
+          style={{ objectFit: "contain" }}
           src={product.photo_main}
         />
       </TableCell>
