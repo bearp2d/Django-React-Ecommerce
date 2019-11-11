@@ -5,13 +5,20 @@ import { fetchCart } from "../../../redux/actions/cartActions";
 import { fetchAddresses } from "../../../redux/actions/profileActions/AddressActions";
 import Shipping from "../Shipping";
 
-const Order = () => {
+const Order = ({ history }) => {
   const {
     cart,
+    ui: { loadingUI },
     profile: { addresses }
   } = useSelector(state => state);
   const [address, setAddress] = useState(addresses[0] || "");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (cart.items_count === 0) {
+      history.push("/cart");
+    }
+  }, [cart.items_count]);
 
   useEffect(() => {
     dispatch(fetchCart());
@@ -21,6 +28,10 @@ const Order = () => {
   useEffect(() => {
     setAddress(addresses[0] || "");
   }, [addresses]);
+
+  if (loadingUI === true) {
+    return null;
+  }
 
   return (
     <Shipping

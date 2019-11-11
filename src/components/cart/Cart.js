@@ -5,14 +5,26 @@ import Grid from "@material-ui/core/Grid";
 import { fetchCart } from "../../redux/actions/cartActions";
 import CartItems from "./CartItems";
 import CartSummary from "./CartSummary";
+import EmptyCart from "./EmptyCart";
 
 const Cart = () => {
-  const cart = useSelector(state => state.cart);
+  const {
+    cart,
+    ui: { loadingUI }
+  } = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCart());
   }, [dispatch]);
+
+  if (loadingUI === true) {
+    return null;
+  }
+
+  if (cart.items_count === 0) {
+    return <EmptyCart />;
+  }
 
   return (
     <Grid container spacing={2}>
