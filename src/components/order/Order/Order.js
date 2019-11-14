@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 import { fetchCart } from "../../../redux/actions/cartActions";
 import { fetchAddresses } from "../../../redux/actions/profileActions/AddressActions";
@@ -45,6 +47,22 @@ const Order = ({ history }) => {
           addresses={addresses}
         />
         <CartItemsSummary items={cart.items} />
+        <Button
+          style={{ marginTop: "10px" }}
+          component={Link}
+          to="/cart"
+          variant="outlined"
+        >
+          Back to cart
+        </Button>
+        <Button
+          style={{ marginTop: "10px", float: "right" }}
+          component={Link}
+          to="/order"
+          variant="outlined"
+        >
+          Check out
+        </Button>
       </Grid>
       <Grid item md={3}>
         <CartSummary to="/order" cart={cart} />
