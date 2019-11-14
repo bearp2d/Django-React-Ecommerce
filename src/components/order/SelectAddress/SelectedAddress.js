@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 
-import EditAddress from "../../../profile/Addresses/EditAddress";
+import EditAddress from "../../profile/Addresses/EditAddress";
 
 const useStyles = makeStyles(theme => ({
   button: {

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Grid from "@material-ui/core/Grid";
 
 import { fetchCart } from "../../../redux/actions/cartActions";
 import { fetchAddresses } from "../../../redux/actions/profileActions/AddressActions";
-import Shipping from "../Shipping";
+import SelectAddress from "../SelectAddress";
+import CartItemsSummary from "../../cart/CartItems";
+import CartSummary from "../../cart/CartSummary";
 
 const Order = ({ history }) => {
   const {
@@ -34,12 +37,19 @@ const Order = ({ history }) => {
   }
 
   return (
-    <Shipping
-      address={address}
-      cart={cart}
-      addresses={addresses}
-      setAddress={setAddress}
-    />
+    <Grid container spacing={2}>
+      <Grid item md={9}>
+        <SelectAddress
+          setAddress={setAddress}
+          address={address}
+          addresses={addresses}
+        />
+        <CartItemsSummary items={cart.items} />
+      </Grid>
+      <Grid item md={3}>
+        <CartSummary to="/order" cart={cart} />
+      </Grid>
+    </Grid>
   );
 };
 

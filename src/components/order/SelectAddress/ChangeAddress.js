@@ -11,10 +11,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import CloseIcon from "@material-ui/icons/Close";
 
-import CreateAddress from "../../../profile/Addresses/CreateAddress";
-import CreateAddressButton from "../../../profile/Addresses/CreateAddress/CreateAddressButton";
-import EditAddress from "../../../profile/Addresses/EditAddress";
-import DeleteAddress from "../../../profile/Addresses/DeleteAddress";
+import CreateAddress from "../../profile/Addresses/CreateAddress";
+import CreateAddressButton from "../../profile/Addresses/CreateAddress/CreateAddressButton";
+import EditAddress from "../../profile/Addresses/EditAddress";
+import DeleteAddress from "../../profile/Addresses/DeleteAddress";
 
 const useStyles = makeStyles(theme => ({
   closeButton: {

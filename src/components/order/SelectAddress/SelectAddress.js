@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useReactRouter from "use-react-router";
 import Typography from "@material-ui/core/Typography";
 
-import CreateAddress from "../../../profile/Addresses/CreateAddress";
+import CreateAddress from "../../profile/Addresses/CreateAddress";
 import SelectedAddress from "./SelectedAddress";
 import ChangeAddress from "./ChangeAddress";
 
