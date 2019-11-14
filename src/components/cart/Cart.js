@@ -29,7 +29,7 @@ const Cart = () => {
   return (
     <Grid container spacing={2}>
       <Grid item md={9}>
-        <CartItems items={cart.items} />
+        <CartItems items={cart.items} editable />
       </Grid>
       <Grid item md={3}>
         <CartSummary to="/order" cart={cart} />

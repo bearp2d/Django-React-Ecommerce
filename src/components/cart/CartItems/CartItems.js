@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CartItems = ({ items }) => {
+const CartItems = ({ items, editable }) => {
   const classes = useStyles();
 
   return (
@@ -43,18 +43,24 @@ const CartItems = ({ items }) => {
               <TableCell className={classes.header} align="center">
                 Total price
               </TableCell>
-              <TableCell className={classes.header}>Remove</TableCell>
+              {editable && (
+                <TableCell className={classes.header}>Remove</TableCell>
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
             {items.map(item => (
-              <CartItem key={item.id} item={item} />
+              <CartItem key={item.id} item={item} editable={editable} />
             ))}
           </TableBody>
         </Table>
       </Paper>
     </div>
   );
+};
+
+CartItems.defaultProps = {
+  editable: false
 };
 
 export default CartItems;

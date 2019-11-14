@@ -29,7 +29,7 @@ const getPrice = product => (
   </React.Fragment>
 );
 
-const CartItem = ({ item, item: { product } }) => {
+const CartItem = ({ editable, item, item: { product } }) => {
   return (
     <TableRow key={product.id}>
       <TableCell>
@@ -50,17 +50,23 @@ const CartItem = ({ item, item: { product } }) => {
         </IconButton>
       </TableCell>
       <TableCell align="center">
-        <UpdateQuantity
-          id={item.id}
-          available_count={item.size.available_count}
-          quantity={item.quantity}
-        />
+        {editable ? (
+          <UpdateQuantity
+            id={item.id}
+            available_count={item.size.available_count}
+            quantity={item.quantity}
+          />
+        ) : (
+          item.quantity
+        )}
       </TableCell>
       <TableCell align="center">{getPrice(product)}</TableCell>
       <TableCell align="center">{item.total_price}</TableCell>
-      <TableCell agline="center">
-        <RemoveFromCart id={item.id} />
-      </TableCell>
+      {editable && (
+        <TableCell agline="center">
+          <RemoveFromCart id={item.id} />
+        </TableCell>
+      )}
     </TableRow>
   );
 };
