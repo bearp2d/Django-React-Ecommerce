@@ -21,7 +21,7 @@ class Order(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.DO_NOTHING)
     reciver = models.ForeignKey(ReciverInfo, on_delete=models.DO_NOTHING)
     ordered = models.BooleanField(default=False)
-    send_factor = models.BooleanField(default=False)
+    purchase_invoice = models.BooleanField(default=False)
     shiping_method = models.CharField(choices=SHIPING_CHOICES, max_length=10)
     shiping_status = models.CharField(
         choices=SHIPING_STATUS_CHOICES, max_length=10)
