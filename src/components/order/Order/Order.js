@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import { fetchCart } from "../../../redux/actions/cartActions";
 import { fetchAddresses } from "../../../redux/actions/profileActions/AddressActions";
@@ -17,6 +20,7 @@ const Order = ({ history }) => {
     profile: { addresses }
   } = useSelector(state => state);
   const [address, setAddress] = useState(addresses[0] || "");
+  const [checked, setChecked] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,6 +51,19 @@ const Order = ({ history }) => {
           addresses={addresses}
         />
         <CartItemsSummary items={cart.items} />
+        <Paper style={{ marginTop: "10px" }}>
+          <FormControlLabel
+            style={{ margin: "8px" }}
+            control={
+              <Checkbox
+                color="primary"
+                checked={checked}
+                onChange={e => setChecked(e.target.checked)}
+              />
+            }
+            label="Send purchase invoice"
+          />
+        </Paper>
         <Button
           style={{ marginTop: "10px" }}
           component={Link}
