@@ -32,7 +32,7 @@ const CartSummary = ({ cart, to }) => {
           Total Price ({cart.items_count} product)
         </Typography>
         <Typography display="inline" className={classes.right}>
-          {cart.total_price + cart.total_customer_profit}$
+          {(cart.total_price + cart.total_customer_profit).toFixed(2)}$
         </Typography>
       </div>
       <div className={classes.control}>
