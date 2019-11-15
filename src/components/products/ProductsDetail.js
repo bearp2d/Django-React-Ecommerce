@@ -42,7 +42,8 @@ const useStyles = makeStyles(theme => ({
   img: {
     border: "1px solid gray",
     padding: "5px",
-    marginRight: "10px"
+    marginRight: "10px",
+    objectFit: "contain"
   },
   activeImg: {
     border: "1px solid red",
