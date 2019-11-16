@@ -73,5 +73,5 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     def get_is_in_cart(self, obj):
         user = self.context.get('request').user
         if user.is_authenticated:
-            return user.cart.items.filter(product=obj.id).exists()
+            return user.carts.get(ordered=False).items.filter(product=obj.id).exists()
         return False

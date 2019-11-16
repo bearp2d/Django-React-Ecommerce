@@ -27,7 +27,8 @@ class CartItem(models.Model):
 
 
 class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="carts")
     items = models.ManyToManyField(CartItem, related_name='items')
     ordered = models.BooleanField(default=False)
 
@@ -42,8 +43,3 @@ class Cart(models.Model):
 def create_cart(sender, instance, created, **kwargs):
     if created:
         Cart.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_cart(sender, instance, **kwargs):
-    instance.cart.save()

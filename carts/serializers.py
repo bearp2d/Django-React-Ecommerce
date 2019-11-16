@@ -34,7 +34,7 @@ class AddItemToCartSerializer(serializers.ModelSerializer):
         user = self.context.get('request').user
         product = validated_data.get('product')
         size = validated_data.get('size')
-        cart = Cart.objects.get(user=user)
+        cart, _ = Cart.objects.get_or_create(user=user, ordered=False)
         cart_item = CartItem.objects.filter(
             cart=cart, product=product, size=size)
         if cart_item.exists():
@@ -50,7 +50,7 @@ class AddItemToCartSerializer(serializers.ModelSerializer):
 
     def get_cart_items_count(self, obj):
         user = self.context.get('request').user
-        return user.cart.items.count()
+        return user.carts.get(ordered=False).items.count()
 
 
 class CartSerializer(serializers.ModelSerializer):

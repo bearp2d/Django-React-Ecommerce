@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ('last_login',)
 
     def get_cart_items_count(self, obj):
-        return obj.cart.items.count()
+        return obj.carts.get(ordered=False).items.count()
 
 
 class RegisterSerializer(serializers.ModelSerializer):
