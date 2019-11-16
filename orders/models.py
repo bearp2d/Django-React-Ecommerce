@@ -17,14 +17,15 @@ class ReciverInfo(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(
+        User, on_delete=models.DO_NOTHING, related_name="orders")
     cart = models.ForeignKey(Cart, on_delete=models.DO_NOTHING)
     reciver = models.ForeignKey(ReciverInfo, on_delete=models.DO_NOTHING)
     purchase_invoice = models.BooleanField(default=False)
-    shiping_method = models.CharField(choices=SHIPING_CHOICES, max_length=10)
-    shiping_status = models.CharField(
+    shipping_method = models.CharField(choices=SHIPING_CHOICES, max_length=10)
+    shipping_status = models.CharField(
         choices=SHIPING_STATUS_CHOICES, max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ('-created_at', )
+        ordering = ('-created_at',)
