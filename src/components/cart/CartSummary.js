@@ -5,7 +5,8 @@ import { Sticky } from "react-sticky";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import Button from "@material-ui/core/Button";
+
+import LoadingButton from "../layouts/LoadingButton";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CartSummary = ({ cart, to }) => {
+const CartSummary = ({ cart, to, handleClick }) => {
   const classes = useStyles();
 
   return (
@@ -60,7 +61,8 @@ const CartSummary = ({ cart, to }) => {
               {cart.total_price}$
             </Typography>
           </div>
-          <Button
+          <LoadingButton
+            onClick={handleClick}
             component={Link}
             to={to}
             variant="contained"
@@ -69,7 +71,7 @@ const CartSummary = ({ cart, to }) => {
             fullWidth
           >
             Check out
-          </Button>
+          </LoadingButton>
         </Paper>
       )}
     </Sticky>
