@@ -1,7 +1,6 @@
 from django.db import models
 from autoslug import AutoSlugField
 from web.utils import id_generator
-from django.db.models import Q
 
 
 class SizeManager(models.Manager):
@@ -29,14 +28,6 @@ class ProductQuerySet(models.QuerySet):
     def active(self):
         return self.filter(active=True)
 
-    def search(self, q):
-        lookups = (
-            Q(title__icontains=q) |
-            Q(description__icontains=q) |
-            Q(sizes__size__icontains=q)
-        )
-        return self.filter(lookups).distinct()
-
 
 class ProductManager(models.Manager):
     def get_queryset(self):
@@ -44,9 +35,6 @@ class ProductManager(models.Manager):
 
     def all(self):
         return self.get_queryset().active()
-
-    def search(self, q):
-        return self.get_queryset().active().search(q)
 
     def is_available(self, obj):
         return obj.sizes.available().exists()
