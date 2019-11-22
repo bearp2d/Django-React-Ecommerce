@@ -2,7 +2,8 @@ import {
   AUTH_FAIL,
   AUTH_SUCCESS,
   REMOVE_FROM_CART,
-  ADD_TO_CART
+  ADD_TO_CART,
+  CREATE_ORDER
 } from "../types";
 
 const initialState = {
@@ -38,6 +39,14 @@ export default (state = initialState, action) => {
         user: {
           ...state.user,
           cart_items_count: payload.cart_items_count
+        }
+      };
+    case CREATE_ORDER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          cart_items_count: 0
         }
       };
     default:

@@ -1,4 +1,4 @@
-import { FETCH_CART } from "../types";
+import { FETCH_CART, CREATE_ORDER } from "../types";
 
 const initialState = {
   total_price: null,
@@ -12,6 +12,8 @@ export default (state = initialState, action) => {
   switch (type) {
     case FETCH_CART:
       return { ...state, ...payload };
+    case CREATE_ORDER:
+      return initialState;
     default:
       return state;
   }
