@@ -22,40 +22,38 @@ const CartItems = ({ items, editable }) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Paper className={classes.root}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.header}>Product image</TableCell>
-              <TableCell className={classes.header} agline="center">
-                Product title
-              </TableCell>
-              <TableCell className={classes.header} agline="center">
-                View product
-              </TableCell>
-              <TableCell className={classes.header} align="center">
-                Quantity
-              </TableCell>
-              <TableCell className={classes.header} align="center">
-                Price
-              </TableCell>
-              <TableCell className={classes.header} align="center">
-                Total price
-              </TableCell>
-              {editable && (
-                <TableCell className={classes.header}>Remove</TableCell>
-              )}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {items.map(item => (
-              <CartItem key={item.id} item={item} editable={editable} />
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    </div>
+    <Paper className={classes.root}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell className={classes.header}>Product image</TableCell>
+            <TableCell className={classes.header} align="center">
+              Product title
+            </TableCell>
+            <TableCell className={classes.header} align="center">
+              View product
+            </TableCell>
+            <TableCell className={classes.header} align="center">
+              Quantity
+            </TableCell>
+            <TableCell className={classes.header} align="center">
+              Price
+            </TableCell>
+            <TableCell className={classes.header} align="center">
+              Total price
+            </TableCell>
+            {editable && (
+              <TableCell className={classes.header}>Remove</TableCell>
+            )}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {items.map(item => (
+            <CartItem key={item.id} item={item} editable={editable} />
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
   );
 };
 

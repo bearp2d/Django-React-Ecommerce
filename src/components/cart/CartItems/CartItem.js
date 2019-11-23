@@ -44,7 +44,7 @@ const CartItem = ({ editable, item, item: { product } }) => {
       <TableCell>
         {product.title} - size {item.size.size}
       </TableCell>
-      <TableCell agline="center">
+      <TableCell align="center">
         <IconButton component={Link} to={`/products/${product.slug}`}>
           <ViewIcon />
         </IconButton>
@@ -63,7 +63,7 @@ const CartItem = ({ editable, item, item: { product } }) => {
       <TableCell align="center">{getPrice(product)}</TableCell>
       <TableCell align="center">{item.total_price}</TableCell>
       {editable && (
-        <TableCell agline="center">
+        <TableCell align="center">
           <RemoveFromCart id={item.id} />
         </TableCell>
       )}
