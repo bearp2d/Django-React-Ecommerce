@@ -44,7 +44,7 @@ const Sidebar = ({ children }) => {
               </ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItemLink>
-            <ListItemLink>
+            <ListItemLink to="/profile/orders">
               <ListItemIcon>
                 <ShopingCartIcon color="action" />
               </ListItemIcon>

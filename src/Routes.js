@@ -48,6 +48,11 @@ const FavoriteProducts = Loadable({
   loading: LoadingModal
 });
 
+const Orders = Loadable({
+  loader: () => import("./components/profile/Orders"),
+  loading: LoadingModal
+});
+
 const Products = Loadable({
   loader: () => import("./components/products/Products"),
   loading: LoadingModal
@@ -99,6 +104,7 @@ const Routes = () => {
           path="/profile/favorite-products"
           component={FavoriteProducts}
         />
+        <ProtectedRoute exact path="/profile/orders" component={Orders} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:slug" component={ProductsDetail} />
         <ProtectedRoute exact path="/cart" component={Cart} />
