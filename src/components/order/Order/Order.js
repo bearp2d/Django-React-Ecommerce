@@ -46,11 +46,7 @@ const Order = ({ history }) => {
       reciver: {
         full_name: address.reciver_full_name,
         phone_number: address.reciver_phone_number,
-        address:
-          address.state +
-          address.city +
-          address.postal_address +
-          address.postal_code
+        address: `${address.state} ${address.city} ${address.postal_address} ${address.postal_code}`
       },
       purchase_invoice: checked
     };
