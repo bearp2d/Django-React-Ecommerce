@@ -32,7 +32,7 @@ export const createOrder = (order, history) => dispatch => {
   axios.post("/api/orders/", order).then(response => {
     dispatch({ type: CREATE_ORDER, payload: response.data });
     dispatch({ type: STOP_LOADING_BUTTON });
-    history.push("/products");
+    history.push(`/profile/orders/${response.data.id}`);
     dispatch(
       addNotif({
         message: "Your order has been compeleted"
