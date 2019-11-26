@@ -24,10 +24,12 @@ const useStyles = makeStyles(theme => ({
 
 const SubmittedFilters = () => {
   const { history, location } = useReactRouter();
-  const parsed = queryString.parse(location.search);
+  const { available, min_price, max_price, search } = queryString.parse(
+    location.search
+  );
   const classes = useStyles();
 
-  if (location.search && location.search !== "?") {
+  if (available || min_price || max_price || search) {
     return (
       <Paper style={{ marginBottom: "10px" }}>
         <div className={classes.margin}>
@@ -45,7 +47,7 @@ const SubmittedFilters = () => {
           </Typography>
           <Divider />
         </div>
-        {parsed.available === "true" && (
+        {available === "true" && (
           <Button
             onClick={() => history.push(removeQuery(location, "available"))}
             className={classes.margin}
@@ -56,7 +58,7 @@ const SubmittedFilters = () => {
             <CloseIcon fontSize="small" color="action" />
           </Button>
         )}
-        {parsed.min_price && parsed.max_price && (
+        {min_price && max_price && (
           <Button
             onClick={() =>
               history.push(removeQuery(location, ["min_price", "max_price"]))
@@ -65,18 +67,18 @@ const SubmittedFilters = () => {
             size="small"
             variant="outlined"
           >
-            from {parsed.min_price}$ to {parsed.max_price}$
+            from {min_price}$ to {max_price}$
             <CloseIcon fontSize="small" color="action" />
           </Button>
         )}
-        {parsed.search && (
+        {search && (
           <Button
             onClick={() => history.push(removeQuery(location, "search"))}
             className={classes.margin}
             size="small"
             variant="outlined"
           >
-            {parsed.search}
+            {search}
             <CloseIcon fontSize="small" color="action" />
           </Button>
         )}
