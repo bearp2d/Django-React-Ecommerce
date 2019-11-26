@@ -4,7 +4,7 @@ from web.utils import id_generator
 
 
 class SizeManager(models.Manager):
-    def available(self):
+    def available_sizes(self):
         return self.filter(available_count__gt=0)
 
 
@@ -24,20 +24,12 @@ class Size(models.Model):
         return self.available_count > 0
 
 
-class ProductQuerySet(models.QuerySet):
-    def active(self):
+class ProductManager(models.Manager):
+    def all(self):
         return self.filter(active=True)
 
-
-class ProductManager(models.Manager):
-    def get_queryset(self):
-        return ProductQuerySet(self.model, using=self._db)
-
-    def all(self):
-        return self.get_queryset().active()
-
-    def is_available(self, obj):
-        return obj.sizes.available().exists()
+    def available_products(self):
+        return self.all().filter(sizes__available_count__gt=0).distinct()
 
 
 class Product(models.Model):
@@ -75,6 +67,10 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.code = id_generator()
         super(Product, self).save(*args, **kwargs)
+
+    @property
+    def available(self):
+        return self.sizes.available_sizes().exists()
 
     @property
     def discount_percent(self):

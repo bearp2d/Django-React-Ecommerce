@@ -23,7 +23,7 @@ class ColorSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'photo_main', 'slug', 'available')
 
     def get_available(self, obj):
-        return Product.objects.is_available(obj)
+        return obj.available
 
 
 class ProductListSerializer(serializers.ModelSerializer):
@@ -39,7 +39,7 @@ class ProductListSerializer(serializers.ModelSerializer):
                   'discount_percent', 'photo_main', 'photo_1', 'available')
 
     def get_available(self, obj):
-        return Product.objects.is_available(obj)
+        return obj.available
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
@@ -56,10 +56,10 @@ class ProductDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_default_size(self, obj):
-        return obj.sizes.filter(available_count__gt=0).first().id
+        return obj.sizes.available_sizes().first().id
 
     def get_available(self, obj):
-        return Product.objects.is_available(obj)
+        return obj.available
 
     def get_discount_percent(self, obj):
         return obj.discount_percent
