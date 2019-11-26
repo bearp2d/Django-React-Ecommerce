@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ activeItem, children }) => {
   const classes = useStyles();
 
   return (
@@ -38,43 +38,61 @@ const Sidebar = ({ children }) => {
               <ListItemText primary="Your account" />
             </ListItem>
             <Divider />
-            <ListItemLink to="/profile">
+            <ListItemLink selected={activeItem === "profile"} to="/profile">
               <ListItemIcon>
                 <PersonIcon />
               </ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItemLink>
-            <ListItemLink to="/profile/orders">
+            <ListItemLink
+              selected={activeItem === "orders"}
+              to="/profile/orders"
+            >
               <ListItemIcon>
                 <ShopingCartIcon color="action" />
               </ListItemIcon>
               <ListItemText primary="All orders" />
             </ListItemLink>
-            <ListItemLink to="/profile/favorite-products">
+            <ListItemLink
+              selected={activeItem === "favProducts"}
+              to="/profile/favorite-products"
+            >
               <ListItemIcon>
                 <StarIcon />
               </ListItemIcon>
               <ListItemText primary="Favorite Products" />
             </ListItemLink>
-            <ListItemLink to="/profile/comments">
+            <ListItemLink
+              selected={activeItem === "comments"}
+              to="/profile/comments"
+            >
               <ListItemIcon>
                 <CommentIcon />
               </ListItemIcon>
               <ListItemText primary="Your comments" />
             </ListItemLink>
-            <ListItemLink to="/profile/addresses">
+            <ListItemLink
+              selected={activeItem === "addresses"}
+              to="/profile/addresses"
+            >
               <ListItemIcon>
                 <AddressIcon />
               </ListItemIcon>
               <ListItemText primary="Addresses" />
             </ListItemLink>
-            <ListItemLink to="/profile/notifications">
+            <ListItemLink
+              selected={activeItem === "notifications"}
+              to="/profile/notifications"
+            >
               <ListItemIcon>
                 <NotificationIcon />
               </ListItemIcon>
               <ListItemText primary="Notifications" />
             </ListItemLink>
-            <ListItemLink to="/profile/personal-info">
+            <ListItemLink
+              selected={activeItem === "personalInfo"}
+              to="/profile/personal-info"
+            >
               <ListItemIcon>
                 <PersonalInfoIcon />
               </ListItemIcon>

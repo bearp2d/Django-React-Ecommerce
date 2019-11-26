@@ -6,7 +6,7 @@ import Sidebar from "../layouts/Sidebar";
 
 const Profile = () => {
   return (
-    <Sidebar>
+    <Sidebar activeItem="profile">
       <Grid container spacing={2}>
         <Grid item md>
           <PersonalInfo />

@@ -3,7 +3,7 @@ import Sidebar from "../layouts/Sidebar";
 import Addresses from "./Addresses";
 
 export default () => (
-  <Sidebar>
+  <Sidebar activeItem="addresses">
     <Addresses />
   </Sidebar>
 );

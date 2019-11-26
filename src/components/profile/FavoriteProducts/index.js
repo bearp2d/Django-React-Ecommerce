@@ -3,7 +3,7 @@ import Sidebar from "../layouts/Sidebar";
 import FavoriteProducts from "./FavoriteProducts";
 
 export default ({ history }) => (
-  <Sidebar>
+  <Sidebar activeItem="favProducts">
     <FavoriteProducts history={history} />
   </Sidebar>
 );

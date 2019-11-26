@@ -10,7 +10,7 @@ const ListItemLink = props => {
     <ListItem
       button
       component={Link}
-      selected={location.pathname === props.to}
+      // selected={location.pathname === props.to}
       {...props}
     />
   );

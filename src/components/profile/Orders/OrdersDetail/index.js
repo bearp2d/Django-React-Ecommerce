@@ -3,7 +3,7 @@ import Sidebar from "../..//layouts/Sidebar";
 import OrdersDetail from "./OrdersDetail";
 
 export default ({ ...props }) => (
-  <Sidebar>
+  <Sidebar activeItem="orders">
     <OrdersDetail {...props} />
   </Sidebar>
 );

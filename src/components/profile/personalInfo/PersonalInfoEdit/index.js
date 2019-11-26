@@ -3,7 +3,7 @@ import Sidebar from "../../layouts/Sidebar";
 import PersonalInfoEdit from "./PersonalInfoEdit";
 
 export default () => (
-  <Sidebar>
+  <Sidebar activeItem="personalInfo">
     <PersonalInfoEdit />
   </Sidebar>
 );
