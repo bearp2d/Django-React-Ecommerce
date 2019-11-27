@@ -13,8 +13,9 @@ import { fetchOrder } from "../../../../redux/actions/profileActions/orderAction
 import CartItemsSummary from "../../../cart/CartItems";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    marginTop: theme.spacing(1)
+  header: {
+    margin: "10px 0",
+    display: "flex"
   },
   wrapper: {
     padding: theme.spacing(2),
@@ -22,6 +23,10 @@ const useStyles = makeStyles(theme => ({
   },
   iconButton: {
     marginRight: theme.spacing(1)
+  },
+  subtitle: {
+    display: "block",
+    fontSize: ".857rem"
   }
 }));
 
@@ -37,8 +42,9 @@ const OrdersDetail = ({ match }) => {
 
   return (
     <React.Fragment>
-      <div className={classes.root}>
+      <div className={classes.header}>
         <IconButton
+          color="inherit"
           component={Link}
           to="/profile/orders"
           className={classes.iconButton}
@@ -46,7 +52,10 @@ const OrdersDetail = ({ match }) => {
           <ArrowBackIcon />
         </IconButton>
         <Typography display="inline" variant="h5">
-          Order detail
+          Order {order.code}
+          <span className={classes.subtitle}>
+            Ordered at {moment(order.created_at).format("MMM Do YY")}
+          </span>
         </Typography>
       </div>
       <Paper className={classes.root}>

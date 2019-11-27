@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 from carts.models import Cart
 from .choices import SHIPING_CHOICES, SHIPING_STATUS_CHOICES
+from web.utils import id_generator
 
 User = get_user_model()
 
@@ -25,7 +26,12 @@ class Order(models.Model):
     shipping_method = models.CharField(choices=SHIPING_CHOICES, max_length=10)
     shipping_status = models.CharField(
         choices=SHIPING_STATUS_CHOICES, max_length=10)
+    code = models.CharField(max_length=8, unique=True, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ('-created_at',)
+
+    def save(self, *args, **kwargs):
+        self.code = id_generator()
+        super(Order, self).save(*args, **kwargs)

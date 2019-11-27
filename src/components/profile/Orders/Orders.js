@@ -36,6 +36,9 @@ const Orders = () => {
           <TableRow>
             <TableCell className={classes.header}>id</TableCell>
             <TableCell className={classes.header} align="center">
+              Order number
+            </TableCell>
+            <TableCell className={classes.header} align="center">
               Ordered at
             </TableCell>
             <TableCell className={classes.header} align="center">
@@ -46,9 +49,6 @@ const Orders = () => {
             </TableCell>
             <TableCell className={classes.header} align="center">
               Shipping status
-            </TableCell>
-            <TableCell className={classes.header} align="center">
-              Purchase invoice
             </TableCell>
             <TableCell align="center" className={classes.header}>
               More detail
