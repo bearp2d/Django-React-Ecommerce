@@ -49,6 +49,10 @@ class FavoritesProducts(models.Model):
     def __str__(self):
         return self.user.username
 
+    @property
+    def products_count(self):
+        return self.products.all().count()
+
 # Each user should be have favorite products
 # When user registered create favorite products model with this user
 
