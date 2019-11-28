@@ -64,16 +64,10 @@ class CartSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_total_price(self, obj):
-        total_price = 0
-        for item in obj.items.all():
-            total_price += item.total_price
-        return total_price
+        return obj.total_price
 
     def get_items_count(self, obj):
-        return obj.items.all().count()
+        return obj.items_count
 
     def get_total_customer_profit(self, obj):
-        total_customer_profit = 0
-        for item in obj.items.all():
-            total_customer_profit += item.total_customer_profit
-        return total_customer_profit
+        return obj.total_customer_profit

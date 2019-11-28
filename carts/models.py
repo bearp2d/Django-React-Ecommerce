@@ -35,6 +35,24 @@ class Cart(models.Model):
     def __str__(self):
         return self.user.username
 
+    @property
+    def total_price(self):
+        total_price = 0
+        for item in self.items.all():
+            total_price += item.total_price
+        return total_price
+
+    @property
+    def items_count(self):
+        return self.items.all().count()
+
+    @property
+    def total_customer_profit(self):
+        total_customer_profit = 0
+        for item in self.items.all():
+            total_customer_profit += item.total_customer_profit
+        return total_customer_profit
+
 
 # Each user should be have cart
 # When user registered create cart model with this user
