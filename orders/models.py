@@ -30,6 +30,9 @@ class Order(models.Model):
     class Meta:
         ordering = ('-created_at',)
 
+    def __str__(self):
+        return f"{self.user} - {self.code}"
+
     def save(self, *args, **kwargs):
         self.code = id_generator()
         super(Order, self).save(*args, **kwargs)
