@@ -44,7 +44,7 @@ class CreateOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = '__all__'
+        exclude = ('code',)
         read_only_fields = (
             'shipping_status', 'cart', 'user',
             'shipping_method',
@@ -62,7 +62,7 @@ class CreateOrderSerializer(serializers.ModelSerializer):
         cart.ordered = True
         cart.save()
         order = Order.objects.create(
-            user=user, cart=cart, reciver=reciver_info, shipping_method='Normal',
+            user=user, cart=cart, reciver=reciver_info,
             purchase_invoice=data.get('purchase_invoice'), shipping_status="Preparation"
         )
         # Create another cart model with ordered=False
