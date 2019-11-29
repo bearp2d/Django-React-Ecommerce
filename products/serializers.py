@@ -56,7 +56,10 @@ class ProductDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_default_size(self, obj):
-        return obj.sizes.available_sizes().first().id
+        sizes = obj.sizes.available_sizes()
+        if not sizes.exists():
+            return
+        return sizes.first().id
 
     def get_available(self, obj):
         return obj.available
