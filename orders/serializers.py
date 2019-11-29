@@ -1,8 +1,10 @@
 from rest_framework import serializers
+from django.db.models import F
 
 from .models import Order, ReciverInfo
 from carts.models import Cart
 from carts.serializers import CartSerializer
+from products.models import Product
 
 
 class ReciverInfoSerializer(serializers.ModelSerializer):
@@ -56,6 +58,11 @@ class CreateOrderSerializer(serializers.ModelSerializer):
         # Validate cart
         if cart.items.all().exists() == False:
             raise serializers.ValidationError("Cart must not be empty")
+        # Update products sale count
+        for item in cart.items.all():
+            Product.objects.filter(id=item.product.id).update(
+                sale_count=F('sale_count') + item.quantity
+            )
         # Create reaciver info model
         reciver_info = ReciverInfo.objects.create(**data.get('reciver'))
         # Create order model
