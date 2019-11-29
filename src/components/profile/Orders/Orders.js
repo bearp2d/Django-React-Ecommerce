@@ -7,13 +7,14 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 import OrderItem from "./OrderItem";
 import { fetchOrders } from "../../../redux/actions/profileActions/orderActions";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: theme.spacing(1)
+    marginTop: "10px"
   },
   header: {
     color: "black"
@@ -24,10 +25,23 @@ const Orders = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const orders = useSelector(state => state.profile.orders.orders);
+  const loading = useSelector(state => state.ui.loadingUI);
 
   useEffect(() => {
     dispatch(fetchOrders());
   }, [dispatch]);
+
+  if (loading) {
+    return null;
+  }
+
+  if (orders.length < 1) {
+    return (
+      <Typography className={classes.root} variant="h5">
+        Your orders is empty
+      </Typography>
+    );
+  }
 
   return (
     <Paper className={classes.root}>
