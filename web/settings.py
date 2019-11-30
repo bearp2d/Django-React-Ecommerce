@@ -159,4 +159,12 @@ REST_FRAMEWORK = {
 }
 
 # CSRF token
+
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
+
+# Local settings for production
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
