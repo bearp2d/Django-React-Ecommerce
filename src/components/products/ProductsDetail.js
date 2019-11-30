@@ -59,8 +59,10 @@ const ProductsDetail = ({ match, history }) => {
     product,
     product: { colors, sizes }
   } = useSelector(state => state.products);
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const [orderSize, setOrderSize] = useState();
   const classes = useStyles();
+  console.log(isAuthenticated);
 
   useEffect(() => {
     setOrderSize(product.default_size);
@@ -69,6 +71,20 @@ const ProductsDetail = ({ match, history }) => {
   useEffect(() => {
     dispatch(fetchProduct(slug));
   }, [dispatch, slug]);
+
+  const handleAddToCart = () => {
+    if (isAuthenticated) {
+      dispatch(addToCart(product.id, orderSize, history));
+    }
+    history.push("/login");
+  };
+
+  const handleAddToFavProducts = () => {
+    if (isAuthenticated) {
+      dispatch(updateFavoriteProducts(product.id));
+    }
+    history.push("/login");
+  };
 
   return (
     <div className={classes.root}>
@@ -145,9 +161,7 @@ const ProductsDetail = ({ match, history }) => {
           {product.available === true && (
             <LoadingButton
               className={`${classes.button} ${classes.buttonGreen}`}
-              onClick={() =>
-                dispatch(addToCart(product.id, orderSize, history))
-              }
+              onClick={handleAddToCart}
               variant="contained"
               size="large"
             >
@@ -159,7 +173,7 @@ const ProductsDetail = ({ match, history }) => {
             variant="contained"
             color="secondary"
             size="large"
-            onClick={() => dispatch(updateFavoriteProducts(product.id))}
+            onClick={handleAddToFavProducts}
           >
             {product.is_favorite_product === false
               ? "Add to favorite products"
