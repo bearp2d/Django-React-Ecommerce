@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
 import MUILink from "@material-ui/core/Link";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import LoadingButton from "../../layouts/LoadingButton";
-import Copyright from "../../utils/Copyright";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -111,9 +109,6 @@ const RegisterForm = props => {
           </MUILink>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 };

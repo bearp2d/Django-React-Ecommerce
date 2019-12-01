@@ -2,13 +2,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 import LoadingButton from "../../layouts/LoadingButton";
-import Copyright from "../../utils/Copyright";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -123,9 +121,6 @@ const LoginForm = props => {
           </LoadingButton>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 };
