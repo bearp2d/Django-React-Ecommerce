@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -12,11 +11,6 @@ import LoadingButton from "../../layouts/LoadingButton";
 import Copyright from "../../utils/Copyright";
 
 const useStyles = makeStyles(theme => ({
-  "@global": {
-    body: {
-      backgroundColor: theme.palette.common.white
-    }
-  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -51,7 +45,6 @@ const LoginForm = props => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
