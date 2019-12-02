@@ -9,14 +9,14 @@ import { changePassword } from "../../../redux/actions/authActions";
 
 const validationSchema = Yup.object({
   old_password: Yup.string()
-    .min(8)
-    .required(),
+    .min(8, "Must be at least 8 characters")
+    .required("Required field"),
   new_password: Yup.string()
-    .min(8)
-    .required(),
+    .min(8, "Must be at least 8 characters")
+    .required("Required field"),
   new_password2: Yup.string()
     .oneOf([Yup.ref("new_password"), null], "Does not match")
-    .required()
+    .required("Required field")
 });
 
 const ChangePassword = () => {
@@ -36,14 +36,12 @@ const ChangePassword = () => {
   };
 
   return (
-    <div>
-      <Formik
-        render={props => <ChangePasswordForm {...props} />}
-        initialValues={values}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <Formik
+      render={props => <ChangePasswordForm {...props} />}
+      initialValues={values}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    />
   );
 };
 

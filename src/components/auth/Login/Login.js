@@ -10,10 +10,10 @@ import { phone_number_or_email_reg } from "../../utils/utils";
 const validationSchema = Yup.object({
   phone_number_or_email: Yup.string()
     .matches(phone_number_or_email_reg, "Invalid phone number or email")
-    .required(),
+    .required("Required field"),
   password: Yup.string()
-    .min(8)
-    .required()
+    .min(8, "Must be at least 8 characters")
+    .required("Required field")
 });
 
 const Login = () => {
@@ -32,14 +32,12 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <Formik
-        render={props => <LoginForm {...props} />}
-        initialValues={values}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <Formik
+      render={props => <LoginForm {...props} />}
+      initialValues={values}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    />
   );
 };
 
