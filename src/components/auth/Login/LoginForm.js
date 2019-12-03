@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
@@ -9,30 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
+import useStyles from "../styles";
 import LoadingButton from "../../layouts/LoadingButton";
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2)
-  },
-  customError: {
-    textAlign: "center"
-  }
-}));
 
 const LoginForm = props => {
   const {
@@ -46,7 +23,7 @@ const LoginForm = props => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
+      <div className={classes.root}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
