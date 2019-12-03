@@ -1,23 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     backgroundColor: "rgba(0,0,0,0.2)"
   },
-
   paper: {
     backgroundColor: "transparent",
     boxShadow: "none",
     overflow: "hidden"
   }
-}));
+});
 
-const LoadingModal = () => {
-  const open = useSelector(state => state.ui.loadingUI);
+const LoadingDialog = ({ open }) => {
   const classes = useStyles();
 
   return (
@@ -39,4 +36,4 @@ const LoadingModal = () => {
   );
 };
 
-export default LoadingModal;
+export default LoadingDialog;

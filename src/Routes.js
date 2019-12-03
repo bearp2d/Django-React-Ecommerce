@@ -6,83 +6,83 @@ import Logout from "./components/auth/Logout";
 import AuthRoute from "./components/routes/AuthRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Header from "./components/layouts/Header";
-import LoadingModal from "./components/layouts/LoadingModal";
+import Loading from "./components/layouts/Loading";
 
 const Login = Loadable({
   loader: () => import("./components/auth/Login"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const Register = Loadable({
   loader: () => import("./components/auth/Register"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const ChangePassword = Loadable({
   loader: () => import("./components/auth/ChangePassword"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const Profile = Loadable({
   loader: () => import("./components/profile/Profile"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const PersonalInfo = Loadable({
   loader: () => import("./components/profile/personalInfo/PersonalInfo"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const PersonalInfoEdit = Loadable({
   loader: () => import("./components/profile/personalInfo/PersonalInfoEdit"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const Addresses = Loadable({
   loader: () => import("./components/profile/Addresses"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const FavoriteProducts = Loadable({
   loader: () => import("./components/profile/FavoriteProducts"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const Orders = Loadable({
   loader: () => import("./components/profile/Orders"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const OrdersDetail = Loadable({
   loader: () => import("./components/profile/Orders/OrdersDetail"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const Products = Loadable({
   loader: () => import("./components/products/Products"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const ProductsDetail = Loadable({
   loader: () => import("./components/products/ProductsDetail"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const Cart = Loadable({
   loader: () => import("./components/cart/Cart"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const Order = Loadable({
   loader: () => import("./components/order/Order"),
-  loading: LoadingModal
+  loading: Loading
 });
 
 const Routes = () => {
   return (
     <React.Fragment>
       <Header />
-      <LoadingModal />
+      <Loading inFetching />
       <Switch>
         <ProtectedRoute exact path="/logout" component={Logout} />
         <AuthRoute exact path="/login" component={Login} />
