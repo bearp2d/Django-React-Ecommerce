@@ -1,5 +1,4 @@
 import React from "react";
-import Loadable from "react-loadable";
 import { Switch, Route } from "react-router-dom";
 
 import Logout from "./components/auth/Logout";
@@ -8,79 +7,49 @@ import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Header from "./components/layouts/Header";
 import Loading from "./components/layouts/Loading";
 
-const Login = Loadable({
-  loader: () => import("./components/auth/Login"),
-  loading: Loading
-});
+const Login = React.lazy(() => import("./components/auth/Login"));
 
-const Register = Loadable({
-  loader: () => import("./components/auth/Register"),
-  loading: Loading
-});
+const Register = React.lazy(() => import("./components/auth/Register"));
 
-const ChangePassword = Loadable({
-  loader: () => import("./components/auth/ChangePassword"),
-  loading: Loading
-});
+const ChangePassword = React.lazy(() =>
+  import("./components/auth/ChangePassword")
+);
 
-const Profile = Loadable({
-  loader: () => import("./components/profile/Profile"),
-  loading: Loading
-});
+const Profile = React.lazy(() => import("./components/profile/Profile"));
 
-const PersonalInfo = Loadable({
-  loader: () => import("./components/profile/personalInfo/PersonalInfo"),
-  loading: Loading
-});
+const PersonalInfo = React.lazy(() =>
+  import("./components/profile/personalInfo/PersonalInfo")
+);
 
-const PersonalInfoEdit = Loadable({
-  loader: () => import("./components/profile/personalInfo/PersonalInfoEdit"),
-  loading: Loading
-});
+const PersonalInfoEdit = React.lazy(() =>
+  import("./components/profile/personalInfo/PersonalInfoEdit")
+);
 
-const Addresses = Loadable({
-  loader: () => import("./components/profile/Addresses"),
-  loading: Loading
-});
+const Addresses = React.lazy(() => import("./components/profile/Addresses"));
 
-const FavoriteProducts = Loadable({
-  loader: () => import("./components/profile/FavoriteProducts"),
-  loading: Loading
-});
+const FavoriteProducts = React.lazy(() =>
+  import("./components/profile/FavoriteProducts")
+);
 
-const Orders = Loadable({
-  loader: () => import("./components/profile/Orders"),
-  loading: Loading
-});
+const Orders = React.lazy(() => import("./components/profile/Orders"));
 
-const OrdersDetail = Loadable({
-  loader: () => import("./components/profile/Orders/OrdersDetail"),
-  loading: Loading
-});
+const OrdersDetail = React.lazy(() =>
+  import("./components/profile/Orders/OrdersDetail")
+);
 
-const Products = Loadable({
-  loader: () => import("./components/products/Products"),
-  loading: Loading
-});
+const Products = React.lazy(() => import("./components/products/Products"));
 
-const ProductsDetail = Loadable({
-  loader: () => import("./components/products/ProductsDetail"),
-  loading: Loading
-});
+const ProductsDetail = React.lazy(() =>
+  import("./components/products/ProductsDetail")
+);
 
-const Cart = Loadable({
-  loader: () => import("./components/cart/Cart"),
-  loading: Loading
-});
+const Cart = React.lazy(() => import("./components/cart/Cart"));
 
-const Order = Loadable({
-  loader: () => import("./components/order/Order"),
-  loading: Loading
-});
+const Order = React.lazy(() => import("./components/order/Order"));
 
 const Routes = () => {
   return (
-    <React.Fragment>
+    <React.Suspense fallback={<Loading />}>
       <Header />
       <Loading inFetching />
       <Switch>
@@ -120,7 +89,7 @@ const Routes = () => {
         <ProtectedRoute exact path="/cart" component={Cart} />
         <ProtectedRoute exact path="/order" component={Order} />
       </Switch>
-    </React.Fragment>
+    </React.Suspense>
   );
 };
 
