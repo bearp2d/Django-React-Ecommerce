@@ -16,6 +16,7 @@ import AddressIcon from "@material-ui/icons/RoomOutlined";
 import NotificationIcon from "@material-ui/icons/NotificationsOutlined";
 import PersonalInfoIcon from "@material-ui/icons/PortraitOutlined";
 import ChangePasswordIcon from "@material-ui/icons/LockOutlined";
+import LogoutIcon from "@material-ui/icons/ExitToApp";
 
 import ListItemLink from "./ListItemLink";
 
@@ -103,6 +104,12 @@ const Sidebar = ({ activeItem, children }) => {
                 <ChangePasswordIcon />
               </ListItemIcon>
               <ListItemText primary="Change password" />
+            </ListItemLink>
+            <ListItemLink to="/logout">
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
             </ListItemLink>
           </List>
         </Paper>
