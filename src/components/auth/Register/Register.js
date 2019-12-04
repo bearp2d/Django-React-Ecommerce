@@ -33,11 +33,12 @@ const Register = () => {
 
   return (
     <Formik
-      render={props => <RegisterForm {...props} />}
       initialValues={values}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-    />
+    >
+      {props => <RegisterForm {...props} />}
+    </Formik>
   );
 };
 

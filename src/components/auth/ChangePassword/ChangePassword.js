@@ -37,11 +37,12 @@ const ChangePassword = () => {
 
   return (
     <Formik
-      render={props => <ChangePasswordForm {...props} />}
       initialValues={values}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-    />
+    >
+      {props => <ChangePasswordForm {...props} />}
+    </Formik>
   );
 };
 

@@ -33,11 +33,12 @@ const Login = () => {
 
   return (
     <Formik
-      render={props => <LoginForm {...props} />}
       initialValues={values}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-    />
+    >
+      {props => <LoginForm {...props} />}
+    </Formik>
   );
 };
 
