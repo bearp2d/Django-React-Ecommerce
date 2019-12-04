@@ -62,7 +62,6 @@ const ProductsDetail = ({ match, history }) => {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const [orderSize, setOrderSize] = useState();
   const classes = useStyles();
-  console.log(isAuthenticated);
 
   useEffect(() => {
     setOrderSize(product.default_size);
