@@ -21,9 +21,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(max_length=100)
+    last_name = serializers.CharField(max_length=100)
+
     class Meta:
         model = User
-        fields = ('phone_number', 'password')
+        fields = ('first_name', 'last_name', 'phone_number', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):

@@ -8,6 +8,8 @@ import { register } from "../../../redux/actions/authActions";
 import { phone_number_reg } from "../../utils/utils";
 
 const validationSchema = Yup.object({
+  first_name: Yup.string().required("Required field"),
+  last_name: Yup.string().required("Required field"),
   phone_number: Yup.string()
     .matches(phone_number_reg, "Invalid phone number")
     .required("Required field"),
@@ -17,14 +19,21 @@ const validationSchema = Yup.object({
 });
 
 const Register = () => {
-  const values = { phone_number: "", password: "" };
+  const values = {
+    phone_number: "",
+    password: "",
+    first_name: "",
+    last_name: ""
+  };
   const dispatch = useDispatch();
 
   const handleSubmit = (
-    { phone_number, password },
+    { first_name, last_name, phone_number, password },
     { setErrors, resetForm }
   ) => {
     const user = {
+      first_name,
+      last_name,
       phone_number,
       password
     };

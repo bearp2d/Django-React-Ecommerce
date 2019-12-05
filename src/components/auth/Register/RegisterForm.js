@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
 import MUILink from "@material-ui/core/Link";
@@ -12,7 +13,7 @@ import LoadingButton from "../../layouts/LoadingButton";
 
 const RegisterForm = props => {
   const {
-    values: { phone_number, password },
+    values: { first_name, last_name, phone_number, password },
     errors,
     handleSubmit,
     handleChange,
@@ -30,47 +31,84 @@ const RegisterForm = props => {
           Register
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="phone_number"
-            label="Phone Number"
-            name="phone_number"
-            autoComplete="phone_number"
-            helperText={errors.phone_number}
-            error={
-              Boolean(errors.phone_number) || Boolean(errors.non_field_errors)
-            }
-            value={phone_number}
-            onChange={handleChange}
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            helperText={errors.password}
-            error={Boolean(errors.password) || Boolean(errors.non_field_errors)}
-            value={password}
-            onChange={handleChange}
-          />
-          {errors.non_field_errors && (
-            <Typography
-              variant="body1"
-              className={classes.customError}
-              color="error"
-            >
-              {errors.non_field_errors}
-            </Typography>
-          )}
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoFocus
+                required
+                name="first_name"
+                variant="outlined"
+                fullWidth
+                id="first_name"
+                label="First Name"
+                helperText={errors.first_name}
+                error={
+                  Boolean(errors.first_name) || Boolean(errors.non_field_errors)
+                }
+                value={first_name}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="last_name"
+                label="Last Name"
+                name="last_name"
+                helperText={errors.last_name}
+                error={
+                  Boolean(errors.last_name) || Boolean(errors.non_field_errors)
+                }
+                value={last_name}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="phone_number"
+                label="Phone Number"
+                name="phone_number"
+                helperText={errors.phone_number}
+                error={
+                  Boolean(errors.phone_number) ||
+                  Boolean(errors.non_field_errors)
+                }
+                value={phone_number}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                helperText={errors.password}
+                error={
+                  Boolean(errors.password) || Boolean(errors.non_field_errors)
+                }
+                value={password}
+                onChange={handleChange}
+              />
+            </Grid>
+            {errors.non_field_errors && (
+              <Typography
+                variant="body1"
+                className={classes.customError}
+                color="error"
+              >
+                {errors.non_field_errors}
+              </Typography>
+            )}
+          </Grid>
           <LoadingButton
             type="submit"
             fullWidth
