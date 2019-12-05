@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
-import IconButton from "@material-ui/core/IconButton";
-import ViewIcon from "@material-ui/icons/Visibility";
+import Typography from "@material-ui/core/Typography";
 
 import RemoveFromCart from "./RemoveFromCart";
 import UpdateQuantity from "./UpdateQuantity";
@@ -32,7 +31,11 @@ const getPrice = product => (
 const CartItem = ({ editable, item, item: { product } }) => {
   return (
     <TableRow key={product.id}>
-      <TableCell>
+      <TableCell
+        component={Link}
+        to={`/products/${product.slug}`}
+        align="center"
+      >
         <img
           alt={product.slug}
           height="75"
@@ -42,12 +45,14 @@ const CartItem = ({ editable, item, item: { product } }) => {
         />
       </TableCell>
       <TableCell>
-        {product.title} - size {item.size.size}
-      </TableCell>
-      <TableCell align="center">
-        <IconButton component={Link} to={`/products/${product.slug}`}>
-          <ViewIcon />
-        </IconButton>
+        <Typography
+          style={{ textDecoration: "none" }}
+          color="inherit"
+          component={Link}
+          to={`/products/${product.slug}`}
+        >
+          {product.title} - size {item.size.size}
+        </Typography>
       </TableCell>
       <TableCell align="center">
         {editable ? (

@@ -26,18 +26,17 @@ const CartItems = ({ items, editable }) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell className={classes.header}>Product image</TableCell>
             <TableCell className={classes.header} align="center">
-              Product title
+              Product image
             </TableCell>
             <TableCell className={classes.header} align="center">
-              View product
+              Product title
             </TableCell>
             <TableCell className={classes.header} align="center">
               Quantity
             </TableCell>
             <TableCell className={classes.header} align="center">
-              Price
+              Unit price
             </TableCell>
             <TableCell className={classes.header} align="center">
               Total price
