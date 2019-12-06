@@ -26,7 +26,6 @@ const validationSchema = Yup.object({
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
     marginTop: theme.spacing(3)
   },
   wrapper: {
@@ -67,6 +66,7 @@ const PersonalInfoEdit = () => {
   return (
     <Paper className={classes.root}>
       <IconButton
+        color="inherit"
         component={Link}
         to="/profile/personal-info"
         className={classes.iconButton}

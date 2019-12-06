@@ -19,68 +19,64 @@ const PersonalInfoEditForm = props => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Grid container spacing={0}>
-        <Grid item md>
-          <div className={classes.wrapper}>
-            <TextField
-              name="first_name"
-              label="First name"
-              fullWidth
-              helperText={errors.first_name}
-              error={Boolean(errors.first_name)}
-              value={first_name}
-              onChange={handleChange}
-              autoFocus
-            />
-          </div>
-          <div className={classes.wrapper}>
-            <TextField
-              name="phone_number"
-              label="Phone number"
-              fullWidth
-              helperText={errors.phone_number}
-              error={Boolean(errors.phone_number)}
-              value={phone_number}
-              onChange={handleChange}
-            />
-          </div>
+      <Grid container spacing={3} className={classes.wrapper}>
+        <Grid item md={6}>
+          <TextField
+            name="first_name"
+            label="First name"
+            fullWidth
+            helperText={errors.first_name}
+            error={Boolean(errors.first_name)}
+            value={first_name}
+            onChange={handleChange}
+            autoFocus
+          />
         </Grid>
-        <Grid item md>
-          <div className={classes.wrapper}>
-            <TextField
-              name="last_name"
-              label="Last name"
-              fullWidth
-              helperText={errors.last_name}
-              error={Boolean(errors.last_name)}
-              value={last_name}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={classes.wrapper}>
-            <TextField
-              name="national_code"
-              label="National code"
-              fullWidth
-              helperText={errors.national_code}
-              error={Boolean(errors.national_code)}
-              value={national_code}
-              onChange={handleChange}
-            />
-          </div>
+        <Grid item md={6}>
+          <TextField
+            name="last_name"
+            label="Last name"
+            fullWidth
+            helperText={errors.last_name}
+            error={Boolean(errors.last_name)}
+            value={last_name}
+            onChange={handleChange}
+          />
+        </Grid>
+        <Grid item md={6}>
+          <TextField
+            name="phone_number"
+            label="Phone number"
+            fullWidth
+            helperText={errors.phone_number}
+            error={Boolean(errors.phone_number)}
+            value={phone_number}
+            onChange={handleChange}
+          />
+        </Grid>
+        <Grid item md={6}>
+          <TextField
+            name="national_code"
+            label="National code"
+            fullWidth
+            helperText={errors.national_code}
+            error={Boolean(errors.national_code)}
+            value={national_code}
+            onChange={handleChange}
+          />
+        </Grid>
+        <Grid item md={6}>
+          <TextField
+            name="email"
+            label="Email"
+            fullWidth
+            helperText={errors.email}
+            error={Boolean(errors.email)}
+            value={email}
+            onChange={handleChange}
+          />
         </Grid>
       </Grid>
-      <div className={classes.wrapper}>
-        <TextField
-          name="email"
-          label="Email"
-          fullWidth
-          helperText={errors.email}
-          error={Boolean(errors.email)}
-          value={email}
-          onChange={handleChange}
-        />
-      </div>
       <LoadingButton
         type="submit"
         fullWidth
