@@ -17,9 +17,8 @@ const useStyles = makeStyles(theme => ({
     margin: "10px 0",
     display: "flex"
   },
-  wrapper: {
-    padding: theme.spacing(2),
-    border: "1px solid #dedede"
+  paper: {
+    padding: theme.spacing(2)
   },
   iconButton: {
     marginRight: theme.spacing(1)
@@ -58,56 +57,50 @@ const OrdersDetail = ({ match }) => {
           </span>
         </Typography>
       </div>
-      <Paper className={classes.root}>
-        <Grid container>
-          <Grid item md={6} className={classes.wrapper}>
-            <Typography variant="body1">Reciver:</Typography>
+      <Paper className={classes.paper}>
+        <Grid container spacing={3}>
+          <Grid item md={6}>
+            <Typography variant="body2">Reciver:</Typography>
             <Typography variant="h6">
               {order.reciver && order.reciver.full_name}
             </Typography>
           </Grid>
-          <Grid item md={6} className={classes.wrapper}>
-            <Typography variant="body1">Reciver phone number:</Typography>
+          <Grid item md={6}>
+            <Typography variant="body2">Reciver phone number:</Typography>
             <Typography variant="h6">
               {order.reciver && order.reciver.phone_number}
             </Typography>
           </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item md={6} className={classes.wrapper}>
-            <Typography variant="body1">Reciver postal address:</Typography>
+          <Grid item md={6}>
+            <Typography variant="body2">Reciver postal address:</Typography>
             <Typography variant="h6">
               {order.reciver && order.reciver.address}
             </Typography>
           </Grid>
-          <Grid item md={6} className={classes.wrapper}>
-            <Typography variant="body1">Items count:</Typography>
+          <Grid item md={6}>
+            <Typography variant="body2">Items count:</Typography>
             <Typography variant="h6">
               {order.cart && order.cart.items_count}
             </Typography>
           </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item md={6} className={classes.wrapper}>
-            <Typography variant="body1">Shpping status:</Typography>
+          <Grid item md={6}>
+            <Typography variant="body2">Shpping status:</Typography>
             <Typography variant="h6">{order.shipping_status}</Typography>
           </Grid>
-          <Grid item md={6} className={classes.wrapper}>
-            <Typography variant="body1">Ordered at:</Typography>
+          <Grid item md={6}>
+            <Typography variant="body2">Ordered at:</Typography>
             <Typography variant="h6">
               {moment(order.created_at).format("MMM Do YY")}
             </Typography>
           </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item md={6} className={classes.wrapper}>
-            <Typography variant="body1">Purchase invoice:</Typography>
+          <Grid item md={6}>
+            <Typography variant="body2">Purchase invoice:</Typography>
             <Typography variant="h6">
               {order.purchase_invoice ? "yes" : "no"}
             </Typography>
           </Grid>
-          <Grid item md={6} className={classes.wrapper}>
-            <Typography variant="body1">Total price:</Typography>
+          <Grid item md={6}>
+            <Typography variant="body2">Total price:</Typography>
             <Typography variant="h6">
               {order.cart && order.cart.total_price}$
             </Typography>
