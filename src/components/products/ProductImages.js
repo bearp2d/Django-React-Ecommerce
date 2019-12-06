@@ -14,11 +14,13 @@ const useStyles = makeStyles(theme => ({
     border: "1px solid gray"
   },
   image: {
-    margin: "5px"
+    margin: "5px",
+    objectFit: "contain"
   },
   itemImage: {
     border: "1px solid gray",
-    cursor: "pointer"
+    cursor: "pointer",
+    objectFit: "contain"
   },
   ul: {
     width: "325.5px",
@@ -45,7 +47,6 @@ const ProductImages = ({ product }) => {
           src={image}
           alt={product.slug}
           className={classes.image}
-          style={{ objectFit: "contain" }}
           width="318"
           height="398"
         />
