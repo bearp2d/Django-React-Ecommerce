@@ -9,12 +9,13 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
     marginTop: theme.spacing(3)
   },
-  wrapper: {
-    padding: theme.spacing(2),
-    border: "1px solid #dedede"
+  padding: {
+    padding: theme.spacing(2)
+  },
+  header: {
+    marginTop: theme.spacing(2)
   },
   button: {
     padding: theme.spacing(1.3)
@@ -32,46 +33,45 @@ const PersonalInfo = () => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
-      <div className={classes.wrapper}>
-        <Typography variant="h5">Personal info</Typography>
-      </div>
-      <Grid container spacing={0}>
-        <Grid item md>
-          <div className={classes.wrapper}>
+    <React.Fragment>
+      <Typography className={classes.header} variant="h5">
+        Personal Info
+      </Typography>
+      <Paper className={classes.root}>
+        <Grid container spacing={3} className={classes.padding}>
+          <Grid item md={6}>
             <Typography variant="body1">First name:</Typography>
             <Typography variant="h6">{first_name || "-"}</Typography>
-          </div>
-          <div className={classes.wrapper}>
+          </Grid>
+          <Grid item md={6}>
             <Typography variant="body1">Phone number:</Typography>
             <Typography variant="h6">{phone_number || "-"}</Typography>
-          </div>
-        </Grid>
-        <Grid item md>
-          <div className={classes.wrapper}>
+          </Grid>
+          <Grid item md={6}>
             <Typography variant="body1">Last name:</Typography>
             <Typography variant="h6">{last_name || "-"}</Typography>
-          </div>
-          <div className={classes.wrapper}>
+          </Grid>
+          <Grid item md={6}>
             <Typography variant="body1">National code:</Typography>
             <Typography variant="h6">{national_code || "-"}</Typography>
-          </div>
+          </Grid>
+          <Grid item md={12}>
+            <Typography variant="body1">Email:</Typography>
+            <Typography variant="h6">{email || "-"}</Typography>
+          </Grid>
         </Grid>
-      </Grid>
-      <div className={classes.wrapper}>
-        <Typography variant="body1">Email:</Typography>
-        <Typography variant="h6">{email || "-"}</Typography>
-      </div>
-      <Button
-        component={Link}
-        to="/profile/personal-info/edit"
-        color="primary"
-        fullWidth
-        className={classes.button}
-      >
-        Edit
-      </Button>
-    </Paper>
+        <Button
+          component={Link}
+          to="/profile/personal-info/edit"
+          color="primary"
+          fullWidth
+          size="large"
+          className={classes.button}
+        >
+          Edit
+        </Button>
+      </Paper>
+    </React.Fragment>
   );
 };
 
