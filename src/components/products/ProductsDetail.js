@@ -74,6 +74,7 @@ const ProductsDetail = ({ match, history }) => {
   const handleAddToCart = () => {
     if (isAuthenticated) {
       dispatch(addToCart(product.id, orderSize, history));
+      return;
     }
     history.push("/login");
   };
@@ -81,6 +82,7 @@ const ProductsDetail = ({ match, history }) => {
   const handleAddToFavProducts = () => {
     if (isAuthenticated) {
       dispatch(updateFavoriteProducts(product.id));
+      return;
     }
     history.push("/login");
   };
