@@ -97,7 +97,7 @@ const Order = ({ history }) => {
         </LoadingButton>
       </Grid>
       <Grid item md={3}>
-        <CartSummary to="/order" cart={cart} handleClick={handleClick} />
+        <CartSummary cart={cart} />
       </Grid>
     </Grid>
   );

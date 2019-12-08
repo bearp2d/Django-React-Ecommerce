@@ -32,7 +32,7 @@ const Cart = () => {
         <CartItems items={cart.items} editable />
       </Grid>
       <Grid item md={3}>
-        <CartSummary to="/order" cart={cart} />
+        <CartSummary cart={cart} />
       </Grid>
     </Grid>
   );
