@@ -52,10 +52,10 @@ const CartSummary = ({ cart }) => {
       </div>
       <Divider className={classes.divider} />
       <div>
-        <Typography variant="h6" align="center" className={classes.center}>
+        <Typography variant="h6" align="center">
           The amount payable:
         </Typography>
-        <Typography variant="h6" align="center" className={classes.center}>
+        <Typography variant="h6" align="center">
           {cart.total_price}$
         </Typography>
       </div>
