@@ -1,11 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
 
 import RemoveFromCart from "./RemoveFromCart";
 import UpdateQuantity from "./UpdateQuantity";
+
+const useStyles = makeStyles(theme => ({
+  img: {
+    width: "125px",
+    height: "125px",
+    objectFit: "contain"
+  }
+}));
 
 const getPrice = product => (
   <React.Fragment>
@@ -29,6 +38,8 @@ const getPrice = product => (
 );
 
 const CartItem = ({ editable, item, item: { product } }) => {
+  const classes = useStyles();
+
   return (
     <TableRow key={product.id}>
       <TableCell
@@ -38,9 +49,7 @@ const CartItem = ({ editable, item, item: { product } }) => {
       >
         <img
           alt={product.slug}
-          height="75"
-          width="60"
-          style={{ objectFit: "contain" }}
+          className={classes.img}
           src={product.photo_main}
         />
       </TableCell>
