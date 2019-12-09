@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import Box from "@material-ui/core/Box";
 
 import { createOrder } from "../../../redux/actions/profileActions/orderActions";
 import { fetchCart } from "../../../redux/actions/cartActions";
@@ -78,23 +79,33 @@ const Order = ({ history }) => {
             label="Send purchase invoice"
           />
         </Paper>
-        <Button
-          style={{ marginTop: "10px" }}
-          component={Link}
-          to="/cart"
-          variant="outlined"
+        <Box
+          boxShadow={3}
+          bgcolor="background.paper"
+          style={{
+            marginTop: "8px",
+            position: "-webkit-sticky",
+            position: "sticky",
+            bottom: 0
+          }}
         >
-          Back to cart
-        </Button>
-        <LoadingButton
-          style={{ marginTop: "10px", float: "right" }}
-          component={Link}
-          to="/order"
-          variant="outlined"
-          onClick={handleClick}
-        >
-          Check out
-        </LoadingButton>
+          <Button
+            style={{ margin: "8px" }}
+            component={Link}
+            to="/cart"
+            variant="outlined"
+          >
+            Back to cart
+          </Button>
+          <LoadingButton
+            style={{ margin: "8px", minWidth: "320px", float: "right" }}
+            variant="contained"
+            onClick={handleClick}
+            color="primary"
+          >
+            Check out
+          </LoadingButton>
+        </Box>
       </Grid>
       <Grid item md={3}>
         <CartSummary cart={cart} />
