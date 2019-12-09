@@ -1,20 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import CartItem from "./CartItem";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: theme.spacing(1)
-  },
-  header: {
-    color: "black"
+    marginTop: theme.spacing(2)
   }
 }));
 
@@ -23,32 +15,9 @@ const CartItems = ({ items, editable }) => {
 
   return (
     <Paper className={classes.root}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.header} align="center">
-              Product image
-            </TableCell>
-            <TableCell className={classes.header} align="center">
-              Product title
-            </TableCell>
-            <TableCell className={classes.header} align="center">
-              Quantity
-            </TableCell>
-            <TableCell className={classes.header} align="center">
-              Unit price
-            </TableCell>
-            <TableCell className={classes.header} align="center">
-              Total price
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {items.map(item => (
-            <CartItem key={item.id} item={item} editable={editable} />
-          ))}
-        </TableBody>
-      </Table>
+      {items.map(item => (
+        <CartItem key={item.id} item={item} editable={editable} />
+      ))}
     </Paper>
   );
 };

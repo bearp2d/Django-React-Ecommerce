@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -11,11 +12,27 @@ import CartSummary from "./CartSummary";
 import EmptyCart from "./EmptyCart";
 import LoadingButton from "../layouts/LoadingButton";
 
+const useStyles = makeStyles(theme => ({
+  sticky: {
+    position: "-webkit-sticky",
+    position: "sticky",
+    bottom: 0
+  },
+  price: {
+    float: "right",
+    margin: theme.spacing(2)
+  },
+  button: {
+    margin: theme.spacing(1)
+  }
+}));
+
 const Cart = () => {
   const {
     cart,
     ui: { loadingUI }
   } = useSelector(state => state);
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,16 +52,12 @@ const Cart = () => {
       <Grid item md={9}>
         <CartItems items={cart.items} editable />
         <Box
+          className={classes.sticky}
           boxShadow={3}
           bgcolor="background.paper"
-          style={{
-            position: "-webkit-sticky",
-            position: "sticky",
-            bottom: 0
-          }}
         >
           <LoadingButton
-            style={{ margin: "8px", minWidth: "320px" }}
+            className={classes.button}
             component={Link}
             to={"/order"}
             variant="contained"
@@ -52,16 +65,14 @@ const Cart = () => {
             size="large"
             display="inline"
           >
-            Continue the shopping process
+            Continue shopping
           </LoadingButton>
           <Typography
+            variant="caption"
             display="inline"
-            style={{
-              float: "right",
-              margin: "16px"
-            }}
+            className={classes.price}
           >
-            The amount payable: {cart.total_price}$
+            Total price: {cart.total_price}$
           </Typography>
         </Box>
       </Grid>
