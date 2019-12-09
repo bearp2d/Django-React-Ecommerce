@@ -41,9 +41,6 @@ const CartItems = ({ items, editable }) => {
             <TableCell className={classes.header} align="center">
               Total price
             </TableCell>
-            {editable && (
-              <TableCell className={classes.header}>Remove</TableCell>
-            )}
           </TableRow>
         </TableHead>
         <TableBody>

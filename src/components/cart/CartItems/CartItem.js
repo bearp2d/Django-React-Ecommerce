@@ -5,8 +5,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
 
-import RemoveFromCart from "./RemoveFromCart";
-import UpdateQuantity from "./UpdateQuantity";
+import UpdateCartItem from "./UpdateCartItem";
 
 const useStyles = makeStyles(theme => ({
   img: {
@@ -65,10 +64,10 @@ const CartItem = ({ editable, item, item: { product } }) => {
       </TableCell>
       <TableCell align="center">
         {editable ? (
-          <UpdateQuantity
-            id={item.id}
+          <UpdateCartItem
             available_count={item.size.available_count}
             quantity={item.quantity}
+            id={item.id}
           />
         ) : (
           item.quantity
@@ -76,11 +75,6 @@ const CartItem = ({ editable, item, item: { product } }) => {
       </TableCell>
       <TableCell align="center">{getPrice(product)}</TableCell>
       <TableCell align="center">{item.total_price}</TableCell>
-      {editable && (
-        <TableCell align="center">
-          <RemoveFromCart id={item.id} />
-        </TableCell>
-      )}
     </TableRow>
   );
 };
