@@ -46,7 +46,7 @@ export const removeFromCart = (id, handleClose) => dispatch => {
     handleClose();
     dispatch(
       addNotif({
-        message: "Item has been removed from your cart",
+        message: "Item has been removed",
         options: { variant: "error" }
       })
     );

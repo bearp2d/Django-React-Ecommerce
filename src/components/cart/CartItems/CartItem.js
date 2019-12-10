@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -11,8 +13,11 @@ const useStyles = makeStyles(theme => ({
   img: {
     width: "125px",
     height: "125px",
-    margin: "auto",
-    objectFit: "contain"
+    objectFit: "contain",
+    [theme.breakpoints.down("xs")]: {
+      width: "104px",
+      height: "104px"
+    }
   },
   m2: {
     margin: theme.spacing(2)
@@ -24,8 +29,13 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none"
   },
   price: {
-    float: "right",
-    marginRight: theme.spacing(2)
+    float: "right"
+  },
+  quantity: {
+    marginTop: theme.spacing(1),
+    [theme.breakpoints.down("xs")]: {
+      margin: theme.spacing(0, 3, 2)
+    }
   }
 }));
 
@@ -46,10 +56,29 @@ const getPrice = product => (
 
 const CartItem = ({ editable, item, item: { product } }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("xs"));
+
+  const QuantityAndPrice = () => (
+    <div className={classes.quantity}>
+      {editable ? (
+        <UpdateCartItem
+          id={item.id}
+          available_count={item.size.available_count}
+          quantity={item.quantity}
+        />
+      ) : (
+        <Typography display="inline">Quantity: {item.quantity}</Typography>
+      )}
+      <Typography className={classes.price} variant="h6" display="inline">
+        {item.total_price}$
+      </Typography>
+    </div>
+  );
 
   return (
     <React.Fragment>
-      <Grid container spacing={2}>
+      <Grid container>
         <Grid className={classes.m2} alignContent="center" item md={2}>
           <Link to={`/products/${product.slug}`}>
             <img
@@ -59,7 +88,7 @@ const CartItem = ({ editable, item, item: { product } }) => {
             />
           </Link>
         </Grid>
-        <Grid className={classes.m2} item md>
+        <Grid className={classes.m2} item md xs>
           <Typography
             className={classes.link}
             color="inherit"
@@ -72,24 +101,12 @@ const CartItem = ({ editable, item, item: { product } }) => {
             Size: {item.size.size}
           </Typography>
           <Typography className={classes.mt1} variant="subtitle1">
-            Unit price: {getPrice(product)}
+            Price: {getPrice(product)}
           </Typography>
-          <div className={classes.mt1}>
-            <Typography className={classes.price} variant="h6">
-              {item.total_price}$
-            </Typography>
-            {editable ? (
-              <UpdateCartItem
-                id={item.id}
-                available_count={item.size.available_count}
-                quantity={item.quantity}
-              />
-            ) : (
-              <Typography>Quantity: {item.quantity}</Typography>
-            )}
-          </div>
+          {!matches && <QuantityAndPrice />}
         </Grid>
       </Grid>
+      {matches && <QuantityAndPrice />}
       <Divider />
     </React.Fragment>
   );
