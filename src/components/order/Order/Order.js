@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -16,6 +17,26 @@ import CartItemsSummary from "../../cart/CartItems";
 import CartSummary from "../../cart/CartSummary";
 import LoadingButton from "../../layouts/LoadingButton";
 
+const useStyles = makeStyles(theme => ({
+  mt1: {
+    marginTop: theme.spacing(1)
+  },
+  m1: {
+    margin: theme.spacing(1)
+  },
+  sticky: {
+    marginTop: "8px",
+    position: "-webkit-sticky",
+    position: "sticky",
+    bottom: 0
+  },
+  button: {
+    margin: "8px",
+    minWidth: "320px",
+    float: "right"
+  }
+}));
+
 const Order = ({ history }) => {
   const {
     cart,
@@ -25,6 +46,7 @@ const Order = ({ history }) => {
   const [address, setAddress] = useState(addresses[0] || "");
   const [checked, setChecked] = useState(true);
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   useEffect(() => {
     if (cart.items_count === 0) {
@@ -66,9 +88,9 @@ const Order = ({ history }) => {
           addresses={addresses}
         />
         <CartItemsSummary items={cart.items} />
-        <Paper style={{ marginTop: "10px" }}>
+        <Paper className={classes.mt1}>
           <FormControlLabel
-            style={{ margin: "8px" }}
+            className={classes.m1}
             control={
               <Checkbox
                 color="primary"
@@ -82,15 +104,10 @@ const Order = ({ history }) => {
         <Box
           boxShadow={3}
           bgcolor="background.paper"
-          style={{
-            marginTop: "8px",
-            position: "-webkit-sticky",
-            position: "sticky",
-            bottom: 0
-          }}
+          className={classes.sticky}
         >
           <Button
-            style={{ margin: "8px" }}
+            className={classes.m1}
             component={Link}
             to="/cart"
             variant="outlined"
@@ -98,7 +115,7 @@ const Order = ({ history }) => {
             Back to cart
           </Button>
           <LoadingButton
-            style={{ margin: "8px", minWidth: "320px", float: "right" }}
+            className={classes.button}
             variant="contained"
             onClick={handleClick}
             color="primary"
