@@ -7,6 +7,7 @@ import Divider from "@material-ui/core/Divider";
 const useStyles = makeStyles(theme => ({
   root: {
     marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(6),
     padding: theme.spacing(2),
     position: "-webkit-sticky",
     position: "sticky",

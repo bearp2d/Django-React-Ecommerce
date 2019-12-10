@@ -16,11 +16,21 @@ const useStyles = makeStyles(theme => ({
   sticky: {
     position: "-webkit-sticky",
     position: "sticky",
-    bottom: 0
+    bottom: 0,
+    [theme.breakpoints.down("xs")]: {
+      position: "fixed",
+      zIndex: 9,
+      display: "flex",
+      width: "100%",
+      marginLeft: "-8px"
+    }
   },
   price: {
     float: "right",
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "auto"
+    }
   },
   button: {
     margin: theme.spacing(1)
@@ -49,7 +59,7 @@ const Cart = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item md={9}>
+      <Grid item lg={9} md={8} xs={12}>
         <CartItems items={cart.items} editable />
         <Box
           className={classes.sticky}
@@ -68,15 +78,15 @@ const Cart = () => {
             Continue shopping
           </LoadingButton>
           <Typography
-            variant="caption"
-            display="inline"
+            variant="subtitle1"
+            display="flex"
             className={classes.price}
           >
-            Total price: {cart.total_price}$
+            {cart.total_price}$
           </Typography>
         </Box>
       </Grid>
-      <Grid item md={3}>
+      <Grid item lg={3} md={4} xs={12}>
         <CartSummary cart={cart} />
       </Grid>
     </Grid>
