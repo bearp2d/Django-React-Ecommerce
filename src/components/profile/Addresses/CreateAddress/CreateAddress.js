@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
+import { useTheme } from "@material-ui/core/styles";
 import * as Yup from "yup";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Dialog from "@material-ui/core/Dialog";
 
 import CreateAddressForm from "./CreateAddressForm";
@@ -29,6 +31,8 @@ const CreateAddress = ({ fullScreen, open, handleClose, onSubmit }) => {
     postal_address: "",
     postal_code: ""
   };
+  const theme = useTheme();
+  const responsiveFullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const dispatch = useDispatch();
 
   const handleSubmit = (address, { setErrors }) => {
@@ -38,7 +42,7 @@ const CreateAddress = ({ fullScreen, open, handleClose, onSubmit }) => {
   return (
     <React.Fragment>
       <Dialog
-        fullScreen={fullScreen}
+        fullScreen={fullScreen || responsiveFullScreen}
         open={open}
         onClose={handleClose}
         maxWidth="md"
@@ -56,10 +60,6 @@ const CreateAddress = ({ fullScreen, open, handleClose, onSubmit }) => {
       </Dialog>
     </React.Fragment>
   );
-};
-
-CreateAddress.defaultProps = {
-  fullScreen: false
 };
 
 export default CreateAddress;

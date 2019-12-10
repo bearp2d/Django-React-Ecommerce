@@ -27,7 +27,7 @@ const CreateAddressForm = props => {
     <React.Fragment>
       <DialogContent dividers>
         <Grid container spacing={2}>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <TextField
               label="Reciver full name"
               placeholder="Enter reciver full name"
@@ -44,7 +44,7 @@ const CreateAddressForm = props => {
               autoFocus
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <TextField
               label="Reciver phone number"
               placeholder="Enter reciver phone number"
@@ -60,7 +60,7 @@ const CreateAddressForm = props => {
               fullWidth
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <TextField
               label="State"
               placeholder="Enter state"
@@ -76,7 +76,7 @@ const CreateAddressForm = props => {
               fullWidth
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <TextField
               label="City"
               placeholder="Enter city"
@@ -92,7 +92,7 @@ const CreateAddressForm = props => {
               fullWidth
             />
           </Grid>
-          <Grid item md={12}>
+          <Grid item md={12} xs={12}>
             <TextField
               label="Postal address"
               placeholder="Enter postal address"
@@ -110,7 +110,7 @@ const CreateAddressForm = props => {
               multiline
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <TextField
               label="Postal code"
               placeholder="Enter postal code with out dash"
