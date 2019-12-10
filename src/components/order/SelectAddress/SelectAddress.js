@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import useReactRouter from "use-react-router";
-import Typography from "@material-ui/core/Typography";
 
 import CreateAddress from "../../profile/Addresses/CreateAddress";
 import SelectedAddress from "./SelectedAddress";
@@ -39,6 +38,7 @@ const SelectAddress = ({ address, addresses, setAddress }) => {
           addresses={addresses}
           setOpen={setChange}
           setAddress={setAddress}
+          open={change}
         />
       )}
       <CreateAddress
