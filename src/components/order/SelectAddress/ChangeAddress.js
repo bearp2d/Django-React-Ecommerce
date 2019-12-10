@@ -17,6 +17,9 @@ import EditAddress from "../../profile/Addresses/EditAddress";
 import DeleteAddress from "../../profile/Addresses/DeleteAddress";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    marginTop: theme.spacing(1)
+  },
   closeButton: {
     border: "2px solid gray",
     margin: theme.spacing(1)
@@ -48,7 +51,7 @@ const ChangeAddress = ({ setOpen, addresses, setAddress }) => {
   };
 
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardHeader
         action={
           <IconButton

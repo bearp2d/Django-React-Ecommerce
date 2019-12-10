@@ -10,7 +10,6 @@ import ChangeAddress from "./ChangeAddress";
 const SelectAddress = ({ address, addresses, setAddress }) => {
   const { history } = useReactRouter();
   const [change, setChange] = useState(false);
-  const [create, setCreate] = useState(false);
   const loading = useSelector(state => state.ui.loadingUI);
   const [add, setAdd] = useState(false);
 
@@ -33,14 +32,8 @@ const SelectAddress = ({ address, addresses, setAddress }) => {
 
   return (
     <React.Fragment>
-      <Typography variant="h6">Select order delivery address</Typography>
       {change === false ? (
-        <SelectedAddress
-          setChange={setChange}
-          addressesLength={addresses.length}
-          address={address}
-          setCreate={setCreate}
-        />
+        <SelectedAddress setChange={setChange} address={address} />
       ) : (
         <ChangeAddress
           addresses={addresses}
@@ -48,7 +41,6 @@ const SelectAddress = ({ address, addresses, setAddress }) => {
           setAddress={setAddress}
         />
       )}
-      <CreateAddress open={create} handleClose={() => setCreate(false)} />
       <CreateAddress
         fullScreen
         open={add}

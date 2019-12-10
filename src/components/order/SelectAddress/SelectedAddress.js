@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -6,9 +6,10 @@ import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 
-import EditAddress from "../../profile/Addresses/EditAddress";
-
 const useStyles = makeStyles(theme => ({
+  root: {
+    marginTop: theme.spacing(1)
+  },
   button: {
     marginLeft: theme.spacing(2)
   },
@@ -17,39 +18,29 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SelectedAddress = ({
-  address,
-  setChange,
-  addressesLength,
-  setCreate
-}) => {
-  const [edit, setEdit] = useState(false);
+const SelectedAddress = ({ address, setChange }) => {
   const classes = useStyles();
 
-  const handleChange = () => {
-    if (addressesLength === 1) {
-      setCreate(true);
-    } else {
-      setChange(true);
-    }
-  };
-
   return (
-    <Paper>
+    <Paper className={classes.root}>
       <List>
         <ListItem>
           <Typography display="inline">{`Reciver: ${address.reciver_full_name}`}</Typography>
+        </ListItem>
+        <ListItem>
+          <Typography>
+            address: {address.state}, {address.city}, {address.postal_address}
+          </Typography>
+        </ListItem>
+        <ListItem>
+          <Typography>phone number: {address.reciver_phone_number}</Typography>
+        </ListItem>
+        <ListItem>
+          <Typography>postal code: {address.postal_code}</Typography>
+        </ListItem>
+        <ListItem>
           <Button
-            onClick={() => setEdit(true)}
-            className={classes.button}
-            size="small"
-            variant="outlined"
-          >
-            Edit this address
-          </Button>
-          <EditAddress open={edit} setOpen={setEdit} address={address} />
-          <Button
-            onClick={handleChange}
+            onClick={() => setChange(true)}
             className={classes.right}
             color="secondary"
             size="small"
@@ -57,17 +48,6 @@ const SelectedAddress = ({
           >
             Change address
           </Button>
-        </ListItem>
-        <ListItem>
-          <Typography>
-            phone number: {address.reciver_phone_number} | postal code:
-            {address.postal_code}
-          </Typography>
-        </ListItem>
-        <ListItem>
-          <Typography>
-            {address.state}, {address.city}, {address.postal_address}
-          </Typography>
         </ListItem>
       </List>
     </Paper>
