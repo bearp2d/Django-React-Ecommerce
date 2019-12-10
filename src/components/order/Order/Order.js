@@ -28,12 +28,21 @@ const useStyles = makeStyles(theme => ({
     marginTop: "8px",
     position: "-webkit-sticky",
     position: "sticky",
-    bottom: 0
+    bottom: 0,
+    [theme.breakpoints.down("xs")]: {
+      position: "fixed",
+      zIndex: 9,
+      display: "flex",
+      width: "100%",
+      marginLeft: "-8px"
+    }
   },
   button: {
-    margin: "8px",
-    minWidth: "320px",
+    margin: theme.spacing(1),
     float: "right"
+  },
+  right: {
+    marginLeft: "auto"
   }
 }));
 
@@ -106,22 +115,29 @@ const Order = ({ history }) => {
           bgcolor="background.paper"
           className={classes.sticky}
         >
-          <Button
-            className={classes.m1}
-            component={Link}
-            to="/cart"
-            variant="outlined"
-          >
-            Back to cart
-          </Button>
-          <LoadingButton
-            className={classes.button}
-            variant="contained"
-            onClick={handleClick}
-            color="primary"
-          >
-            Check out
-          </LoadingButton>
+          <Grid container spacing={1}>
+            <Grid item md={3}>
+              <Button
+                className={classes.m1}
+                component={Link}
+                to="/cart"
+                variant="outlined"
+              >
+                Back to cart
+              </Button>
+            </Grid>
+            <Grid item md={5} xs className={classes.right}>
+              <LoadingButton
+                className={classes.button}
+                variant="contained"
+                onClick={handleClick}
+                color="primary"
+                fullWidth
+              >
+                Check out
+              </LoadingButton>
+            </Grid>
+          </Grid>
         </Box>
       </Grid>
       <Grid item md={3}>
