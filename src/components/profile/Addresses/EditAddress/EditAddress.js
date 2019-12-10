@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
+import { useTheme } from "@material-ui/core/styles";
 import * as Yup from "yup";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Dialog from "@material-ui/core/Dialog";
 
 import EditAddressForm from "./EditAddressForm";
@@ -39,6 +41,8 @@ const EditAddress = ({ open, setOpen, address }) => {
     postal_code
   };
   const dispatch = useDispatch();
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleClose = () => {
     setOpen(false);
@@ -49,7 +53,12 @@ const EditAddress = ({ open, setOpen, address }) => {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth="md">
+    <Dialog
+      fullScreen={fullScreen}
+      open={open}
+      onClose={handleClose}
+      maxWidth="md"
+    >
       <DialogTitle onClose={handleClose}>Add Address</DialogTitle>
       <Formik
         render={props => (
