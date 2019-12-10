@@ -90,7 +90,7 @@ const Order = ({ history }) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item md={9}>
+      <Grid item lg={9} md={8} xs={12}>
         <SelectAddress
           setAddress={setAddress}
           address={address}
@@ -140,7 +140,7 @@ const Order = ({ history }) => {
           </Grid>
         </Box>
       </Grid>
-      <Grid item md={3}>
+      <Grid item lg={3} md={4} xs={12}>
         <CartSummary cart={cart} />
       </Grid>
     </Grid>
