@@ -27,22 +27,6 @@ const Pagination = ({ location }) => {
   var Buttons = [];
   if (pages_count) {
     for (var i = 1; i < pages_count + 1; i++) {
-      if (i === current) {
-        Buttons.push(
-          <Button
-            key={i}
-            component={Link}
-            to={appendQuery(location, { page: i })}
-            variant="outlined"
-            className={classes.button}
-            size="small"
-            color="inherit"
-          >
-            {i}
-          </Button>
-        );
-        continue;
-      }
       Buttons.push(
         <Button
           key={i}
@@ -51,6 +35,7 @@ const Pagination = ({ location }) => {
           variant="outlined"
           className={classes.button}
           size="small"
+          color={i === current ? "inherit" : "default"}
         >
           {i}
         </Button>
