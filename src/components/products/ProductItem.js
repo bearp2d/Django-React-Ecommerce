@@ -41,7 +41,7 @@ const ProductItem = ({ product, history }) => {
             />
           </div>
           <CardContent>
-            <Typography gutterBottom variant="h6" component="h2">
+            <Typography noWrap gutterBottom variant="subtitle1" component="h2">
               {product.title}
             </Typography>
             {product.available === false ? (

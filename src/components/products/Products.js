@@ -29,14 +29,20 @@ const Products = ({ history, location }) => {
 
   return (
     <Grid container spacing={2} className={classes.root}>
-      <Grid item md={3}>
+      <Grid item md={3} xs={12}>
         <Filters />
       </Grid>
-      <Grid item md>
+      <Grid item md xs={12}>
         <Ordering location={location} />
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           {products.map(product => (
-            <Grid key={product.id} item md={3} className={classes.products}>
+            <Grid
+              key={product.id}
+              item
+              md={3}
+              xs={12}
+              className={classes.products}
+            >
               <ProductItem product={product} history={history} />
             </Grid>
           ))}
