@@ -1,8 +1,7 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppBar from "@material-ui/core/AppBar";
 import Badge from "@material-ui/core/Badge";
