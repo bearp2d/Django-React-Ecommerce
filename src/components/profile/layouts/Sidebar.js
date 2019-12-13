@@ -11,9 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import ShopingCartIcon from "@material-ui/icons/ShoppingCartOutlined";
 import PersonIcon from "@material-ui/icons/PersonOutline";
 import StarIcon from "@material-ui/icons/StarBorder";
-import CommentIcon from "@material-ui/icons/ModeCommentOutlined";
 import AddressIcon from "@material-ui/icons/RoomOutlined";
-import NotificationIcon from "@material-ui/icons/NotificationsOutlined";
 import PersonalInfoIcon from "@material-ui/icons/PortraitOutlined";
 import ChangePasswordIcon from "@material-ui/icons/LockOutlined";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
@@ -64,15 +62,6 @@ const Sidebar = ({ activeItem, children }) => {
               <ListItemText primary="Favorite Products" />
             </ListItemLink>
             <ListItemLink
-              selected={activeItem === "comments"}
-              to="/profile/comments"
-            >
-              <ListItemIcon>
-                <CommentIcon />
-              </ListItemIcon>
-              <ListItemText primary="Your comments" />
-            </ListItemLink>
-            <ListItemLink
               selected={activeItem === "addresses"}
               to="/profile/addresses"
             >
@@ -80,15 +69,6 @@ const Sidebar = ({ activeItem, children }) => {
                 <AddressIcon />
               </ListItemIcon>
               <ListItemText primary="Addresses" />
-            </ListItemLink>
-            <ListItemLink
-              selected={activeItem === "notifications"}
-              to="/profile/notifications"
-            >
-              <ListItemIcon>
-                <NotificationIcon />
-              </ListItemIcon>
-              <ListItemText primary="Notifications" />
             </ListItemLink>
             <ListItemLink
               selected={activeItem === "personalInfo"}
