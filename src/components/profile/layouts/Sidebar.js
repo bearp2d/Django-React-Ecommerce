@@ -21,7 +21,10 @@ import ListItemLink from "./ListItemLink";
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 0
+    }
   }
 }));
 
@@ -30,7 +33,7 @@ const Sidebar = ({ activeItem, children }) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item md="auto">
+      <Grid item md="auto" xs={12}>
         <Paper className={classes.root}>
           <List component="nav">
             <ListItem>
@@ -94,7 +97,7 @@ const Sidebar = ({ activeItem, children }) => {
           </List>
         </Paper>
       </Grid>
-      <Grid item md>
+      <Grid item md xs={12}>
         {children}
       </Grid>
     </Grid>
