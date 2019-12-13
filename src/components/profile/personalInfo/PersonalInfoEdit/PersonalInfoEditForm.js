@@ -20,7 +20,7 @@ const PersonalInfoEditForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <Grid container spacing={3} className={classes.wrapper}>
-        <Grid item md={6}>
+        <Grid item md={6} xs={12}>
           <TextField
             name="first_name"
             label="First name"
@@ -32,7 +32,7 @@ const PersonalInfoEditForm = props => {
             autoFocus
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item md={6} xs={12}>
           <TextField
             name="last_name"
             label="Last name"
@@ -43,7 +43,7 @@ const PersonalInfoEditForm = props => {
             onChange={handleChange}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item md={6} xs={12}>
           <TextField
             name="phone_number"
             label="Phone number"
@@ -54,7 +54,7 @@ const PersonalInfoEditForm = props => {
             onChange={handleChange}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item md={6} xs={12}>
           <TextField
             name="national_code"
             label="National code"
@@ -65,7 +65,7 @@ const PersonalInfoEditForm = props => {
             onChange={handleChange}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item md={6} xs={12}>
           <TextField
             name="email"
             label="Email"
