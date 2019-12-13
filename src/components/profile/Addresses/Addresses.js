@@ -28,14 +28,14 @@ const Addresses = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
-        <Grid item md={6}>
+        <Grid item md={6} xs={12}>
           <div style={{ height: "280px" }}>
             <CreateAddressButton setOpen={setOpen} />
             <CreateAddress open={open} handleClose={() => setOpen(false)} />
           </div>
         </Grid>
         {addresses.map(address => (
-          <Grid key={address.id} item md={6}>
+          <Grid key={address.id} item md={6} xs={12}>
             <AddressItem address={address} />
           </Grid>
         ))}
