@@ -149,7 +149,7 @@ const ProductsDetail = ({ match, history }) => {
               ))}
             </div>
           )}
-          {colors.lenght !== 0 && (
+          {Array.isArray(colors) && colors.length ? (
             <div className={classes.colors}>
               <Typography variant="h6">colors:</Typography>
               {colors.map(color => (
@@ -164,7 +164,7 @@ const ProductsDetail = ({ match, history }) => {
                 </Link>
               ))}
             </div>
-          )}
+          ) : null}
           {product.available === true && (
             <Paper className={classes.fixed}>
               <LoadingButton
