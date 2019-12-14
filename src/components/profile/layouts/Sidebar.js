@@ -1,11 +1,10 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useReactRouter from "use-react-router";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 import ShopingCartIcon from "@material-ui/icons/ShoppingCartOutlined";
@@ -17,29 +16,29 @@ import ChangePasswordIcon from "@material-ui/icons/LockOutlined";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
 
 import ListItemLink from "./ListItemLink";
+import ExpansionPanel from "../../utils/MyExpansionPanel";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
-    marginTop: theme.spacing(3),
-    [theme.breakpoints.down("sm")]: {
-      marginTop: 0
-    }
+    marginTop: theme.spacing(1)
   }
 }));
 
 const Sidebar = ({ activeItem, children }) => {
+  const { location } = useReactRouter();
+  console.log(location);
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
     <Grid container spacing={2}>
-      <Grid item md="auto" xs={12}>
-        <Paper className={classes.root}>
-          <List component="nav">
-            <ListItem>
-              <ListItemText primary="Your account" />
-            </ListItem>
-            <Divider />
+      <Grid item md="auto" xs={12} className={classes.root}>
+        <ExpansionPanel
+          defaultExpanded={location.pathname === "/profile" ? true : matches}
+          title="Your account"
+        >
+          <List style={{ width: "100%" }}>
             <ListItemLink selected={activeItem === "profile"} to="/profile">
               <ListItemIcon>
                 <PersonIcon />
@@ -95,7 +94,7 @@ const Sidebar = ({ activeItem, children }) => {
               <ListItemText primary="Logout" />
             </ListItemLink>
           </List>
-        </Paper>
+        </ExpansionPanel>
       </Grid>
       <Grid item md xs={12}>
         {children}
