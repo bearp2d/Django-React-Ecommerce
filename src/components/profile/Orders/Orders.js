@@ -14,7 +14,8 @@ import { fetchOrders } from "../../../redux/actions/profileActions/orderActions"
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: "10px"
+    marginTop: "10px",
+    overflowX: "auto"
   },
   header: {
     color: "black"

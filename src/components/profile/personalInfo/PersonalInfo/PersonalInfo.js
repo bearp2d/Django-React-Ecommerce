@@ -38,20 +38,20 @@ const PersonalInfo = () => {
         Personal Info
       </Typography>
       <Paper className={classes.root}>
-        <Grid container spacing={3} className={classes.padding}>
-          <Grid item md={6}>
+        <Grid container spacing={2} className={classes.padding}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body1">First name:</Typography>
             <Typography variant="h6">{first_name || "-"}</Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body1">Phone number:</Typography>
             <Typography variant="h6">{phone_number || "-"}</Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body1">Last name:</Typography>
             <Typography variant="h6">{last_name || "-"}</Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body1">National code:</Typography>
             <Typography variant="h6">{national_code || "-"}</Typography>
           </Grid>

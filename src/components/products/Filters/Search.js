@@ -11,16 +11,23 @@ import ClearIcon from "@material-ui/icons/Clear";
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
-    alignItems: "center",
-    marginLeft: "10px"
+    [theme.breakpoints.down("xs")]: {
+      border: "1px solid gray"
+    }
   },
   input: {
     marginLeft: theme.spacing(1),
-    flex: 1,
-    width: "500px"
+    flex: 1
   },
   iconButton: {
     margin: "1px"
+  },
+  form: {
+    width: "100%",
+    margin: theme.spacing(1),
+    [theme.breakpoints.down("xs")]: {
+      margin: theme.spacing(1, 0)
+    }
   }
 }));
 
@@ -37,33 +44,32 @@ const Search = () => {
   };
 
   return (
-    <div>
-      <form
-        onMouseEnter={() => setClear(true)}
-        onMouseLeave={() => setClear(false)}
-        onSubmit={handleSubmit}
-      >
-        <Paper className={classes.root}>
-          {value && clear && (
-            <IconButton
-              className={classes.iconButton}
-              onClick={() => setValue("")}
-            >
-              <ClearIcon fontSize="small" />
-            </IconButton>
-          )}
-          <InputBase
-            className={classes.input}
-            placeholder="Search in products"
-            value={value}
-            onChange={e => setValue(e.target.value)}
-          />
-          <IconButton className={classes.iconButton} onClick={handleSubmit}>
-            <SearchIcon fontSize="small" />
+    <form
+      onMouseEnter={() => setClear(true)}
+      onMouseLeave={() => setClear(false)}
+      onSubmit={handleSubmit}
+      className={classes.form}
+    >
+      <Paper className={classes.root}>
+        {value && clear && (
+          <IconButton
+            className={classes.iconButton}
+            onClick={() => setValue("")}
+          >
+            <ClearIcon fontSize="small" />
           </IconButton>
-        </Paper>
-      </form>
-    </div>
+        )}
+        <InputBase
+          className={classes.input}
+          placeholder="Search in products"
+          value={value}
+          onChange={e => setValue(e.target.value)}
+        />
+        <IconButton className={classes.iconButton} onClick={handleSubmit}>
+          <SearchIcon fontSize="small" />
+        </IconButton>
+      </Paper>
+    </form>
   );
 };
 

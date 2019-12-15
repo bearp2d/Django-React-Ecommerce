@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
     border: "1px solid gray"
   },
   image: {
-    margin: "5px",
     objectFit: "contain"
   },
   itemImage: {
@@ -47,7 +46,7 @@ const ProductImages = ({ product }) => {
           src={image}
           alt={product.slug}
           className={classes.image}
-          width="318"
+          width="300"
           height="398"
         />
       </div>

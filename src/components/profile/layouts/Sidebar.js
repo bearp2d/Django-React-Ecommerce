@@ -1,44 +1,44 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useReactRouter from "use-react-router";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 import ShopingCartIcon from "@material-ui/icons/ShoppingCartOutlined";
 import PersonIcon from "@material-ui/icons/PersonOutline";
 import StarIcon from "@material-ui/icons/StarBorder";
-import CommentIcon from "@material-ui/icons/ModeCommentOutlined";
 import AddressIcon from "@material-ui/icons/RoomOutlined";
-import NotificationIcon from "@material-ui/icons/NotificationsOutlined";
 import PersonalInfoIcon from "@material-ui/icons/PortraitOutlined";
 import ChangePasswordIcon from "@material-ui/icons/LockOutlined";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
 
 import ListItemLink from "./ListItemLink";
+import ExpansionPanel from "../../utils/MyExpansionPanel";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(1)
   }
 }));
 
 const Sidebar = ({ activeItem, children }) => {
+  const { location } = useReactRouter();
+  console.log(location);
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
     <Grid container spacing={2}>
-      <Grid item md="auto">
-        <Paper className={classes.root}>
-          <List component="nav">
-            <ListItem>
-              <ListItemText primary="Your account" />
-            </ListItem>
-            <Divider />
+      <Grid item md="auto" xs={12} className={classes.root}>
+        <ExpansionPanel
+          defaultExpanded={location.pathname === "/profile" ? true : matches}
+          title="Your account"
+        >
+          <List style={{ width: "100%" }}>
             <ListItemLink selected={activeItem === "profile"} to="/profile">
               <ListItemIcon>
                 <PersonIcon />
@@ -64,15 +64,6 @@ const Sidebar = ({ activeItem, children }) => {
               <ListItemText primary="Favorite Products" />
             </ListItemLink>
             <ListItemLink
-              selected={activeItem === "comments"}
-              to="/profile/comments"
-            >
-              <ListItemIcon>
-                <CommentIcon />
-              </ListItemIcon>
-              <ListItemText primary="Your comments" />
-            </ListItemLink>
-            <ListItemLink
               selected={activeItem === "addresses"}
               to="/profile/addresses"
             >
@@ -80,15 +71,6 @@ const Sidebar = ({ activeItem, children }) => {
                 <AddressIcon />
               </ListItemIcon>
               <ListItemText primary="Addresses" />
-            </ListItemLink>
-            <ListItemLink
-              selected={activeItem === "notifications"}
-              to="/profile/notifications"
-            >
-              <ListItemIcon>
-                <NotificationIcon />
-              </ListItemIcon>
-              <ListItemText primary="Notifications" />
             </ListItemLink>
             <ListItemLink
               selected={activeItem === "personalInfo"}
@@ -112,9 +94,9 @@ const Sidebar = ({ activeItem, children }) => {
               <ListItemText primary="Logout" />
             </ListItemLink>
           </List>
-        </Paper>
+        </ExpansionPanel>
       </Grid>
-      <Grid item md>
+      <Grid item md xs={12}>
         {children}
       </Grid>
     </Grid>
