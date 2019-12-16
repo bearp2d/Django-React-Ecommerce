@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Logout from "./components/auth/Logout";
 import AuthRoute from "./components/routes/AuthRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Header from "./components/layouts/Header";
@@ -10,6 +9,8 @@ import Loading from "./components/layouts/Loading";
 const Login = React.lazy(() => import("./components/auth/Login"));
 
 const Register = React.lazy(() => import("./components/auth/Register"));
+
+const Logout = React.lazy(() => import("./components/auth/Logout"));
 
 const ChangePassword = React.lazy(() =>
   import("./components/auth/ChangePassword")

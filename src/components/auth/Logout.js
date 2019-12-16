@@ -1,16 +1,41 @@
-import { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import Button from "@material-ui/core/Button";
 
 import { logout } from "../../redux/actions/authActions";
+import DialogTitle from "../utils/DialogTitle";
 
-const Logout = () => {
+const Logout = ({ history }) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const handleSubmit = () => {
     dispatch(logout());
-  }, [dispatch]);
+  };
 
-  return null;
+  const handleClose = () => {
+    history.goBack();
+  };
+
+  return (
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+      <DialogTitle onClose={handleClose}>Logout</DialogTitle>
+      <DialogContent>
+        <DialogContentText>Are you sure you want to logout?</DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} variant="outlined">
+          No, Cancel
+        </Button>
+        <Button onClick={handleSubmit} variant="contained" color="secondary">
+          Yes, Logout
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
 };
 
 export default Logout;
