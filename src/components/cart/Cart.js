@@ -16,13 +16,14 @@ const useStyles = makeStyles(theme => ({
   sticky: {
     position: "-webkit-sticky",
     position: "sticky",
-    bottom: "56px",
+    bottom: 0,
     [theme.breakpoints.down("xs")]: {
       position: "fixed",
       zIndex: 9,
       display: "flex",
       width: "100%",
-      marginLeft: "-8px"
+      marginLeft: "-8px",
+      bottom: "56px"
     }
   },
   price: {
