@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: "8px",
     position: "-webkit-sticky",
     position: "sticky",
-    bottom: 0,
+    bottom: "56px",
     [theme.breakpoints.down("xs")]: {
       position: "fixed",
       zIndex: 9,

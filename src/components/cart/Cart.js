@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   sticky: {
     position: "-webkit-sticky",
     position: "sticky",
-    bottom: 0,
+    bottom: "56px",
     [theme.breakpoints.down("xs")]: {
       position: "fixed",
       zIndex: 9,

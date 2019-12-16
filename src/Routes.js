@@ -1,10 +1,17 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import AuthRoute from "./components/routes/AuthRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
-import Header from "./components/layouts/Header";
 import Loading from "./components/layouts/Loading";
+
+const Header = React.lazy(() => import("./components/layouts/Header"));
+
+const MobileNavigation = React.lazy(() =>
+  import("./components/layouts/MobileNavigation")
+);
 
 const Login = React.lazy(() => import("./components/auth/Login"));
 
@@ -51,9 +58,12 @@ const Order = React.lazy(() => import("./components/order/Order"));
 const Index = () => <Redirect to="/products" />;
 
 const Routes = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("xs"));
+
   return (
     <React.Suspense fallback={<Loading />}>
-      <Header />
+      {!matches && <Header />}
       <Loading inFetching />
       <Switch>
         <Route exact path="/" component={Index} />
@@ -93,6 +103,8 @@ const Routes = () => {
         <ProtectedRoute exact path="/cart" component={Cart} />
         <ProtectedRoute exact path="/order" component={Order} />
       </Switch>
+      <div style={{ height: "56px" }}></div>
+      {matches && <MobileNavigation />}
     </React.Suspense>
   );
 };

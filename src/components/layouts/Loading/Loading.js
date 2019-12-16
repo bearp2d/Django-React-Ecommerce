@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import LoadingDialog from "./LoadingDialog";
-import Header from "../Header";
 
 const Loading = ({ inFetching }) => {
   if (inFetching) {
@@ -10,11 +9,7 @@ const Loading = ({ inFetching }) => {
 
     return <LoadingDialog open={open || false} />;
   }
-  return (
-    <Header>
-      <LoadingDialog open={true} />
-    </Header>
-  );
+  return <LoadingDialog open={true} />;
 };
 
 export default Loading;
