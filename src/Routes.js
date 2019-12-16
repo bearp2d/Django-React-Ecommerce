@@ -10,50 +10,82 @@ import Loading from "./components/layouts/Loading";
 const Header = React.lazy(() => import("./components/layouts/Header"));
 
 const MobileNavigation = React.lazy(() =>
-  import("./components/layouts/MobileNavigation")
+  import(
+    /* webpackChunkName: "header" */ "./components/layouts/MobileNavigation"
+  )
 );
 
-const Login = React.lazy(() => import("./components/auth/Login"));
+const Login = React.lazy(() =>
+  import(/* webpackChunkName: "login" */ "./components/auth/Login")
+);
 
-const Register = React.lazy(() => import("./components/auth/Register"));
+const Register = React.lazy(() =>
+  import(/* webpackChunkName: "register" */ "./components/auth/Register")
+);
 
-const Logout = React.lazy(() => import("./components/auth/Logout"));
+const Logout = React.lazy(() =>
+  import(/* webpackChunkName: "logout" */ "./components/auth/Logout")
+);
 
 const ChangePassword = React.lazy(() =>
-  import("./components/auth/ChangePassword")
+  import(
+    /* webpackChunkName: "change-password" */ "./components/auth/ChangePassword"
+  )
 );
 
-const Profile = React.lazy(() => import("./components/profile/Profile"));
+const Profile = React.lazy(() =>
+  import(/* webpackChunkName: "profile" */ "./components/profile/Profile")
+);
 
 const PersonalInfo = React.lazy(() =>
-  import("./components/profile/personalInfo/PersonalInfo")
+  import(
+    /* webpackChunkName: "personal-info" */ "./components/profile/personalInfo/PersonalInfo"
+  )
 );
 
 const PersonalInfoEdit = React.lazy(() =>
-  import("./components/profile/personalInfo/PersonalInfoEdit")
+  import(
+    /* webpackChunkName: "personal-info-edit" */ "./components/profile/personalInfo/PersonalInfoEdit"
+  )
 );
 
-const Addresses = React.lazy(() => import("./components/profile/Addresses"));
+const Addresses = React.lazy(() =>
+  import(/* webpackChunkName: "addresses" */ "./components/profile/Addresses")
+);
 
 const FavoriteProducts = React.lazy(() =>
-  import("./components/profile/FavoriteProducts")
+  import(
+    /* webpackChunkName: "favorite-products" */ "./components/profile/FavoriteProducts"
+  )
 );
 
-const Orders = React.lazy(() => import("./components/profile/Orders"));
+const Orders = React.lazy(() =>
+  import(/* webpackChunkName: "orders-history" */ "./components/profile/Orders")
+);
 
 const OrdersDetail = React.lazy(() =>
-  import("./components/profile/Orders/OrdersDetail")
+  import(
+    /* webpackChunkName: "orders-detail" */ "./components/profile/Orders/OrdersDetail"
+  )
 );
 
-const Products = React.lazy(() => import("./components/products/Products"));
+const Products = React.lazy(() =>
+  import(/* webpackChunkName: "products" */ "./components/products/Products")
+);
 
 const ProductsDetail = React.lazy(() =>
-  import("./components/products/ProductsDetail")
+  import(
+    /* webpackChunkName: "products-detail" */ "./components/products/ProductsDetail"
+  )
 );
 
-const Cart = React.lazy(() => import("./components/cart/Cart"));
+const Cart = React.lazy(() =>
+  import(/* webpackChunkName: "cart" */ "./components/cart/Cart")
+);
 
-const Order = React.lazy(() => import("./components/order/Order"));
+const Order = React.lazy(() =>
+  import(/* webpackChunkName: "order" */ "./components/order/Order")
+);
 
 const Index = () => <Redirect to="/products" />;
 
