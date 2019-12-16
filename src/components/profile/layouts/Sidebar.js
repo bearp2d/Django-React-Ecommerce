@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({
 
 const Sidebar = ({ activeItem, children }) => {
   const { location } = useReactRouter();
-  console.log(location);
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
