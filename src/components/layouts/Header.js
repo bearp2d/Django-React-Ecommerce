@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
   },
   shopButton: {
     marginLeft: theme.spacing(1)
+  },
+  title: {
+    marginRight: theme.spacing(1)
   }
 }));
 
@@ -60,22 +63,14 @@ const Header = () => {
         <Toolbar>
           <Link
             component={RouterLink}
-            to="/"
+            to="/products"
             variant="h6"
             color="inherit"
             className={classes.title}
             underline={"none"}
           >
-            Home
+            Products
           </Link>
-          <Button
-            className={classes.shopButton}
-            component={RouterLink}
-            to="/products"
-            color="inherit"
-          >
-            Shop
-          </Button>
           {!matches && <Search />}
           {isAuthenticated === false ? guestNav : authNav}
         </Toolbar>

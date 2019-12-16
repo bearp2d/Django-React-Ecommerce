@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import AuthRoute from "./components/routes/AuthRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
@@ -48,12 +48,15 @@ const Cart = React.lazy(() => import("./components/cart/Cart"));
 
 const Order = React.lazy(() => import("./components/order/Order"));
 
+const Index = () => <Redirect to="/products" />;
+
 const Routes = () => {
   return (
     <React.Suspense fallback={<Loading />}>
       <Header />
       <Loading inFetching />
       <Switch>
+        <Route exact path="/" component={Index} />
         <ProtectedRoute exact path="/logout" component={Logout} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Register} />
