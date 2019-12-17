@@ -59,47 +59,47 @@ const OrdersDetail = ({ match }) => {
       </div>
       <Paper className={classes.paper}>
         <Grid container spacing={3}>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body2">Reciver:</Typography>
             <Typography variant="h6">
               {order.reciver && order.reciver.full_name}
             </Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body2">Reciver phone number:</Typography>
             <Typography variant="h6">
               {order.reciver && order.reciver.phone_number}
             </Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body2">Reciver postal address:</Typography>
             <Typography variant="h6">
               {order.reciver && order.reciver.address}
             </Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body2">Items count:</Typography>
             <Typography variant="h6">
               {order.cart && order.cart.items_count}
             </Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body2">Shpping status:</Typography>
             <Typography variant="h6">{order.shipping_status}</Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body2">Ordered at:</Typography>
             <Typography variant="h6">
               {moment(order.created_at).format("MMM Do YY")}
             </Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body2">Purchase invoice:</Typography>
             <Typography variant="h6">
               {order.purchase_invoice ? "yes" : "no"}
             </Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="body2">Total price:</Typography>
             <Typography variant="h6">
               {order.cart && order.cart.total_price}$
