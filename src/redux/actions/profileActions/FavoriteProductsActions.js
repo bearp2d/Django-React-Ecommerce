@@ -18,9 +18,7 @@ export const fetchFavoriteProducts = () => dispatch => {
 };
 
 export const updateFavoriteProducts = id => dispatch => {
-  dispatch({ type: START_LOADING_BUTTON });
   axios.post(`/api/user/favorites-products/update/${id}/`).then(response => {
     dispatch({ type: UPDATE_FAVORITE_PRODUCTS, payload: response.data });
-    dispatch({ type: STOP_LOADING_BUTTON });
   });
 };
