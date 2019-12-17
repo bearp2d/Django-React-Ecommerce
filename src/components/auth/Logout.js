@@ -21,7 +21,7 @@ const Logout = ({ history }) => {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+    <Dialog open onClose={handleClose} fullWidth maxWidth="sm">
       <DialogTitle onClose={handleClose}>Logout</DialogTitle>
       <DialogContent>
         <DialogContentText>Are you sure you want to logout?</DialogContentText>
