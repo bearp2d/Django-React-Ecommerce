@@ -12,9 +12,6 @@ import Filters from "./Filters";
 const useStyles = makeStyles(theme => ({
   root: {
     marginTop: theme.spacing(1)
-  },
-  products: {
-    marginTop: theme.spacing(2)
   }
 }));
 
@@ -36,13 +33,7 @@ const Products = ({ history, location }) => {
         <Ordering location={location} />
         <Grid container spacing={1}>
           {products.map(product => (
-            <Grid
-              key={product.id}
-              item
-              md={3}
-              xs={12}
-              className={classes.products}
-            >
+            <Grid key={product.id} item md={3} xs={12}>
               <ProductItem product={product} history={history} />
             </Grid>
           ))}

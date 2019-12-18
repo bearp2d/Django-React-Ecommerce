@@ -9,7 +9,8 @@ import { appendQuery, removeQuery } from "../utils/utils";
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   },
   button: {
     margin: theme.spacing(0.5)
@@ -23,6 +24,7 @@ const Ordering = ({ location }) => {
   return (
     <Paper className={classes.paper}>
       <Button
+        size="small"
         component={Link}
         to={removeQuery(location, "ordering")}
         className={classes.button}
@@ -32,6 +34,7 @@ const Ordering = ({ location }) => {
         Newest
       </Button>
       <Button
+        size="small"
         component={Link}
         to={appendQuery(location, { ordering: "max_price" })}
         className={classes.button}
@@ -41,6 +44,7 @@ const Ordering = ({ location }) => {
         expensivest
       </Button>
       <Button
+        size="small"
         component={Link}
         to={appendQuery(location, { ordering: "min_price" })}
         className={classes.button}
@@ -50,6 +54,7 @@ const Ordering = ({ location }) => {
         cheapest
       </Button>
       <Button
+        size="small"
         component={Link}
         to={appendQuery(location, { ordering: "best_seller" })}
         className={classes.button}

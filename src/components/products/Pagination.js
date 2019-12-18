@@ -11,7 +11,7 @@ import { appendQuery } from "../utils/utils";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing(5)
+    margin: theme.spacing(1)
   },
   button: {
     margin: theme.spacing(0.5)

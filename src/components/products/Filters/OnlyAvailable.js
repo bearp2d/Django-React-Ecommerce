@@ -28,8 +28,8 @@ const OnlyAvailable = () => {
   };
 
   return (
-    <Paper style={{ marginBottom: "10px" }}>
-      <div style={{ padding: "6px" }}>
+    <Paper style={{ marginBottom: "8px" }}>
+      <div style={{ padding: "8px" }}>
         <FormGroup row>
           <FormControlLabel
             control={<Switch checked={value} onChange={handleChange} />}
