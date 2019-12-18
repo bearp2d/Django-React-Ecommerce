@@ -36,14 +36,13 @@ const useStyles = makeStyles(theme => ({
     }
   },
   description: {
-    whiteSpace: "pre-line",
-    margin: theme.spacing(2, 0, 10)
+    whiteSpace: "pre-line"
   },
   sizeButton: {
     marginLeft: theme.spacing(1)
   },
-  sizes: {
-    marginBottom: theme.spacing(1)
+  mb2: {
+    marginBottom: theme.spacing(2)
   },
   img: {
     border: "1px solid gray",
@@ -116,10 +115,10 @@ const ProductsDetail = ({ match, history }) => {
         <CloseIcon />
       </IconButton>
       <Grid container spacing={2}>
-        <Grid item md="auto" xs={12}>
+        <Grid item md="auto" xs={12} className={classes.mb2}>
           <ProductImages product={product} />
         </Grid>
-        <Grid item md xs={12}>
+        <Grid item md xs={12} className={classes.mb2}>
           <Typography variant="h4" gutterBottom>
             {product.title}
           </Typography>
@@ -128,30 +127,30 @@ const ProductsDetail = ({ match, history }) => {
               unavailable
             </Typography>
           ) : (
-            <React.Fragment>
+            <div className={classes.mb2}>
               {product.discount_price ? (
                 <React.Fragment>
                   <Typography
                     gutterBottom
-                    variant="h6"
+                    variant="h5"
                     color="error"
                     component="h2"
                   >
                     {product.discount_percent}%
                   </Typography>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography gutterBottom variant="h4" component="h2">
                     <del>{product.price}</del> {product.discount_price}
                   </Typography>
                 </React.Fragment>
               ) : (
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant="h4" component="h2">
                   {product.price}
                 </Typography>
               )}
-            </React.Fragment>
+            </div>
           )}
           {sizes.length !== 0 && (
-            <div className={classes.sizes}>
+            <div className={classes.mb2}>
               <Typography display="inline" variant="h6">
                 sizes:
               </Typography>
@@ -161,6 +160,7 @@ const ProductsDetail = ({ match, history }) => {
                   key={size.id}
                   variant={orderSize === size.id ? "contained" : "outlined"}
                   size="small"
+                  color="secondary"
                   onClick={() => setOrderSize(size.id)}
                   disabled={!size.available}
                 >
@@ -170,7 +170,7 @@ const ProductsDetail = ({ match, history }) => {
             </div>
           )}
           {Array.isArray(colors) && colors.length ? (
-            <div className={classes.colors}>
+            <div className={classes.mb2}>
               <Typography variant="h6">colors:</Typography>
               {colors.map(color => (
                 <Link key={color.id} to={`/products/${color.slug}`}>
