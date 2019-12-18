@@ -6,6 +6,10 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import teal from "@material-ui/core/colors/teal";
 
 import { fetchProduct } from "../../redux/actions/productActions";
@@ -16,7 +20,7 @@ import ProductImages from "./ProductImages";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(1)
   },
   button: {
     width: "98%",
@@ -49,12 +53,15 @@ const useStyles = makeStyles(theme => ({
   },
   fixed: {
     position: "fixed",
-    zIndex: 9,
+    zIndex: 10,
     display: "flex",
     bottom: 0,
     left: 0,
     padding: "12px",
     width: "100%"
+  },
+  right: {
+    float: "right"
   }
 }));
 
@@ -95,6 +102,19 @@ const ProductsDetail = ({ match, history }) => {
 
   return (
     <div className={classes.root}>
+      <IconButton onClick={handleAddToFavProducts} color="secondary">
+        {product.is_favorite_product === false ? (
+          <FavoriteBorderIcon />
+        ) : (
+          <FavoriteIcon />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={() => history.push("/products")}
+        className={classes.right}
+      >
+        <CloseIcon />
+      </IconButton>
       <Grid container spacing={2}>
         <Grid item md="auto" xs={12}>
           <ProductImages product={product} />
@@ -178,17 +198,6 @@ const ProductsDetail = ({ match, history }) => {
               </LoadingButton>
             </Paper>
           )}
-          <LoadingButton
-            className={classes.button}
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={handleAddToFavProducts}
-          >
-            {product.is_favorite_product === false
-              ? "Add to favorite products"
-              : "Remove from favorite products"}
-          </LoadingButton>
           <Typography className={classes.description}>
             {product.description}
           </Typography>
