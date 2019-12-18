@@ -35,6 +35,9 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     margin: theme.spacing(1)
+  },
+  mb1: {
+    marginBottom: theme.spacing(1)
   }
 }));
 
@@ -87,7 +90,7 @@ const Cart = () => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item lg={3} md={4} xs={12}>
+      <Grid item lg={3} md={4} xs={12} className={classes.mb1}>
         <CartSummary cart={cart} />
       </Grid>
     </Grid>
