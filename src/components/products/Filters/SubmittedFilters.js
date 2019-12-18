@@ -12,11 +12,17 @@ import { removeQuery } from "../../utils/utils";
 
 const useStyles = makeStyles(theme => ({
   margin: {
-    margin: "7px"
+    margin: "4px"
+  },
+  padding: {
+    padding: theme.spacing(1)
+  },
+  mb1: {
+    marginBottom: theme.spacing(1)
   },
   remove: {
     float: "right",
-    marginRight: "10px",
+    marginRight: theme.spacing(1),
     cursor: "pointer",
     fontWeight: "bold"
   }
@@ -31,8 +37,8 @@ const SubmittedFilters = () => {
 
   if (available || min_price || max_price || search) {
     return (
-      <Paper style={{ marginBottom: "10px" }}>
-        <div className={classes.margin}>
+      <Paper className={classes.mb1}>
+        <div className={classes.padding}>
           <Typography display="inline" variant="subtitle1">
             Submitted Filters:
           </Typography>
