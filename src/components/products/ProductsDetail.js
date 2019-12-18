@@ -108,10 +108,7 @@ const ProductsDetail = ({ match, history }) => {
           <FavoriteIcon />
         )}
       </IconButton>
-      <IconButton
-        onClick={() => history.push("/products")}
-        className={classes.right}
-      >
+      <IconButton onClick={() => history.goBack()} className={classes.right}>
         <CloseIcon />
       </IconButton>
       <Grid container spacing={2}>
