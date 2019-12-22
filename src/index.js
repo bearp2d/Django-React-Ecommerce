@@ -3,6 +3,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { SnackbarProvider } from "notistack";
+import "./style.css";
 
 import store from "./redux/store";
 import App from "./components/App";

@@ -8,7 +8,13 @@ module.exports = {
     publicPath: "/static/"
   },
   module: {
-    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"]
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
