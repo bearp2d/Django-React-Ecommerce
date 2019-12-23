@@ -10,8 +10,8 @@ const Filters = () => {
   return (
     <React.Fragment>
       <SubmittedFilters />
-      <OnlyAvailable />
       <SearchInResults />
+      <OnlyAvailable />
       <MyExpansionPanel title="Price range">
         <PriceFilter />
       </MyExpansionPanel>
