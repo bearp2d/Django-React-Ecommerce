@@ -112,7 +112,7 @@ const ProductsDetail = ({ match, history }) => {
         <CloseIcon />
       </IconButton>
       <Grid container spacing={2}>
-        <Grid item md="auto" xs={12} className={classes.mb2}>
+        <Grid item md={4} xs={12} className={classes.mb2}>
           <ProductImages product={product} />
         </Grid>
         <Grid item md xs={12} className={classes.mb2}>

@@ -1,118 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Swiper from "react-id-swiper";
+import "swiper/css/swiper.css";
 
 const useStyles = makeStyles(theme => ({
-  item: {
-    width: "49.25px",
-    marginRight: "5px",
-    listStyle: "none outside none",
-    margin: 0,
-    padding: 0,
-    display: "inline"
-  },
-  imageWrapper: {
-    border: "1px solid gray"
-  },
   image: {
+    width: "100%",
+    height: "100%",
+    maxHeight: "500px",
+    display: "block",
+    margin: "0 auto",
     objectFit: "contain"
-  },
-  itemImage: {
-    border: "1px solid gray",
-    cursor: "pointer",
-    objectFit: "contain"
-  },
-  ul: {
-    width: "325.5px",
-    height: "61.0625px",
-    listStyle: "none outside none",
-    margin: 0,
-    padding: 0,
-    marginTop: "5px"
   }
 }));
 
 const ProductImages = ({ product }) => {
-  const [image, setImage] = useState();
   const classes = useStyles();
 
-  useEffect(() => {
-    setImage(product.photo_main);
-  }, [product]);
+  // List of just available product photos (remove nulls)
+  const photos = [
+    product.photo_main,
+    product.photo_1,
+    product.photo_2,
+    product.photo_3,
+    product.photo_4
+  ].filter(Boolean);
+
+  const params = {
+    spaceBetween: 30,
+    rebuildOnUpdate: true,
+    pagination: {
+      el: ".swiper-pagination",
+      type: "fraction",
+      clickable: true
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    }
+  };
 
   return (
-    <React.Fragment>
-      <div className={classes.imageWrapper}>
-        <img
-          src={image}
-          alt={product.slug}
-          className={classes.image}
-          width="300"
-          height="398"
-        />
-      </div>
-      <div>
-        <ul className={classes.ul}>
-          <li className={classes.item}>
-            <img
-              width="47px"
-              height="60px"
-              onClick={() => setImage(product.photo_main)}
-              className={classes.itemImage}
-              src={product.photo_main}
-              alt={product.title}
-            />
-          </li>
-          {product.photo_1 && (
-            <li className={classes.item}>
-              <img
-                width="47px"
-                height="60px"
-                onClick={() => setImage(product.photo_1)}
-                className={classes.itemImage}
-                src={product.photo_1}
-                alt={product.title}
-              />
-            </li>
-          )}
-          {product.photo_2 && (
-            <li className={classes.item}>
-              <img
-                width="47px"
-                height="60px"
-                onClick={() => setImage(product.photo_2)}
-                className={classes.itemImage}
-                src={product.photo_2}
-                alt={product.title}
-              />
-            </li>
-          )}
-          {product.photo_3 && (
-            <li className={classes.item}>
-              <img
-                width="47px"
-                height="60px"
-                onClick={() => setImage(product.photo_3)}
-                className={classes.itemImage}
-                src={product.photo_3}
-                alt={product.title}
-              />
-            </li>
-          )}
-          {product.photo_4 && (
-            <li className={classes.item}>
-              <img
-                width="47px"
-                height="60px"
-                onClick={() => setImage(product.photo_4)}
-                className={classes.itemImage}
-                src={product.photo_4}
-                alt={product.title}
-              />
-            </li>
-          )}
-        </ul>
-      </div>
-    </React.Fragment>
+    <Swiper {...params}>
+      {photos.map(photo => (
+        <div>
+          <img src={photo} className={classes.image} />
+        </div>
+      ))}
+    </Swiper>
   );
 };
 
