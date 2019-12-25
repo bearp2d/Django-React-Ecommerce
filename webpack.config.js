@@ -25,7 +25,8 @@ module.exports = {
       filename: __dirname + "/dist/index.html"
     }),
     new WorkboxPlugin.InjectManifest({
-      swSrc: "./src/service-worker.js"
+      swSrc: "./src/service-worker.js",
+      importWorkboxFrom: "local"
     })
   ]
 };
