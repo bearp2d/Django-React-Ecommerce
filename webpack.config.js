@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
@@ -22,6 +23,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "index.html",
       filename: __dirname + "/dist/index.html"
+    }),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: "./src/service-worker.js"
     })
   ]
 };

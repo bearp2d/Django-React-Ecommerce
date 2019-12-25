@@ -11,6 +11,8 @@ urlpatterns = [
     path('api/cart/', include('carts.urls')),
     path('api/orders/', include('orders.urls')),
     path('api/products/', include('products.urls')),
+    path('service-worker.js', (TemplateView.as_view(template_name="static/service-worker.js",
+                                                    content_type='application/javascript'))),
 ]
 
 # Media urls
