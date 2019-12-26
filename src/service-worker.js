@@ -13,3 +13,11 @@ workbox.routing.registerRoute(
   new RegExp("/api/*"),
   new workbox.strategies.NetworkFirst()
 );
+
+// Images
+workbox.routing.registerRoute(
+  /\.(?:png|jpg|jpeg)$/,
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: "images"
+  })
+);
