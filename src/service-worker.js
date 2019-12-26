@@ -7,3 +7,9 @@ workbox.routing.registerNavigationRoute(
     blacklist: [new RegExp("/admin/*")]
   }
 );
+
+// Rest api requests
+workbox.routing.registerRoute(
+  new RegExp("/api/*"),
+  new workbox.strategies.NetworkFirst()
+);
