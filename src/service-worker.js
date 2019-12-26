@@ -2,5 +2,8 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
 // Single app navigation route
 workbox.routing.registerNavigationRoute(
-  workbox.precaching.getCacheKeyForURL("/index.html")
+  workbox.precaching.getCacheKeyForURL("/index.html"),
+  {
+    blacklist: [new RegExp("/admin/*")]
+  }
 );
