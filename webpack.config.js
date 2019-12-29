@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
@@ -27,6 +28,19 @@ module.exports = {
     new WorkboxPlugin.InjectManifest({
       swSrc: "./src/service-worker.js",
       importWorkboxFrom: "local"
+    }),
+    new WebpackPwaManifest({
+      name: "Ecommerce Web App",
+      short_name: "Ecommerce",
+      description:
+        "An e-commerce web application built in with Django and React",
+      background_color: "#f4f4f4",
+      icons: [
+        {
+          src: "./icon.png",
+          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+        }
+      ]
     })
   ]
 };
