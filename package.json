@@ -12,6 +12,7 @@
     "notistack": "^0.9.6",
     "query-string": "^6.9.0",
     "react": "^16.12.0",
+    "react-clipboard.js": "^2.0.16",
     "react-dom": "^16.12.0",
     "react-id-swiper": "^2.4.0",
     "react-redux": "^7.1.3",

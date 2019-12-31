@@ -7,7 +7,9 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
+import Clipboard from "react-clipboard.js";
 import CloseIcon from "@material-ui/icons/Close";
+import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import teal from "@material-ui/core/colors/teal";
@@ -15,6 +17,7 @@ import teal from "@material-ui/core/colors/teal";
 import { fetchProduct } from "../../redux/actions/productActions";
 import { addToCart } from "../../redux/actions/cartActions";
 import { updateFavoriteProducts } from "../../redux/actions/profileActions/FavoriteProductsActions";
+import { addNotif } from "../../redux/actions/notifActions";
 import LoadingButton from "../layouts/LoadingButton";
 import ProductImages from "./ProductImages";
 
@@ -101,6 +104,25 @@ const ProductsDetail = ({ match, history }) => {
 
   return (
     <div className={classes.root}>
+      <Clipboard
+        onSuccess={() =>
+          dispatch(
+            addNotif({
+              message: "product link copied",
+              options: {
+                anchorOrigin: {
+                  vertical: "bottom",
+                  horizontal: "center"
+                }
+              }
+            })
+          )
+        }
+        component={IconButton}
+        data-clipboard-text={window.location.href}
+      >
+        <FileCopyIcon />
+      </Clipboard>
       <IconButton onClick={handleAddToFavProducts} color="secondary">
         {product.is_favorite_product === false ? (
           <FavoriteBorderIcon />
