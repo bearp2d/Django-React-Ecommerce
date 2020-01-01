@@ -1,3 +1,8 @@
+workbox.setConfig({ debug: true });
+
+workbox.core.skipWaiting();
+workbox.core.clientsClaim();
+
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
 // Single app navigation route
