@@ -67,7 +67,7 @@ const LoginForm = props => {
             required
             fullWidth
             name="new_password2"
-            label="Reapet new password"
+            label="Repeat new password"
             type="password"
             id="new_password2"
             helperText={errors.new_password2}
