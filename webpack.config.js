@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
+const CompressionPlugin = require("compression-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
@@ -21,6 +22,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new CompressionPlugin({
+      test: /\.js(\?.*)?$/i
+    }),
     new HtmlWebpackPlugin({
       template: "index.html",
       filename: __dirname + "/dist/index.html"
