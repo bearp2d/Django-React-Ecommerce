@@ -49,14 +49,13 @@ const CreateAddress = ({ fullScreen, open, handleClose, onSubmit }) => {
       >
         <DialogTitle onClose={handleClose}>Add Address</DialogTitle>
         <Formik
-          render={props => (
-            <CreateAddressForm handleClose={handleClose} {...props} />
-          )}
           initialValues={values}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
           validateOnChange={false}
-        />
+        >
+          {props => <CreateAddressForm handleClose={handleClose} {...props} />}
+        </Formik>
       </Dialog>
     </React.Fragment>
   );

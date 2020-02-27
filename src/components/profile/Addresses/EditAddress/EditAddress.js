@@ -61,14 +61,13 @@ const EditAddress = ({ open, setOpen, address }) => {
     >
       <DialogTitle onClose={handleClose}>Add Address</DialogTitle>
       <Formik
-        render={props => (
-          <EditAddressForm handleClose={handleClose} {...props} />
-        )}
         initialValues={values}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
         validateOnChange={false}
-      />
+      >
+        {props => <EditAddressForm handleClose={handleClose} {...props} />}
+      </Formik>
     </Dialog>
   );
 };

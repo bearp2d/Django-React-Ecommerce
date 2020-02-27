@@ -77,11 +77,12 @@ const PersonalInfoEdit = () => {
         Edit Personal info
       </Typography>
       <Formik
-        render={props => <PersonalInfoEditForm classes={classes} {...props} />}
         initialValues={values}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
-      />
+      >
+        {props => <PersonalInfoEditForm classes={classes} {...props} />}
+      </Formik>
     </Paper>
   );
 };
