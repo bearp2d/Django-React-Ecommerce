@@ -31,7 +31,7 @@ const FavoriteProducts = ({ history }) => {
     <div style={{ marginTop: "30px" }}>
       <Grid container spacing={2}>
         {products.map(product => (
-          <Grid key={product.id} item md={3}>
+          <Grid key={product.id} item md={3} xs={12}>
             <ProductItem product={product} history={history} />
           </Grid>
         ))}
