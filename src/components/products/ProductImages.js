@@ -43,8 +43,8 @@ const ProductImages = ({ product }) => {
   return (
     <Swiper {...params}>
       {photos.map(photo => (
-        <div>
-          <img src={photo} className={classes.image} />
+        <div key={product.id}>
+          <img src={photo} alt={product.title} className={classes.image} />
         </div>
       ))}
     </Swiper>
