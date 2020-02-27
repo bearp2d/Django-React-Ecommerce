@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const MyExpansionPanel = ({ children, title, ...rest }) => {
+const MyExpansionPanel = ({ children, title, detailClass, ...rest }) => {
   const classes = useStyles();
 
   return (
@@ -25,7 +25,9 @@ const MyExpansionPanel = ({ children, title, ...rest }) => {
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>{title}</Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>{children}</ExpansionPanelDetails>
+        <ExpansionPanelDetails className={detailClass}>
+          {children}
+        </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
   );

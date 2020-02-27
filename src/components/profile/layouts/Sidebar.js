@@ -21,6 +21,9 @@ import ExpansionPanel from "../../utils/MyExpansionPanel";
 const useStyles = makeStyles(theme => ({
   root: {
     marginTop: theme.spacing(1)
+  },
+  detail: {
+    padding: theme.spacing(1)
   }
 }));
 
@@ -35,6 +38,7 @@ const Sidebar = ({ activeItem, children }) => {
       <Grid item md="auto" xs={12} className={classes.root}>
         <ExpansionPanel
           defaultExpanded={location.pathname === "/profile" ? true : matches}
+          detailClass={classes.detail}
           title="Your account"
         >
           <List style={{ width: "100%" }}>
