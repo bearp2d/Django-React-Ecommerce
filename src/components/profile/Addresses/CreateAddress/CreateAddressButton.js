@@ -12,12 +12,16 @@ const CreateAddressButton = ({ noIcon, setOpen }) => {
         alignItems: "center",
         fontSize: "1.5rem",
         color: "rgba(0, 0, 0, 0.54)",
-        fontWeight: "bold"
+        fontWeight: "bold",
+        display: "block"
       }}
       onClick={() => setOpen(true)}
     >
       {noIcon === false && (
-        <AddLocationIcon style={{ fontSize: "75px" }} color="action" />
+        <AddLocationIcon
+          style={{ fontSize: "75px", display: "block", margin: "auto" }}
+          color="action"
+        />
       )}
       Add new address
     </Button>
