@@ -4,7 +4,7 @@ import { useSnackbar } from "notistack";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
-import { removeNotif } from "../../redux/actions/notifActions";
+import { removeNotif } from "@actions/notifActions";
 
 const Notifier = () => {
   const notifications = useSelector(store => store.notif.notifications);

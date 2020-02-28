@@ -20,6 +20,13 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      "@actions": __dirname + "/src/redux/actions",
+      "@components": __dirname + "/src/components",
+      "@pages": __dirname + "/src/pages"
+    }
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new CompressionPlugin({
