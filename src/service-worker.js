@@ -9,7 +9,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 workbox.routing.registerNavigationRoute(
   workbox.precaching.getCacheKeyForURL("/index.html"),
   {
-    blacklist: [new RegExp("/admin/*")]
+    blacklist: [new RegExp("/admin/*"), new RegExp("/api/*")]
   }
 );
 
