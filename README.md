@@ -2,7 +2,7 @@
 
 Advanced eCommerce example web application with Django and React
 
-# Installations
+# Development
 
 Setup environment for development
 
