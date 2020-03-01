@@ -97,7 +97,7 @@ export const changePassword = (
 export const resetPassword = (email, setErrors, history) => dispatch => {
   dispatch({ type: START_LOADING_BUTTON });
   axios
-    .post("/api/auth/reset-password/", email)
+    .post("/api/auth/reset-password/", { email })
     .then(() => {
       dispatch({ type: STOP_LOADING_BUTTON });
       history.push("/login");

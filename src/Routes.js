@@ -33,6 +33,12 @@ const ChangePassword = React.lazy(() =>
   )
 );
 
+const ResetPassword = React.lazy(() =>
+  import(
+    /* webpackChunkName: "reset-password" */ "./pages/authPages/resetPassword"
+  )
+);
+
 const Profile = React.lazy(() =>
   import(/* webpackChunkName: "profile" */ "./pages/profilePages/profile")
 );
@@ -102,6 +108,7 @@ const Routes = () => {
         <ProtectedRoute exact path="/logout" component={Logout} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Register} />
+        <AuthRoute exact path="/reset-password" component={ResetPassword} />
         <ProtectedRoute
           exact
           path="/change-password"
