@@ -17,10 +17,12 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Size)
 class SizeAdmin(admin.ModelAdmin):
-    list_display = ('id', '__str__', 'size', 'min_size',
-                    'max_size', 'available_count')
+    list_display = ('id', '__str__', 'size', 'waist_min_size',
+                    'height_min_size', 'available_count')
     list_display_links = ('id', '__str__')
-    list_editable = ('size', 'min_size', 'max_size', 'available_count')
-    list_filter = ('size',)
+    list_editable = ('size', 'waist_min_size',
+                     'height_min_size', 'available_count')
+    list_filter = ('size', "height_min_size")
     list_per_page = 25
-    search_fields = ('size', 'min_size', 'max_size', 'available_count')
+    search_fields = ('size', 'waist_min_size',
+                     'height_min_size', "hip_min_size" 'available_count')

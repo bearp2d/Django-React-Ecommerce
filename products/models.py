@@ -10,14 +10,18 @@ class SizeManager(models.Manager):
 
 class Size(models.Model):
     size = models.CharField(max_length=50)
-    min_size = models.PositiveIntegerField()
-    max_size = models.PositiveIntegerField()
+    waist_min_size = models.PositiveIntegerField()
+    waist_max_size = models.PositiveIntegerField(null=True, blank=True)
+    hip_min_size = models.PositiveIntegerField()
+    hip_max_size = models.PositiveIntegerField(null=True, blank=True)
+    height_min_size = models.PositiveIntegerField()
+    height_max_size = models.PositiveIntegerField(null=True, blank=True)
     available_count = models.PositiveIntegerField()
 
     objects = SizeManager()
 
     def __str__(self):
-        return f'{self.size}-{self.min_size}-{self.max_size}'
+        return self.size
 
     @property
     def available(self):
