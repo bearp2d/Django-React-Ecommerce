@@ -20,9 +20,10 @@ import { updateFavoriteProducts } from "@actions/profileActions/FavoriteProducts
 import { addNotif } from "@actions/notifActions";
 import LoadingButton from "@components/loading/LoadingButton";
 import ProductImages from "./components/ProductImages";
+import SizeGuide from "./components/SizeGuide";
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  mt1: {
     marginTop: theme.spacing(1)
   },
   button: {
@@ -77,6 +78,8 @@ const ProductsDetail = ({ match, history }) => {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const [orderSize, setOrderSize] = useState();
   const classes = useStyles();
+  // Size guide dialog
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setOrderSize(product.default_size);
@@ -103,7 +106,7 @@ const ProductsDetail = ({ match, history }) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.mt1}>
       <Clipboard
         onSuccess={() =>
           dispatch(
@@ -173,19 +176,29 @@ const ProductsDetail = ({ match, history }) => {
               <Typography display="inline" variant="h6">
                 sizes:
               </Typography>
-              {sizes.map(size => (
-                <Button
-                  className={classes.sizeButton}
-                  key={size.id}
-                  variant={orderSize === size.id ? "contained" : "outlined"}
-                  size="small"
-                  color="secondary"
-                  onClick={() => setOrderSize(size.id)}
-                  disabled={!size.available}
-                >
-                  {size.size} ({`${size.min_size} - ${size.max_size}`})
-                </Button>
-              ))}
+              <Button
+                onClick={() => setOpen(true)}
+                className={classes.right}
+                variant="outlined"
+              >
+                Size Guide
+              </Button>
+              <SizeGuide open={open} setOpen={setOpen} sizes={sizes} />
+              <div className={classes.mt1}>
+                {sizes.map(size => (
+                  <Button
+                    className={classes.sizeButton}
+                    key={size.id}
+                    variant={orderSize === size.id ? "contained" : "outlined"}
+                    size="small"
+                    color="secondary"
+                    onClick={() => setOrderSize(size.id)}
+                    disabled={!size.available}
+                  >
+                    {size.size}
+                  </Button>
+                ))}
+              </div>
             </div>
           )}
           {Array.isArray(colors) && colors.length ? (
