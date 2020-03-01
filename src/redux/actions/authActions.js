@@ -94,6 +94,38 @@ export const changePassword = (
     });
 };
 
+export const resetPassword = (email, setErrors, history) => dispatch => {
+  dispatch({ type: START_LOADING_BUTTON });
+  axios
+    .post("/api/auth/reset-password/", email)
+    .then(() => {
+      dispatch({ type: STOP_LOADING_BUTTON });
+      history.push("/login");
+      dispatch(
+        addNotif({
+          message: "Reset password link sended to your email"
+        })
+      );
+    })
+    .catch(() => {
+      setErrors({ email: "Unregistered email address" });
+      dispatch({ type: STOP_LOADING_BUTTON });
+    });
+};
+
+export const resetPasswordConfirm = (email, token, history) => dispatch => {
+  dispatch({ type: START_LOADING_BUTTON });
+  axios.post("/api/auth/reset-password/confirm/", { email, token }).then(() => {
+    dispatch({ type: STOP_LOADING_BUTTON });
+    history.push("/login");
+    dispatch(
+      addNotif({
+        message: "Password changed you can login"
+      })
+    );
+  });
+};
+
 export const updateUser = (user, setErrors, history) => dispatch => {
   dispatch({ type: START_LOADING_BUTTON });
   axios
