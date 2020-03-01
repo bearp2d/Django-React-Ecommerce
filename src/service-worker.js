@@ -13,10 +13,16 @@ workbox.routing.registerNavigationRoute(
   }
 );
 
-// Rest api requests
 workbox.routing.registerRoute(
-  new RegExp("/api/*"),
-  new workbox.strategies.NetworkFirst()
+  new RegExp("/api/products/*"),
+  new workbox.strategies.CacheFirst({
+    cacheName: "products",
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 5 * 60
+      })
+    ]
+  })
 );
 
 // Images
