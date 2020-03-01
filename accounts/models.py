@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.core.validators import RegexValidator
+from django.dispatch import receiver
+from django_rest_passwordreset.signals import reset_password_token_created
 
 from .validators import validate_national_code
 
@@ -73,3 +75,10 @@ class User(AbstractBaseUser):
     @property
     def username(self):
         return self.phone_number
+
+
+# reset password signal
+# TODO: send real email in production
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+    print(reset_password_token.key)

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'django_filters',
     'livereload',
+    'django_rest_passwordreset',
 ]
 
 MIDDLEWARE = [
