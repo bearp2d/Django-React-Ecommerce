@@ -39,6 +39,12 @@ const ResetPassword = React.lazy(() =>
   )
 );
 
+const ResetPasswordConfirm = React.lazy(() =>
+  import(
+    /* webpackChunkName: "reset-password-confirm" */ "./pages/authPages/resetPasswordConfirm"
+  )
+);
+
 const Profile = React.lazy(() =>
   import(/* webpackChunkName: "profile" */ "./pages/profilePages/profile")
 );
@@ -109,6 +115,11 @@ const Routes = () => {
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Register} />
         <AuthRoute exact path="/reset-password" component={ResetPassword} />
+        <AuthRoute
+          exact
+          path="/reset-password/:token"
+          component={ResetPasswordConfirm}
+        />
         <ProtectedRoute
           exact
           path="/change-password"

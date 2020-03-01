@@ -12,7 +12,7 @@ const validationSchema = Yup.object({
     .required("Required field")
 });
 
-const ForgotPassword = ({ history }) => {
+const ResetPassword = ({ history }) => {
   const values = { email: "" };
   const dispatch = useDispatch();
 
@@ -31,4 +31,4 @@ const ForgotPassword = ({ history }) => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

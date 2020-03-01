@@ -113,17 +113,29 @@ export const resetPassword = (email, setErrors, history) => dispatch => {
     });
 };
 
-export const resetPasswordConfirm = (email, token, history) => dispatch => {
+export const resetPasswordConfirm = (
+  password,
+  token,
+  setErrors,
+  history
+) => dispatch => {
   dispatch({ type: START_LOADING_BUTTON });
-  axios.post("/api/auth/reset-password/confirm/", { email, token }).then(() => {
-    dispatch({ type: STOP_LOADING_BUTTON });
-    history.push("/login");
-    dispatch(
-      addNotif({
-        message: "Password changed you can login"
-      })
-    );
-  });
+  axios
+    .post("/api/auth/reset-password/confirm/", { password, token })
+    .then(() => {
+      dispatch({ type: STOP_LOADING_BUTTON });
+      history.push("/login");
+      dispatch(
+        addNotif({
+          message: "Password changed you can login"
+        })
+      );
+    })
+    .catch(error => {
+      error.response.data.password &&
+        setErrors({ new_password: "This password is too common." });
+      dispatch({ type: STOP_LOADING_BUTTON });
+    });
 };
 
 export const updateUser = (user, setErrors, history) => dispatch => {
