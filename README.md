@@ -11,7 +11,7 @@ Setup environment for development
 Clone the project then install python and react dependencies
 
 ```
-git clone https://github.com/amirahrari/django-react-ecommerce.git
+git clone https://github.com/bearp2d/Django-React-Ecommerce.git
 cd django-react-ecommerce
 pip install -r requirements.txt
 yarn # or npm install
